@@ -1,0 +1,13 @@
+C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\ProvEventos\ProvEventos\bin\Debug\ProvEventos.dll
+C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\ProvEventos\ProvEventos\bin\Debug\ProvEventos.pdb
+C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\ProvEventos\ProvEventos\obj\Debug\EntidadesNegocio.csprojResolveAssemblyReference.cache
+C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\ProvEventos\ProvEventos\obj\Debug\ProvEventos.dll
+C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\ProvEventos\ProvEventos\obj\Debug\ProvEventos.pdb
+C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\ProvEventos\bin\Debug\ProvEventos.dll
+C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\ProvEventos\bin\Debug\ProvEventos.pdb
+C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\ProvEventos\bin\Debug\AccesoDatos.dll
+C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\ProvEventos\bin\Debug\AccesoDatos.pdb
+C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\ProvEventos\obj\Debug\EntidadesNegocio.csprojResolveAssemblyReference.cache
+C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\ProvEventos\obj\Debug\EntidadesNegocio.csproj.CoreCompileInputs.cache
+C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\ProvEventos\obj\Debug\ProvEventos.dll
+C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\ProvEventos\obj\Debug\ProvEventos.pdb
