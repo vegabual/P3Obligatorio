@@ -1,6 +1,8 @@
 USE ProvEventos
 GO
 
+BEGIN TRANSACTION 
+
 CREATE TABLE TipoEvento
 (
 	idtipoevento INTEGER IDENTITY(100,1) PRIMARY KEY,
@@ -9,11 +11,30 @@ CREATE TABLE TipoEvento
 )
 GO
 
+CREATE TABLE Rol
+(
+	idrol CHAR(4) PRIMARY KEY(idrol),
+	rol VARCHAR(20) NOT NULL
+)
+GO
+
 CREATE TABLE Usuario
 (
 	nombreusuario VARCHAR(20) PRIMARY KEY,
-	clave VARCHAR(10) NOT NULL,
+	clave VARCHAR(10) NOT NULL, 
+	idrol CHAR(4) FOREIGN KEY REFERENCES Rol(idrol),
 	fecharegistro DATE NOT NULL
+)
+GO
+
+CREATE TABLE Servicio
+(
+	idservicio INTEGER IDENTITY(500,1) PRIMARY KEY,
+	rut VARCHAR(20) FOREIGN KEY REFERENCES Usuario(nombreusuario),
+	nombre VARCHAR(50) NOT NULL,
+	descripcion NVARCHAR(250) NULL,
+	imagen NVARCHAR(200) NULL,
+	idtipoevento INTEGER FOREIGN KEY REFERENCES TipoEvento(idtipoevento)
 )
 GO
 
@@ -26,26 +47,6 @@ CREATE TABLE Proveedor
 	PRIMARY KEY(rut)
 )
 GO
-
-CREATE TABLE Servicio
-(
-	idservicio INTEGER IDENTITY(500,1) PRIMARY KEY,
-	rut VARCHAR(20) FOREIGN KEY REFERENCES Usuario(nombreusuario),
-	nombre VARCHAR(50) NOT NULL,
-	descripcion NVARCHAR(250) NULL,
-	imagen NVARCHAR(200),
-	idtipoevento INTEGER FOREIGN KEY REFERENCES TipoEvento(idtipoevento)
-)
-GO
-
-CREATE TABLE Rol
-(
-	nombreusuario VARCHAR(20) FOREIGN KEY REFERENCES Usuario(nombreusuario),
-	rol VARCHAR(50) NOT NULL,
-	PRIMARY KEY(nombreusuario)
-)
-GO
-
 
 CREATE TABLE ProveedorVIP
 (
@@ -61,3 +62,6 @@ CREATE TABLE TelefonoProveedor
 	telefono VARCHAR(10) NOT NULL
 )
 GO
+
+--ROLLBACK TRANSACTION
+--COMMIT TRANSACTION
