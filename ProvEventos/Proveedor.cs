@@ -32,7 +32,7 @@ namespace EntidadesNegocio
         {
             Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             int i;
-            return (int.TryParse(rut, out i) && regexEmail.IsMatch(email) && int.TryParse(telefono, out i));
+            return (int.TryParse(this.Rut, out i) && regexEmail.IsMatch(this.Email) && int.TryParse(this.Telefono, out i));
         }
         
         public virtual bool Insertar()
