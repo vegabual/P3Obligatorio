@@ -130,6 +130,10 @@
       <Project>{1a76e234-ab9b-4761-a3ec-1dad9e913ed4}</Project>
       <Name>AccesoDatos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProvEventos\EntidadesNegocio.csproj">
+      <Project>{B7119F76-D2D7-4605-AA4B-698210C3A7C7}</Project>
+      <Name>EntidadesNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
