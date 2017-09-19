@@ -19,14 +19,14 @@ namespace EntidadesNegocio
         private string email;
         private string telefono;
         private bool activo;
-        private string nombreservicio;
+        private List<Servicio> servicios;
 
         public string Rut { get; set; }
         public string NombreFantasia { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
         public bool Activo { get; set; }
-        public string Nombreservicio { get; set; }
+        public List<Servicio> Servicios { get; set; }
 
         public bool Validar()
         {
@@ -124,8 +124,8 @@ namespace EntidadesNegocio
                 //    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("Nombrefantasia")) ? "" : fila.GetString(fila.GetOrdinal("Nombrefantasia")),
                 //    Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
                 //    Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
-                //    Activo = (bool)fila["Activo"],
-                //    Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
+                //    Activo = (bool)fila["Activo"]
+                //    Servicios = fila.IsDBNull(fila.GetOrdinal("Servicios")) ? "" : fila.GetString(fila.GetOrdinal("Servicios"))
                 //};
             }
             return p;

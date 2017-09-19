@@ -17,15 +17,14 @@ namespace EntidadesNegocio
 
         public double Porcentaje { get; set; }
 
-        public Proveedor_Vip(string rut, string nombreFantasia, string email, string telefono, bool activo, string nombreservicio)
+        public Proveedor_Vip(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios)
         {
-            this.Rut = rut;
-            this.Email = email;
-            this.NombreFantasia = nombreFantasia;
             this.Porcentaje = porcentajeNuevoVip;
-            this.Telefono = telefono;
             this.Activo = true;
-            this.Nombreservicio = nombreservicio;
+            this.Rut = rut;
+            this.NombreFantasia = nombreFantasia;
+            this.Telefono = telefono;
+            this.Servicios = servicios;
         }
         
         public override bool Insertar()

@@ -12,13 +12,13 @@ namespace EntidadesNegocio
 {
     public class Proveedor_Comun : Proveedor, IActiveRecord
     {
-        public Proveedor_Comun(string rut, string nombreFantasia, string email, string telefono, string nombreservicio)
+        public Proveedor_Comun(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios)
         {
             this.Activo = true;
             this.Rut = rut;
             this.NombreFantasia = nombreFantasia;
             this.Telefono = telefono;
-            this.Nombreservicio = nombreservicio;
+            this.Servicios = servicios;
         }
 
     }
