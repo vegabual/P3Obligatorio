@@ -37,37 +37,29 @@ namespace EntidadesNegocio
         
         public virtual bool Insertar()
         {
+            SqlConnection cn = null;
             if (!this.Validar()) return false;
-
-            SqlConnection cn = Conexion.CrearConexion();
+            SqlTransaction trn = null;
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"INSERT INTO Proveedor
-                                VALUES(@rut,@nombreFantasia,@email,@activo)";
-            cmd.Parameters.AddWithValue("@rut", this.Rut);
-            cmd.Parameters.AddWithValue("@nombreFantasia", this.NombreFantasia);
-            cmd.Parameters.AddWithValue("@activo", this.Activo);
-            cmd.Parameters.AddWithValue("@email", this.Email);
-            cmd.Connection = cn;
             try
             {
-                Conexion.AbrirConexion(cn);
-                int filas = cmd.ExecuteNonQuery();
-                //Falta guardar en la tabla telefono
-                //Usamos el mismo objeto para la conexión y para el comando.
-                //Al comando le cambiamos la cadena de inserción y los parámetros
-                cmd.CommandText = @"INSERT INTO TelefonoProveedor VALUES(@rut,@telefono)";
-                cmd.Parameters.Clear();
-                cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
-                cmd.Parameters.Add(new SqlParameter("@telefono", this.Telefono));
-
-                filas += cmd.ExecuteNonQuery();
-
-                return filas == 2;
+                if (this.Insertar(cn, trn))
+                {
+                    trn.Commit();
+                    return true;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.Assert(false, "Cantidad de filas modificadas incorrecta");
+                    trn.Rollback();
+                    return false;
+                }
             }
             catch (SqlException ex)
             {
                 System.Diagnostics.Debug.Assert(false, ex.Message);
+                trn.Rollback();
                 return false;
 
             }
@@ -75,6 +67,33 @@ namespace EntidadesNegocio
             {
                 Conexion.CerrarConexion(cn);
             }
+        }
+
+        public virtual bool Insertar(SqlConnection cn, SqlTransaction trn)
+        {
+            if (!this.Validar() || ProvExists(this.rut)) return false;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"INSERT INTO Proveedor VALUES(@rut,@nombreFantasia,@email,@activo)";
+            cmd.Parameters.AddWithValue("@rut", this.Rut);
+            cmd.Parameters.AddWithValue("@nombreFantasia", this.NombreFantasia);
+            cmd.Parameters.AddWithValue("@activo", this.Activo);
+            cmd.Parameters.AddWithValue("@email", this.Email);
+            cmd.Connection = cn;
+            Conexion.AbrirConexion(cn);
+            trn = cn.BeginTransaction();
+            cmd.Transaction = trn;
+            int filas = cmd.ExecuteNonQuery();
+            //Falta guardar en la tabla telefono
+            //Usamos el mismo objeto para la conexión y para el comando.
+            //Al comando le cambiamos la cadena de inserción y los parámetros
+            cmd.CommandText = @"INSERT INTO TelefonoProveedor VALUES(@rut,@telefono)";
+            cmd.Parameters.Clear();
+            cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
+            cmd.Parameters.Add(new SqlParameter("@telefono", this.Telefono));
+
+            filas += cmd.ExecuteNonQuery();
+            return filas == 2;
         }
 
         public static List<Proveedor> FindAll()
@@ -105,6 +124,39 @@ namespace EntidadesNegocio
             {
                 System.Diagnostics.Debug.Assert(false, ex.Message);
                 return null;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
+        
+        public static bool ProvExists(string rut)
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT * FROM Proveedor WHERE p.rut = @rut";
+            cmd.Parameters.AddWithValue("@rut", rut);
+
+            cmd.Connection = cn;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return false;
             }
             finally
             {

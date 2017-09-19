@@ -17,7 +17,7 @@ namespace EntidadesNegocio
 
         public double Porcentaje { get; set; }
 
-        public Proveedor_Vip(string rut, string nombreFantasia, string email, string telefono, bool activo, string nombreservicio)
+        public Proveedor_Vip(string rut, string nombreFantasia, string email, string telefono, string nombreservicio)
         {
             this.Rut = rut;
             this.Email = email;
@@ -30,9 +30,9 @@ namespace EntidadesNegocio
         
         public override bool Insertar()
         {
-            if (!base.Insertar() || !this.Validar()) return false;
-
             SqlConnection cn = Conexion.CrearConexion();
+            SqlTransaction trn = null;
+            if (!this.Validar()) return false;
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = @"INSERT INTO ProveedorVIP VALUES(@rut,@porcentaje)";
@@ -42,16 +42,32 @@ namespace EntidadesNegocio
             cmd.Connection = cn;
             try
             {
-                Conexion.AbrirConexion(cn);
-                int filas = cmd.ExecuteNonQuery();
-
-                return filas == 1;
+                if (base.Insertar(cn, trn))
+                {
+                    int filas = cmd.ExecuteNonQuery();
+                    if (filas == 1)
+                    {
+                        trn.Commit();
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.Assert(false, "Cantidad de filas modificadas incorrecta");
+                        trn.Rollback();
+                    }
+                    return filas == 1;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.Assert(false, "Cantidad de filas modificadas en metodo base incorrecta");
+                    trn.Rollback();
+                    return false;
+                }
             }
             catch (SqlException ex)
             {
                 System.Diagnostics.Debug.Assert(false, ex.Message);
+                trn.Rollback();
                 return false;
-
             }
             finally
             {
