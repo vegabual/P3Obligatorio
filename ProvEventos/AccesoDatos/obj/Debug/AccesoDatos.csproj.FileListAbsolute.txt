@@ -1,6 +1,0 @@
-C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\AccesoDatos\bin\Debug\AccesoDatos.dll
-C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\AccesoDatos\bin\Debug\AccesoDatos.pdb
-C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\AccesoDatos\obj\Debug\AccesoDatos.csprojResolveAssemblyReference.cache
-C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\AccesoDatos\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
-C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\AccesoDatos\obj\Debug\AccesoDatos.dll
-C:\Users\Owner\Downloads\Obligatorio1\ProvEventos\AccesoDatos\obj\Debug\AccesoDatos.pdb

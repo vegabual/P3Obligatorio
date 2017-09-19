@@ -1,5 +1,0 @@
-c:\users\owner\documents\visual studio 2017\Projects\ProvEventos\ProvEventos\bin\Debug\ProvEventos.dll
-c:\users\owner\documents\visual studio 2017\Projects\ProvEventos\ProvEventos\bin\Debug\ProvEventos.pdb
-c:\users\owner\documents\visual studio 2017\Projects\ProvEventos\ProvEventos\obj\Debug\ProvEventos.csprojResolveAssemblyReference.cache
-c:\users\owner\documents\visual studio 2017\Projects\ProvEventos\ProvEventos\obj\Debug\ProvEventos.dll
-c:\users\owner\documents\visual studio 2017\Projects\ProvEventos\ProvEventos\obj\Debug\ProvEventos.pdb
