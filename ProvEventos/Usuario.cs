@@ -23,8 +23,9 @@ namespace EntidadesNegocio
 
         public Usuario(string nombreUsuario, string clave, Rol rol)
         {
-            fechaRegistro = DateTime.Today;
+            this.fechaRegistro = DateTime.Today;
             this.NombreUsuario = nombreUsuario;
+            this.Clave = clave;
             this.Rol = rol;
         }
 
@@ -33,11 +34,10 @@ namespace EntidadesNegocio
             Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$");
             return (regexPass.IsMatch(this.Clave));
         }
-
-
+        
         public bool Insertar()
         {
-            if (!this.Validar()) return false;
+            if (!this.Validar() || UsuExists(this.NombreUsuario)) return false;
 
             SqlConnection cn = Conexion.CrearConexion();
 
@@ -73,6 +73,40 @@ namespace EntidadesNegocio
             {
                 Conexion.CerrarConexion(cn);
             }
+        }
+
+        public static bool UsuExists(string username)
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT * FROM Usuario WHERE usuario.nombreusuario = @usu";
+            cmd.Parameters.AddWithValue("@usu", username);
+
+            cmd.Connection = cn;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return false;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+
         }
     }
 }

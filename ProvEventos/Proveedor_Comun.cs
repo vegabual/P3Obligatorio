@@ -16,6 +16,7 @@ namespace EntidadesNegocio
         {
             this.Activo = true;
             this.Rut = rut;
+            this.Email = email;
             this.NombreFantasia = nombreFantasia;
             this.Telefono = telefono;
             this.Nombreservicio = nombreservicio;
