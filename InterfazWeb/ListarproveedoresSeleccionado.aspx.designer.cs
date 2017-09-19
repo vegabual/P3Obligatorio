@@ -10,15 +10,15 @@
 namespace InterfazWeb {
     
     
-    public partial class ListarProveedores {
+    public partial class ListarproveedoresSeleccionado {
         
         /// <summary>
-        /// grvProveedores control.
+        /// grvProveedoresSeleccionado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvProveedores;
+        protected global::System.Web.UI.WebControls.GridView grvProveedoresSeleccionado;
     }
 }

@@ -11,7 +11,7 @@ using AccesoDatos;
 
 namespace InterfazWeb
 {
-    public partial class ListarProveedores : System.Web.UI.Page
+    public partial class ListarproveedoresSeleccionado : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,28 +26,29 @@ namespace InterfazWeb
 
             try
             {
-                string sQuery = "SELECT p.rut, p.nombrefantasia FROM Proveedor AS p";
+                string sQuery = @"SELECT p.*, CAST(ISNULL(pv.porcentaje,0) AS VARCHAR(28)) + '%', tp.telefono FROM Proveedor AS p 
+                                  LEFT JOIN ProveedorVIP AS pv ON p.rut = pv.rut LEFT JOIN TelefonoProveedor AS tp ON p.rut = tp.rut";
 
                 cn = Conexion.CrearConexion();
-                Conexion.AbrirConexion(cn);
+                cn.Open();
                 SqlCommand cmd = new SqlCommand(sQuery, cn);
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 dt.Load(dr);
-                grvProveedores.DataSource = dt;
-                grvProveedores.DataBind();
+                grvProveedoresSeleccionado.DataSource = dt;
+                grvProveedoresSeleccionado.DataBind();
             }
             catch { }
             finally
             {
                 dt.Dispose();
-                Conexion.CerrarConexion(cn);
+                cn.Close();
             }
         }
 
         protected void grvProveedores_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("ListarProveedoresSeleccionado.aspx");
+
         }
     }
 }

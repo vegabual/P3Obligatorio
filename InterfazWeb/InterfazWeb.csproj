@@ -69,6 +69,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="ListarProveedores.aspx" />
+    <Content Include="ListarproveedoresSeleccionado.aspx" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -101,6 +102,13 @@
     <Compile Include="ListarProveedores.aspx.designer.cs">
       <DependentUpon>ListarProveedores.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListarproveedoresSeleccionado.aspx.cs">
+      <DependentUpon>ListarproveedoresSeleccionado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarproveedoresSeleccionado.aspx.designer.cs">
+      <DependentUpon>ListarproveedoresSeleccionado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AddProv.aspx.cs">
       <DependentUpon>AddProv.aspx</DependentUpon>
@@ -116,6 +124,12 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
+      <Project>{1a76e234-ab9b-4761-a3ec-1dad9e913ed4}</Project>
+      <Name>AccesoDatos</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
