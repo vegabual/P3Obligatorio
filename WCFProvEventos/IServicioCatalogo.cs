@@ -13,27 +13,43 @@ namespace WCFProvEventos
     public interface IServicioCatalogo
     {
         [OperationContract]
-        int ExponerCatalogoServicios();
+        List<Servicio> FindAll();
     }
 
     [DataContract]
-    public class CompositeType
+    public class CatalogoServicios
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        string nombre = string.Empty;
+        string descripcion = string.Empty;
+        string imagen = string.Empty;
+        string nombreevento = string.Empty;
 
         [DataMember]
-        public bool BoolValue
+        public string Nombre
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            get { return nombre; }
+            set { nombre = value; }
         }
 
         [DataMember]
-        public string StringValue
+        public string Descripcion
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get { return descripcion; }
+            set { descripcion = value; }
+        }
+
+        [DataMember]
+        public string Imagen
+        {
+            get { return imagen; }
+            set { imagen = value; }
+        }
+
+        [DataMember]
+        public string Nombreevento
+        {
+            get { return nombreevento; }
+            set { nombreevento = value; }
         }
     }
 }
