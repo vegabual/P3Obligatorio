@@ -19,8 +19,8 @@ namespace WCFListaProveedores
     [DataContract]
     public class CompositeType
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        bool boolValue;
+        string stringValue;
 
         [DataMember]
         public bool BoolValue

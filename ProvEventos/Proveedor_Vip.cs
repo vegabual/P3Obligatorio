@@ -27,7 +27,12 @@ namespace EntidadesNegocio
             this.Activo = true;
             this.Nombreservicio = nombreservicio;
         }
-        
+
+        public Proveedor_Vip()
+        {
+        }
+
+
         public override bool Insertar()
         {
             SqlConnection cn = Conexion.CrearConexion();

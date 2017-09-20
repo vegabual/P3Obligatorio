@@ -99,8 +99,8 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT p.*, ISNULL(pv.porcentaje,0) FROM Proveedor AS p FULL JOIN ProveedorVIP AS pv ON pv.rut = p.rut";
-
+            cmd.CommandText = @"SELECT p.*, tp.telefono, pv.porcentaje FROM Proveedor AS p full JOIN TelefonoProveedor AS tp ON tp.rut = p.rut left join ProveedorVIP as pv on pv.rut = p.rut";
+            //cmd.CommandText = @"SELECT p.*, ISNULL(pv.porcentaje,0) FROM Proveedor AS p FULL JOIN ProveedorVIP AS pv ON pv.rut = p.rut";
             cmd.Connection = cn;
             List<Proveedor> listaproveedores = null;
             try
@@ -169,17 +169,42 @@ namespace EntidadesNegocio
 
             if (fila != null)
             {
-                //p = new Proveedor_Vip
-                //{
-                //    Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
-                //    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("Nombrefantasia")) ? "" : fila.GetString(fila.GetOrdinal("Nombrefantasia")),
-                //    Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
-                //    Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
-                //    Activo = (bool)fila["Activo"],
-                //    Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
-                //};
+                if (fila.IsDBNull(fila.GetOrdinal("Porcentaje")))
+                {
+                    String rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut"));
+                    String nombreFantasia = fila.IsDBNull(fila.GetOrdinal("Nombrefantasia")) ? "" : fila.GetString(fila.GetOrdinal("Nombrefantasia"));
+                    String email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email"));
+                    String telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono"));
+                    Boolean activo = (bool)fila["Activo"];
+                    p = new Proveedor_Comun
+                    {
+                        Rut = rut,
+                        NombreFantasia = nombreFantasia,
+                        Email = email,
+                        Telefono = telefono,
+                        Activo = activo,
+                        //Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
+                        Nombreservicio = null,
+                    };
+                }
+                else
+                {
+                    Double porcentaje = (Double)fila.GetDecimal(fila.GetOrdinal("porcentaje"));
+                    p = new Proveedor_Vip
+                    {
+                        Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
+                        NombreFantasia = fila.IsDBNull(fila.GetOrdinal("Nombrefantasia")) ? "" : fila.GetString(fila.GetOrdinal("Nombrefantasia")),
+                        Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
+                        Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
+                        Activo = (bool)fila["Activo"],
+                        //Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
+                        Nombreservicio = null,
+                        Porcentaje = porcentaje
+                    };
+                }
             }
             return p;
         }
+
     }
 }
