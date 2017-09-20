@@ -12,7 +12,7 @@ namespace EntidadesNegocio
 {
     public class Proveedor_Vip : Proveedor, IActiveRecord
     {
-        public static double porcentajeNuevoVip;
+        public static double porcentajeNuevoVip = 15;
         private double porcentaje;
 
         public double Porcentaje { get; set; }
@@ -39,9 +39,12 @@ namespace EntidadesNegocio
             cmd.Parameters.Clear();
             cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
             cmd.Parameters.Add(new SqlParameter("@porcentaje", porcentajeNuevoVip));
-            cmd.Connection = cn;
             try
             {
+                Conexion.AbrirConexion(cn);
+                trn = cn.BeginTransaction();
+                cmd.Connection = cn;
+                cmd.Transaction = trn;
                 if (base.Insertar(cn, trn))
                 {
                     int filas = cmd.ExecuteNonQuery();

@@ -27,6 +27,7 @@ namespace EntidadesNegocio
             this.NombreUsuario = nombreUsuario;
             this.Clave = clave;
             this.Rol = rol;
+            this.FechaRegistro = DateTime.Today;
         }
 
         public bool Validar()
@@ -40,18 +41,18 @@ namespace EntidadesNegocio
             if (!this.Validar() || UsuExists(this.NombreUsuario)) return false;
 
             SqlConnection cn = Conexion.CrearConexion();
-
+            SqlTransaction trn = null;
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"INSERT INTO Usuario
-                                VALUES(@nombreUsuario,@clave,@fechaReg)";
+            cmd.CommandText = @"INSERT INTO Usuario VALUES(@nombreUsuario,@clave,@fechaReg)";
             cmd.Parameters.AddWithValue("@nombreUsuario", this.NombreUsuario);
             cmd.Parameters.AddWithValue("@clave", this.Clave);
             cmd.Parameters.AddWithValue("@fechaReg", this.FechaRegistro);
-
-            cmd.Connection = cn;
             try
             {
                 Conexion.AbrirConexion(cn);
+                trn = cn.BeginTransaction();
+                cmd.Connection = cn;
+                cmd.Transaction = trn;
                 int filas = cmd.ExecuteNonQuery();
 
                 cmd.CommandText = @"INSERT INTO Rol VALUES(@nombreUsuario,@rol)";
@@ -61,13 +62,21 @@ namespace EntidadesNegocio
 
                 filas += cmd.ExecuteNonQuery();
 
+                if (filas == 2)
+                {
+                    trn.Commit();
+                }
+                else
+                {
+                    trn.Rollback();
+                }
                 return filas == 2;
             }
             catch (SqlException ex)
             {
                 System.Diagnostics.Debug.Assert(false, ex.Message);
+                trn.Rollback();
                 return false;
-
             }
             finally
             {

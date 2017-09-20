@@ -37,13 +37,14 @@ namespace EntidadesNegocio
         
         public virtual bool Insertar()
         {
-            SqlConnection cn = null;
+            SqlConnection cn = Conexion.CrearConexion();
             if (!this.Validar()) return false;
             SqlTransaction trn = null;
-
             SqlCommand cmd = new SqlCommand();
             try
             {
+                Conexion.AbrirConexion(cn);
+                trn = cn.BeginTransaction();
                 if (this.Insertar(cn, trn))
                 {
                     trn.Commit();
@@ -71,7 +72,7 @@ namespace EntidadesNegocio
 
         public virtual bool Insertar(SqlConnection cn, SqlTransaction trn)
         {
-            if (!this.Validar() || ProvExists(this.rut)) return false;
+            if (!this.Validar() || ProvExists(this.Rut)) return false;
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = @"INSERT INTO Proveedor VALUES(@rut,@nombreFantasia,@email,@activo)";
@@ -79,10 +80,8 @@ namespace EntidadesNegocio
             cmd.Parameters.AddWithValue("@nombreFantasia", this.NombreFantasia);
             cmd.Parameters.AddWithValue("@activo", this.Activo);
             cmd.Parameters.AddWithValue("@email", this.Email);
-            cmd.Connection = cn;
-            Conexion.AbrirConexion(cn);
-            trn = cn.BeginTransaction();
             cmd.Transaction = trn;
+            cmd.Connection = cn;
             int filas = cmd.ExecuteNonQuery();
             //Falta guardar en la tabla telefono
             //Usamos el mismo objeto para la conexión y para el comando.
@@ -135,7 +134,7 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT * FROM Proveedor WHERE p.rut = @rut";
+            cmd.CommandText = @"SELECT * FROM Proveedor WHERE rut = @rut";
             cmd.Parameters.AddWithValue("@rut", rut);
 
             cmd.Connection = cn;

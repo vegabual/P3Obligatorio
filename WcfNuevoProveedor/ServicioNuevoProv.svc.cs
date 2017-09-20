@@ -24,17 +24,16 @@ namespace WcfNuevoProveedor
             if (int.TryParse(rut, out i) && regexEmail.IsMatch(email) && int.TryParse(telefono,out i) && regexPass.IsMatch(clave))
             {
                 Usuario usu = new Usuario(rut, clave, Rol.Proveedor);
-                usu.Insertar();
+                Proveedor prov = null;
                 if (vip)
                 {
-                    Proveedor_Vip prov = new Proveedor_Vip(rut, nombre, email, telefono, null);
-                    result = prov.Insertar();
+                    prov = new Proveedor_Vip(rut, nombre, email, telefono, null);
                 }
                 else
                 {
-                    Proveedor_Comun prov = new Proveedor_Comun(rut, nombre, email, telefono, null);
-                    result = prov.Insertar();
+                    prov = new Proveedor_Comun(rut, nombre, email, telefono, null);
                 }
+                result = usu.Insertar() && prov.Insertar();
             }
             return result;
         }
