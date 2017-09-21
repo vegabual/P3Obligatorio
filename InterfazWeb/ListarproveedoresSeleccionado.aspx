@@ -10,36 +10,13 @@
             ShowHeaderWhenEmpty="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="grvProveedores_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:TemplateField HeaderText="RUT">
-                    <ItemTemplate>
-                        <asp:Label ID="lblRUT" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Nombre de Fantasía">
-                      <ItemTemplate>
-                        <asp:Label ID="lblNombreFantasia" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Correo Electrónico">
-                    <ItemTemplate>
-                        <asp:Label ID="lblEmail" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Activo">
-                      <ItemTemplate>
-                        <asp:Label ID="lblActivo" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Porcentaje VIP">
-                    <ItemTemplate>
-                        <asp:Label ID="lblProveedorVIP" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Teléfono">
-                      <ItemTemplate>
-                        <asp:Label ID="lblTelefono" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:BoundField DataField="Rut" HeaderText="RUT" />
+                <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre de Fantasía" />
+                <asp:BoundField DataField="Email" HeaderText="Email" />
+                <asp:BoundField DataField="Activo" HeaderText="Activo" />
+                <asp:BoundField DataField="Porcentaje" HeaderText="Porcentaje" />
+                <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

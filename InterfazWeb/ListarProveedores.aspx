@@ -10,16 +10,8 @@
             ShowHeaderWhenEmpty="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="grvProveedores_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:TemplateField HeaderText="RUT">
-                    <ItemTemplate>
-                        <asp:Label ID="lblRUT" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Nombre de Fantasía">
-                      <ItemTemplate>
-                        <asp:Label ID="lblNombreFantasia" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:BoundField DataField="Rut" HeaderText="RUT" />
+                <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre de Fantasía" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

@@ -21,28 +21,28 @@ namespace InterfazWeb
 
         private void BindGridView()
         {
-            DataTable dt = new DataTable();
-            SqlConnection cn = null;
-
-            try
+            string cadena = ConfigurationManager.ConnectionStrings["conexionProvEventos"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(cadena))
             {
-                string sQuery = @"SELECT p.*, CAST(ISNULL(pv.porcentaje,0) AS VARCHAR(28)) + '%', tp.telefono FROM Proveedor AS p 
-                                  LEFT JOIN ProveedorVIP AS pv ON p.rut = pv.rut LEFT JOIN TelefonoProveedor AS tp ON p.rut = tp.rut";
-
-                cn = Conexion.CrearConexion();
-                cn.Open();
-                SqlCommand cmd = new SqlCommand(sQuery, cn);
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                dt.Load(dr);
-                grvProveedoresSeleccionado.DataSource = dt;
-                grvProveedoresSeleccionado.DataBind();
-            }
-            catch { }
-            finally
-            {
-                dt.Dispose();
-                cn.Close();
+                using (SqlCommand cmd = new SqlCommand(@"SELECT p.rut, p.nombrefantasia, p.email, 
+                                                        CASE CAST(p.activo AS VARCHAR(10)) WHEN '1' THEN 'Si' WHEN '0' THEN 'No' END AS activo, 
+                                                        ISNULL(pv.porcentaje,0.00) AS porcentaje, tp.telefono FROM Proveedor AS p FULL JOIN ProveedorVIP AS pv ON p.rut = pv.rut 
+                                                        FULL JOIN TelefonoProveedor AS tp ON p.rut = tp.rut
+                                                        WHERE @rut = p.rut"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@rut", DateTime.Today.Day));
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            grvProveedoresSeleccionado.DataSource = dt;
+                            grvProveedoresSeleccionado.DataBind();
+                        }
+                    }
+                }
             }
         }
 

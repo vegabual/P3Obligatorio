@@ -21,27 +21,23 @@ namespace InterfazWeb
 
         private void BindGridView()
         {
-            DataTable dt = new DataTable();
-            SqlConnection cn = null;
-
-            try
+            string cadena = ConfigurationManager.ConnectionStrings["conexionProvEventos"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(cadena))
             {
-                string sQuery = "SELECT p.rut, p.nombrefantasia FROM Proveedor AS p";
-
-                cn = Conexion.CrearConexion();
-                Conexion.AbrirConexion(cn);
-                SqlCommand cmd = new SqlCommand(sQuery, cn);
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                dt.Load(dr);
-                grvProveedores.DataSource = dt;
-                grvProveedores.DataBind();
-            }
-            catch { }
-            finally
-            {
-                dt.Dispose();
-                Conexion.CerrarConexion(cn);
+                using (SqlCommand cmd = new SqlCommand("SELECT rut, nombrefantasia FROM Proveedor"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            grvProveedores.DataSource = dt;
+                            grvProveedores.DataBind();
+                        }
+                    }
+                }
             }
         }
 
