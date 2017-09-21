@@ -5,8 +5,8 @@ BEGIN TRANSACTION
 
 CREATE TABLE TipoEvento
 (
-	idtipoevento INTEGER IDENTITY(100,1) PRIMARY KEY,
-	nombre VARCHAR(50) NOT NULL,
+	idtipoevento VARCHAR(10) PRIMARY KEY,
+	nombreevento VARCHAR(50) NOT NULL,
 	descripcion NVARCHAR(250) NULL
 )
 GO
@@ -29,12 +29,12 @@ GO
 
 CREATE TABLE Servicio
 (
-	idservicio INTEGER IDENTITY(500,1) PRIMARY KEY,
+	idservicio VARCHAR(10) PRIMARY KEY,
 	rut VARCHAR(20) FOREIGN KEY REFERENCES Usuario(nombreusuario),
-	nombre VARCHAR(50) NOT NULL,
+	nombreservicio VARCHAR(50) NOT NULL,
 	descripcion NVARCHAR(250) NULL,
 	imagen NVARCHAR(200) NULL,
-	idtipoevento INTEGER FOREIGN KEY REFERENCES TipoEvento(idtipoevento)
+	idtipoevento VARCHAR(10) FOREIGN KEY REFERENCES TipoEvento(idtipoevento)
 )
 GO
 

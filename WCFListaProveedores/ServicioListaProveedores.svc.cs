@@ -13,7 +13,7 @@ namespace WCFListaProveedores
     {
         public int ListarProveedores()
         {
-            IEnumerable<Proveedor> lista = Proveedor.FindAll();
+            IEnumerable<Servicio> lista = Servicio.FindAll();
             return lista == null ? 0 : lista.Count();
         }
     }

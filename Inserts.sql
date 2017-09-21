@@ -3,31 +3,26 @@ GO
 
 BEGIN TRANSACTION
 
-DBCC CHECKIDENT('TipoEvento', RESEED, 99)
-GO
 
-DBCC CHECKIDENT('Servicio', RESEED, 499)
+INSERT INTO TipoEvento VALUES('100','Fiesta de 15','Fiesta para festejar los 15 años de las mujeres')
 GO
-
-INSERT INTO TipoEvento VALUES('Fiesta de 15','Fiesta para festejar los 15 años de las mujeres')
+INSERT INTO TipoEvento VALUES('101','Casamiento','Evento de ceremonia religiosa')
 GO
-INSERT INTO TipoEvento VALUES('Casamiento','Evento de ceremonia religiosa')
+INSERT INTO TipoEvento VALUES('102','Desayuno de trabajo','Reunión informal laboral')
 GO
-INSERT INTO TipoEvento VALUES('Desayuno de trabajo','Reunión informal laboral')
+INSERT INTO TipoEvento VALUES('103','Almuerzo de trabajo','Reunión informal laboral')
 GO
-INSERT INTO TipoEvento VALUES('Almuerzo de trabajo','Reunión informal laboral')
+INSERT INTO TipoEvento VALUES('104','Fiesta temática','Fiesta de cumpleaños con un tema')
 GO
-INSERT INTO TipoEvento VALUES('Fiesta temática','Fiesta de cumpleaños con un tema')
+INSERT INTO TipoEvento VALUES('105','Despedida','Almuerzo o cena de despedida')
 GO
-INSERT INTO TipoEvento VALUES('Despedida','Almuerzo o cena de despedida')
+INSERT INTO TipoEvento VALUES('106','Aniversario','Evento de celebración de aniversario')
 GO
-INSERT INTO TipoEvento VALUES('Aniversario','Evento de celebración de aniversario')
+INSERT INTO TipoEvento VALUES('107','Evento empresarial','Reunión empresarial')
 GO
-INSERT INTO TipoEvento VALUES('Evento empresarial','Reunión empresarial')
+INSERT INTO TipoEvento VALUES('108','Cócteles y brindis','Fiesta de celebración')
 GO
-INSERT INTO TipoEvento VALUES('Cócteles y brindis','Fiesta de celebración')
-GO
-INSERT INTO TipoEvento VALUES('Baby shower','Fiesta para festejar el nacimiento de un bebé')
+INSERT INTO TipoEvento VALUES('109','Baby shower','Fiesta para festejar el nacimiento de un bebé')
 GO
 --SELECT * FROM TipoEvento
 
@@ -65,25 +60,25 @@ INSERT INTO Usuario VALUES('R5734798','b45y3vc4df', '1620','20170409')
 GO
 --SELECT * FROM Usuario
 
-INSERT INTO Servicio VALUES('R5925094','Fotografía','Fotógrafo profesional para eventos',NULL,107)
+INSERT INTO Servicio VALUES('500','R5925094','Fotografía','Fotógrafo profesional para eventos',NULL,'100')
 GO
-INSERT INTO Servicio VALUES('R5925094','Filmación','Equipo de filmación','imagen1.jpg',102)
+INSERT INTO Servicio VALUES('501','R5925094','Filmación','Equipo de filmación','imagen1.jpg','101')
 GO
-INSERT INTO Servicio VALUES('R4328956','Cotillón','Paquetes de cotillón varios','imagen2.png',101)
+INSERT INTO Servicio VALUES('502','R4328956','Cotillón','Paquetes de cotillón varios','imagen2.png','100')
 GO
-INSERT INTO Servicio VALUES('R9202499','Catering','Servicios de catering profesional',NULL,108)
+INSERT INTO Servicio VALUES('503','R9202499','Catering','Servicios de catering profesional',NULL,'108')
 GO
-INSERT INTO Servicio VALUES('R3563463','Grupo musical','Grupo musical en vivo','imagen3.jpg',105)
+INSERT INTO Servicio VALUES('504','R3563463','Grupo musical','Grupo musical en vivo','imagen3.jpg','105')
 GO
-INSERT INTO Servicio VALUES('R2450054','Lunch','Lunch completos para 20 personas',NULL,104)
+INSERT INTO Servicio VALUES('505','R2450054','Lunch','Lunch completos para 20 personas',NULL,'103')
 GO
-INSERT INTO Servicio VALUES('R2310342','Personal de salón','Mozos y personal de cocina','imagen4.png',106)
+INSERT INTO Servicio VALUES('506','R2310342','Personal de salón','Mozos y personal de cocina','imagen4.png','100')
 GO
-INSERT INTO Servicio VALUES('R4562968','Sommelier','Sommelier profesional para eventos',NULL,109)
+INSERT INTO Servicio VALUES('507','R4562968','Sommelier','Sommelier profesional para eventos',NULL,'108')
 GO
-INSERT INTO Servicio VALUES('R1294030','Decoración','Grupo de decoradores profesionales','imagen5.jpg',101)
+INSERT INTO Servicio VALUES('508','R1294030','Decoración','Grupo de decoradores profesionales','imagen5.jpg','104')
 GO
-INSERT INTO Servicio VALUES('R2310342','Iluminación','Iluminación profesional',NULL,100)
+INSERT INTO Servicio VALUES('509','R2310342','Iluminación','Iluminación profesional',NULL,'106')
 GO
 --SELECT * FROM Servicio
 
