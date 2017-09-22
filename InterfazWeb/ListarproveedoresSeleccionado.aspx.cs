@@ -32,7 +32,8 @@ namespace InterfazWeb
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter())
                     {
-                        cmd.Parameters.Add(new SqlParameter("@rut", DateTime.Today.Day));
+                        string rut = Session["rut"].ToString();
+                        cmd.Parameters.Add(new SqlParameter("@rut", rut));
                         cmd.Connection = con;
                         sda.SelectCommand = cmd;
                         using (DataTable dt = new DataTable())
@@ -46,9 +47,9 @@ namespace InterfazWeb
             }
         }
 
-        protected void grvProveedores_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnVolver_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ListarProveedores.aspx");
         }
     }
 }

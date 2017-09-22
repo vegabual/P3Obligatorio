@@ -5,10 +5,13 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>LISTAR PROVEEDORES</p>
-        <asp:GridView ID="grvProveedores" runat="server" AutoGenerateColumns="False" AllowSorting="True" 
+        <asp:GridView ID="grvProveedores" runat="server" AutoGenerateColumns="False" AllowSorting="True" DataKeyNames="rut"
         AllowPaging="True" PageSize="25" AutoGenerateSelectButton="True" 
             ShowHeaderWhenEmpty="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="grvProveedores_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
+                <emptydatatemplate>
+                    No hay registros de proveedores
+                </emptydatatemplate> 
             <Columns>
                 <asp:BoundField DataField="Rut" HeaderText="RUT" />
                 <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre de Fantasía" />
@@ -24,4 +27,5 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView><br />
+    <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CausesValidation="false" /><br /><br />
 </asp:Content>

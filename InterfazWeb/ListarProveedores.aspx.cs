@@ -43,7 +43,13 @@ namespace InterfazWeb
 
         protected void grvProveedores_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["rut"] = grvProveedores.SelectedValue.ToString();
             Response.Redirect("ListarProveedoresSeleccionado.aspx");
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
