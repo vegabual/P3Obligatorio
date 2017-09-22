@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntidadesNegocio", "ProvEventos\EntidadesNegocio.csproj", "{B7119F76-D2D7-4605-AA4B-698210C3A7C7}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfNuevoProveedor", "WcfNuevoProveedor\WcfNuevoProveedor.csproj", "{CE6E5AD1-E2C1-4125-9438-F340F5A787A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazWeb", "InterfazWeb\InterfazWeb.csproj", "{67AD716B-FCC3-4890-AB0C-28CF384DA72D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFProveedorXRut", "WCFProveedorXRut\WCFProveedorXRut.csproj", "{71F92788-8CDD-4E37-8459-E0FBBE17964E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{67AD716B-FCC3-4890-AB0C-28CF384DA72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67AD716B-FCC3-4890-AB0C-28CF384DA72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67AD716B-FCC3-4890-AB0C-28CF384DA72D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71F92788-8CDD-4E37-8459-E0FBBE17964E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F92788-8CDD-4E37-8459-E0FBBE17964E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71F92788-8CDD-4E37-8459-E0FBBE17964E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71F92788-8CDD-4E37-8459-E0FBBE17964E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
