@@ -62,7 +62,6 @@ namespace EntidadesNegocio
                 System.Diagnostics.Debug.Assert(false, ex.Message);
                 trn.Rollback();
                 return false;
-
             }
             finally
             {
@@ -95,11 +94,43 @@ namespace EntidadesNegocio
             return filas == 2;
         }
 
+        public Proveedor FindById(string rut)
+        {
+
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"";
+            cmd.Parameters.AddWithValue("@rut", Rut);
+            cmd.Connection = cn;
+            try
+            {
+                cn.Open();
+                Proveedor p = null;
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read()) 
+                {
+                    p = CargarDatosDesdeReader(dr);
+                }
+                return p;
+            }
+            catch (SqlException ex)
+            {
+                Debug.Assert(false, ex.Message);
+                return null;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
         public static List<Proveedor> FindAll()
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT p.*, ISNULL(pv.porcentaje,0) FROM Proveedor AS p FULL JOIN ProveedorVIP AS pv ON pv.rut = p.rut";
+            cmd.CommandText = @"SELECT p.rut, p.nombrefantasia, p.email, tp.telefono, 
+                                CASE CAST(p.activo AS VARCHAR(10)) WHEN '1' THEN 'Si' WHEN '0' THEN 'No' END AS activo, s.nombreservicio 
+                                FROM Proveedor AS p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut JOIN Servicio AS s ON p.rut = s.rut";
 
             cmd.Connection = cn;
             List<Proveedor> listaproveedores = null;

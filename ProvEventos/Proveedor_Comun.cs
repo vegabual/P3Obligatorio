@@ -21,6 +21,5 @@ namespace EntidadesNegocio
             this.Telefono = telefono;
             this.Nombreservicio = nombreservicio;
         }
-
     }
 }

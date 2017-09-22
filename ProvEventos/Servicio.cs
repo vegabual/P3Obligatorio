@@ -62,7 +62,6 @@ namespace EntidadesNegocio
         {
             Servicio s = null;
 
-
             if (fila != null)   
             {
                 s = new Servicio
