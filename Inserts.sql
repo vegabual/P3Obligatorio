@@ -60,57 +60,57 @@ INSERT INTO Usuario VALUES('R5734798','b45y3vc4df', '1620','20170409')
 GO
 --SELECT * FROM Usuario
 
-INSERT INTO Servicio VALUES('500','R5925094','Fotografía','Fotógrafo profesional para eventos',NULL,'100')
+INSERT INTO Servicio VALUES('500','R5925094','Fotografía','Fotógrafo profesional para eventos',NULL,1,'100')
 GO
-INSERT INTO Servicio VALUES('501','R5925094','Filmación','Equipo de filmación','imagen1.jpg','101')
+INSERT INTO Servicio VALUES('501','R5925094','Filmación','Equipo de filmación','imagen1.jpg',1,'101')
 GO
-INSERT INTO Servicio VALUES('502','R4328956','Cotillón','Paquetes de cotillón varios','imagen2.png','100')
+INSERT INTO Servicio VALUES('502','R4328956','Cotillón','Paquetes de cotillón varios','imagen2.png',1,'100')
 GO
-INSERT INTO Servicio VALUES('503','R9202499','Catering','Servicios de catering profesional',NULL,'108')
+INSERT INTO Servicio VALUES('503','R9202499','Catering','Servicios de catering profesional',NULL,0,'108')
 GO
-INSERT INTO Servicio VALUES('504','R3563463','Grupo musical','Grupo musical en vivo','imagen3.jpg','105')
+INSERT INTO Servicio VALUES('504','R3563463','Grupo musical','Grupo musical en vivo','imagen3.jpg',0,'105')
 GO
-INSERT INTO Servicio VALUES('505','R2450054','Lunch','Lunch completos para 20 personas',NULL,'103')
+INSERT INTO Servicio VALUES('505','R2450054','Lunch','Lunch completos para 20 personas',NULL,1,'103')
 GO
-INSERT INTO Servicio VALUES('506','R2310342','Personal de salón','Mozos y personal de cocina','imagen4.png','100')
+INSERT INTO Servicio VALUES('506','R2310342','Personal de salón','Mozos y personal de cocina','imagen4.png',1,'100')
 GO
-INSERT INTO Servicio VALUES('507','R4562968','Sommelier','Sommelier profesional para eventos',NULL,'108')
+INSERT INTO Servicio VALUES('507','R4562968','Sommelier','Sommelier profesional para eventos',NULL,1,'108')
 GO
-INSERT INTO Servicio VALUES('508','R1294030','Decoración','Grupo de decoradores profesionales','imagen5.jpg','104')
+INSERT INTO Servicio VALUES('508','R1294030','Decoración','Grupo de decoradores profesionales','imagen5.jpg',0,'104')
 GO
-INSERT INTO Servicio VALUES('509','R2310342','Iluminación','Iluminación profesional',NULL,'106')
+INSERT INTO Servicio VALUES('509','R2310342','Iluminación','Iluminación profesional',NULL,1,'106')
 GO
 --SELECT * FROM Servicio
 
-INSERT INTO Proveedor VALUES('R2310342','ACCE LTDA','acceprov@outlook.com',1)
+INSERT INTO Proveedor VALUES('R2310342','ACCE LTDA','acceprov@outlook.com',1,6500)
 GO
-INSERT INTO Proveedor VALUES('R9202499','COVISA','covisa@outlook.com',0)
+INSERT INTO Proveedor VALUES('R9202499','COVISA','covisa@outlook.com',0,6500)
 GO
-INSERT INTO Proveedor VALUES('R5925094','DITEM','ditem@gmail.com',1)
+INSERT INTO Proveedor VALUES('R5925094','DITEM','ditem@gmail.com',1,6500)
 GO
-INSERT INTO Proveedor VALUES('R2450054','EIPM','eipm@outlook.com',1)
+INSERT INTO Proveedor VALUES('R2450054','EIPM','eipm@outlook.com',1,6500)
 GO
-INSERT INTO Proveedor VALUES('R1294030','GSA SA','gsaprov@outlook.com',0)
+INSERT INTO Proveedor VALUES('R1294030','GSA SA','gsaprov@outlook.com',0,6500)
 GO
-INSERT INTO Proveedor VALUES('R4562968','OPZION SA','opzionsa@yahoo.com',1)
+INSERT INTO Proveedor VALUES('R4562968','OPZION SA','opzionsa@yahoo.com',1,6500)
 GO
-INSERT INTO Proveedor VALUES('R4328956','SUMATEC','sumatec@hotmail.com',1)
+INSERT INTO Proveedor VALUES('R4328956','SUMATEC','sumatec@hotmail.com',1,6500)
 GO
-INSERT INTO Proveedor VALUES('R3563463','VITEL','vitel@gmail.com',0)
+INSERT INTO Proveedor VALUES('R3563463','VITEL','vitel@gmail.com',0,6500)
 GO
-INSERT INTO Proveedor VALUES('R0525223','WENCO S.A','wenco@gmail.com',0)
+INSERT INTO Proveedor VALUES('R0525223','WENCO S.A','wenco@gmail.com',0,6500)
 GO
-INSERT INTO Proveedor VALUES('R5734798','ROMACO','romacoltda@outlook.com',1)
+INSERT INTO Proveedor VALUES('R5734798','ROMACO','romacoltda@outlook.com',1,6500)
 GO
 --SELECT * FROM Proveedor
 
-INSERT INTO ProveedorVIP VALUES('R2310342',5.0)
+INSERT INTO ProveedorVIP VALUES('R2310342',10.0)
 GO
 INSERT INTO ProveedorVIP VALUES('R9202499',10.0)
 GO
-INSERT INTO ProveedorVIP VALUES('R5925094',5.0)
+INSERT INTO ProveedorVIP VALUES('R5925094',10.0)
 GO
-INSERT INTO ProveedorVIP VALUES('R2450054',5.0)
+INSERT INTO ProveedorVIP VALUES('R2450054',10.0)
 GO
 INSERT INTO ProveedorVIP VALUES('R1294030',10.0)
 GO

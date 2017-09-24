@@ -1,3 +1,12 @@
+IF EXISTS(SELECT * FROM SysDataBases WHERE name='ProvEventos')
+BEGIN
+	DROP DATABASE ProvEventos
+END
+GO
+
+CREATE DATABASE ProvEventos
+GO
+
 USE ProvEventos
 GO
 
@@ -34,6 +43,7 @@ CREATE TABLE Servicio
 	nombreservicio VARCHAR(50) NOT NULL,
 	descripcion NVARCHAR(250) NULL,
 	imagen NVARCHAR(200) NULL,
+	activo BIT DEFAULT 1,
 	idtipoevento VARCHAR(10) FOREIGN KEY REFERENCES TipoEvento(idtipoevento)
 )
 GO
@@ -43,7 +53,8 @@ CREATE TABLE Proveedor
 	rut VARCHAR(20) FOREIGN KEY REFERENCES Usuario(nombreusuario),
 	nombrefantasia NVARCHAR(100) NOT NULL,
 	email NVARCHAR(100) NULL,
-	activo BIT DEFAULT 1
+	activo BIT DEFAULT 1,
+	arancel DECIMAL(9,2)
 	PRIMARY KEY(rut)
 )
 GO
