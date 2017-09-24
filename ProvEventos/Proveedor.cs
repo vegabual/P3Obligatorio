@@ -28,6 +28,16 @@ namespace EntidadesNegocio
         public bool Activo { get; set; }
         public string Nombreservicio { get; set; }
 
+        //public Proveedor(string rut, string nombreFantasia, string email, string telefono, string nombreservicio)
+        //{
+        //    this.Rut = rut;
+        //    this.Email = email;
+        //    this.NombreFantasia = nombreFantasia;
+        //    this.Telefono = telefono;
+        //    this.Activo = true;
+        //    this.Nombreservicio = nombreservicio;
+        //}
+
         public bool Validar()
         {
             Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
@@ -93,6 +103,103 @@ namespace EntidadesNegocio
             filas += cmd.ExecuteNonQuery();
             return filas == 2;
         }
+        
+        public static bool ProvExists(string rut)
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT * FROM Proveedor WHERE rut = @rut";
+            cmd.Parameters.AddWithValue("@rut", rut);
+
+            cmd.Connection = cn;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return false;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
+
+        public static bool Modificar(double arancel)
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            SqlTransaction trn = null;
+            cmd.CommandText = @"UPDATE Proveedor SET arancel = @arancel FROM Proveedor";
+            cmd.Parameters.AddWithValue("@arancel", arancel);
+            cmd.Connection = cn;
+
+            try
+            {
+                Conexion.AbrirConexion(cn);
+                trn = cn.BeginTransaction();
+                cmd.Transaction = trn;
+                int filas = cmd.ExecuteNonQuery();
+                trn.Commit();
+
+                return filas >= 2;
+            }
+            catch (Exception ex)
+            {
+                Debug.Assert(false, ex.Message);
+                trn.Rollback();
+                return false;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
+
+        public static bool Desactivar(string rut, bool activo)
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            SqlTransaction trn = null;
+            cmd.CommandText = @"UPDATE Proveedor SET activo = @activo FROM Proveedor WHERE rut = @rut
+                                UPDATE Servicio  SET activo = @activo FROM Servicio  WHERE rut = @rut";
+            cmd.Parameters.AddWithValue("@rut", rut);
+            cmd.Parameters.AddWithValue("@activo", activo);
+            cmd.Connection = cn;
+
+            try
+            {
+                Conexion.AbrirConexion(cn);
+                trn = cn.BeginTransaction();
+                cmd.Transaction = trn;
+                int filas = cmd.ExecuteNonQuery();
+                trn.Commit();
+
+                return filas >= 2;
+            }
+            catch (Exception ex)
+            {
+                Debug.Assert(false, ex.Message);
+                trn.Rollback();
+                return false;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
 
         public Proveedor FindById(string rut)
         {
@@ -107,7 +214,7 @@ namespace EntidadesNegocio
                 cn.Open();
                 Proveedor p = null;
                 SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.Read()) 
+                if (dr.Read())
                 {
                     p = CargarDatosDesdeReader(dr);
                 }
@@ -160,39 +267,6 @@ namespace EntidadesNegocio
                 Conexion.CerrarConexion(cn);
             }
         }
-        
-        public static bool ProvExists(string rut)
-        {
-            SqlConnection cn = Conexion.CrearConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT * FROM Proveedor WHERE rut = @rut";
-            cmd.Parameters.AddWithValue("@rut", rut);
-
-            cmd.Connection = cn;
-            try
-            {
-                Conexion.AbrirConexion(cn);
-
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (SqlException ex)
-            {
-                System.Diagnostics.Debug.Assert(false, ex.Message);
-                return false;
-            }
-            finally
-            {
-                Conexion.CerrarConexion(cn);
-            }
-        }
 
         protected static Proveedor CargarDatosDesdeReader(IDataRecord fila)
         {
@@ -203,10 +277,10 @@ namespace EntidadesNegocio
                 //p = new Proveedor_Vip
                 //{
                 //    Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
-                //    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("Nombrefantasia")) ? "" : fila.GetString(fila.GetOrdinal("Nombrefantasia")),
+                //    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("NombreFantasia")) ? "" : fila.GetString(fila.GetOrdinal("NombreFantasia")),
                 //    Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
                 //    Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
-                //    Activo = (bool)fila["Activo"],
+                //    //Activo = (bool)fila["Activo"],
                 //    Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
                 //};
             }

@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace EntidadesNegocio
 {
-    public class Proveedor_Comun : Proveedor, IActiveRecord
+    public class Proveedor_Comun : Proveedor
     {
         public Proveedor_Comun(string rut, string nombreFantasia, string email, string telefono, string nombreservicio)
         {

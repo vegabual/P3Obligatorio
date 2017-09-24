@@ -16,17 +16,19 @@ namespace EntidadesNegocio
         private string descripcion;
         private string imagen;
         private string nombreevento;
+        private bool activo;
 
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
         public string Nombreevento { get; set; }
+        public bool Activo { get; set; }
 
         public static List<Servicio> FindAll()
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT s.nombreservicio, s.descripcion, s.imagen, t.nombreevento FROM Servicio as s 
+            cmd.CommandText = @"SELECT s.nombreservicio, s.descripcion, s.imagen, t.nombreevento, s.activo FROM Servicio as s 
                                 INNER JOIN TipoEvento as t ON t.idtipoevento = s.idtipoevento";
 
             cmd.Connection = cn;
@@ -69,7 +71,8 @@ namespace EntidadesNegocio
                     Nombre = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio")),
                     Descripcion = fila.IsDBNull(fila.GetOrdinal("Descripcion")) ? "" : fila.GetString(fila.GetOrdinal("Descripcion")),
                     Imagen = fila.IsDBNull(fila.GetOrdinal("Imagen")) ? "No hay imagen disponible" : fila.GetString(fila.GetOrdinal("Imagen")),
-                    Nombreevento = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento"))
+                    Nombreevento = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
+                    Activo = (bool)fila["Activo"]
                 };
             }
             return s;

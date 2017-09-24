@@ -77,5 +77,31 @@ namespace EntidadesNegocio
                 Conexion.CerrarConexion(cn);
             }
         }
+
+        public static bool Modificar(double porcentaje)
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"UPDATE ProveedorVIP SET porcentaje = @porcentaje FROM ProveedorVIP";
+            cmd.Parameters.AddWithValue("@porcentaje", porcentaje);
+            cmd.Connection = cn;
+
+            try
+            {
+                Conexion.AbrirConexion(cn);
+                int filas = cmd.ExecuteNonQuery();
+
+                return filas >= 2;
+            }
+            catch (Exception ex)
+            {
+                Debug.Assert(false, ex.Message);
+                return false;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
     }
 }
