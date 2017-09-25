@@ -5,3 +5,10 @@ C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obliga
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\ProvEventos\obj\Debug\EntidadesNegocio.csprojResolveAssemblyReference.cache
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\ProvEventos\obj\Debug\ProvEventos.dll
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\ProvEventos\obj\Debug\ProvEventos.pdb
+C:\ReposOrt\Programacion1Obligatorio\ProvEventos\bin\Debug\ProvEventos.dll
+C:\ReposOrt\Programacion1Obligatorio\ProvEventos\bin\Debug\ProvEventos.pdb
+C:\ReposOrt\Programacion1Obligatorio\ProvEventos\bin\Debug\AccesoDatos.dll
+C:\ReposOrt\Programacion1Obligatorio\ProvEventos\bin\Debug\AccesoDatos.pdb
+C:\ReposOrt\Programacion1Obligatorio\ProvEventos\obj\Debug\EntidadesNegocio.csprojResolveAssemblyReference.cache
+C:\ReposOrt\Programacion1Obligatorio\ProvEventos\obj\Debug\ProvEventos.dll
+C:\ReposOrt\Programacion1Obligatorio\ProvEventos\obj\Debug\ProvEventos.pdb

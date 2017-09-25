@@ -28,15 +28,17 @@ namespace EntidadesNegocio
         public bool Activo { get; set; }
         public string Nombreservicio { get; set; }
 
-        //public Proveedor(string rut, string nombreFantasia, string email, string telefono, string nombreservicio)
-        //{
-        //    this.Rut = rut;
-        //    this.Email = email;
-        //    this.NombreFantasia = nombreFantasia;
-        //    this.Telefono = telefono;
-        //    this.Activo = true;
-        //    this.Nombreservicio = nombreservicio;
-        //}
+        public Proveedor(string rut, string nombreFantasia, string email, string telefono, string nombreservicio)
+        {
+            this.Rut = rut;
+            this.Email = email;
+            this.NombreFantasia = nombreFantasia;
+            this.Telefono = telefono;
+            this.Activo = true;
+            this.Nombreservicio = nombreservicio;
+        }
+
+        public Proveedor() { }
 
         public bool Validar()
         {

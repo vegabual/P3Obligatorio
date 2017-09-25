@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,7 +27,6 @@ namespace EntidadesNegocio
             this.NombreUsuario = nombreUsuario;
             this.Clave = clave;
             this.Rol = rol;
-            this.FechaRegistro = DateTime.Today;
         }
 
         public bool Validar()
@@ -37,64 +35,23 @@ namespace EntidadesNegocio
             return (regexPass.IsMatch(this.Clave));
         }
         
-        public string ObtenerRolId(Rol rol)
-        {
-            SqlConnection cn = Conexion.CrearConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT * FROM Rol WHERE rol = @rol";
-            cmd.Parameters.AddWithValue("@rol", rol.ToString());
-            cmd.Connection = cn;
-            try
-            {
-                Conexion.AbrirConexion(cn);
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    //return dr.IsDBNull(dr.GetOrdinal("idRol")) ? "" : dr.GetString(dr.GetOrdinal("idRol"));
-                    SqlInt64 id = dr.IsDBNull(dr.GetOrdinal("idrol")) ? 0 : dr.GetSqlInt64(dr.GetOrdinal("idrol"));
-                    return id.ToString();
-                }
-                else
-                {
-                    cmd.CommandText = @"Insert into Rol (rol) output Inserted.idrol values (@rol)";
-                    cmd.Parameters.AddWithValue("@rol", rol.ToString());
-                    cmd.Connection = cn;
-                    dr = cmd.ExecuteReader();
-                    long id = dr.IsDBNull(dr.GetOrdinal("idRol")) ? 0 : dr.GetInt64(dr.GetOrdinal("idRol"));
-                    return id.ToString();
-                }
-            }
-            catch (SqlException ex)
-            {
-                System.Diagnostics.Debug.Assert(false, ex.Message);
-                return null;
-            }
-            finally
-            {
-                Conexion.CerrarConexion(cn);
-            }
-
-        }
-
         public bool Insertar()
         {
             if (!this.Validar() || UsuExists(this.NombreUsuario)) return false;
 
             SqlConnection cn = Conexion.CrearConexion();
-            SqlTransaction trn = null;
+
             SqlCommand cmd = new SqlCommand();
-            string idrol = ObtenerRolId(this.Rol);
-            cmd.CommandText = @"INSERT INTO Usuario VALUES(@nombreUsuario,@clave,@idrol,@fechaReg)";
+            cmd.CommandText = @"INSERT INTO Usuario
+                                VALUES(@nombreUsuario,@clave,@fechaReg)";
             cmd.Parameters.AddWithValue("@nombreUsuario", this.NombreUsuario);
             cmd.Parameters.AddWithValue("@clave", this.Clave);
-            cmd.Parameters.AddWithValue("@idrol", idrol);
             cmd.Parameters.AddWithValue("@fechaReg", this.FechaRegistro);
+
+            cmd.Connection = cn;
             try
             {
                 Conexion.AbrirConexion(cn);
-                trn = cn.BeginTransaction();
-                cmd.Connection = cn;
-                cmd.Transaction = trn;
                 int filas = cmd.ExecuteNonQuery();
 
                 cmd.CommandText = @"INSERT INTO Rol VALUES(@nombreUsuario,@rol)";
@@ -104,21 +61,13 @@ namespace EntidadesNegocio
 
                 filas += cmd.ExecuteNonQuery();
 
-                if (filas == 2)
-                {
-                    trn.Commit();
-                }
-                else
-                {
-                    trn.Rollback();
-                }
                 return filas == 2;
             }
             catch (SqlException ex)
             {
                 System.Diagnostics.Debug.Assert(false, ex.Message);
-                trn.Rollback();
                 return false;
+
             }
             finally
             {
@@ -157,6 +106,7 @@ namespace EntidadesNegocio
             {
                 Conexion.CerrarConexion(cn);
             }
+
         }
     }
 }

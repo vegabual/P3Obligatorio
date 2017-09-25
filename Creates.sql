@@ -22,7 +22,7 @@ GO
 
 CREATE TABLE Rol
 (
-	idrol CHAR(4) PRIMARY KEY(idrol),
+	idrol int IDENTITY(1000,1) PRIMARY KEY(idrol),
 	rol VARCHAR(20) NOT NULL
 )
 GO
@@ -31,7 +31,7 @@ CREATE TABLE Usuario
 (
 	nombreusuario VARCHAR(20) PRIMARY KEY,
 	clave VARCHAR(10) NOT NULL, 
-	idrol CHAR(4) FOREIGN KEY REFERENCES Rol(idrol),
+	idrol int FOREIGN KEY REFERENCES Rol(idrol),
 	fecharegistro DATE NOT NULL
 )
 GO
