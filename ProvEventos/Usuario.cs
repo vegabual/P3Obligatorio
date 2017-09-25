@@ -37,37 +37,45 @@ namespace EntidadesNegocio
             return (regexPass.IsMatch(this.Clave));
         }
         
-        public string ObtenerRolId(Rol rol)
+        public int ObtenerRolId(Rol rol)
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
+            string rolstr = rol.ToString();
             cmd.CommandText = @"SELECT * FROM Rol WHERE rol = @rol";
-            cmd.Parameters.AddWithValue("@rol", rol.ToString());
+            cmd.Parameters.AddWithValue("@rol", rolstr);
             cmd.Connection = cn;
             try
             {
                 Conexion.AbrirConexion(cn);
                 SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
+                if (dr.HasRows && dr.Read())
                 {
                     //return dr.IsDBNull(dr.GetOrdinal("idRol")) ? "" : dr.GetString(dr.GetOrdinal("idRol"));
-                    SqlInt64 id = dr.IsDBNull(dr.GetOrdinal("idrol")) ? 0 : dr.GetSqlInt64(dr.GetOrdinal("idrol"));
-                    return id.ToString();
+                    int id = dr.IsDBNull(dr.GetOrdinal("idrol")) ? 0 : dr.GetInt32(dr.GetOrdinal("idrol"));
+                    return id;
                 }
                 else
                 {
-                    cmd.CommandText = @"Insert into Rol (rol) output Inserted.idrol values (@rol)";
-                    cmd.Parameters.AddWithValue("@rol", rol.ToString());
-                    cmd.Connection = cn;
-                    dr = cmd.ExecuteReader();
-                    long id = dr.IsDBNull(dr.GetOrdinal("idRol")) ? 0 : dr.GetInt64(dr.GetOrdinal("idRol"));
-                    return id.ToString();
+                    dr.Close();
+                    SqlCommand cmdInsert = new SqlCommand();
+                    cmdInsert.CommandText = @"Insert into Rol (rol) output inserted.idrol values (@rol)";
+                    cmdInsert.Parameters.AddWithValue("@rol", rolstr);
+                    cmdInsert.Connection = cn;
+                    
+                    SqlDataReader dr2 = cmdInsert.ExecuteReader();
+                    long id = 0;
+                    if (dr2.Read())
+                    {
+                        id = dr2.IsDBNull(dr2.GetOrdinal("idrol")) ? 0 : dr2.GetInt32(dr2.GetOrdinal("idrol"));
+                    }
+                    return (int)id;
                 }
             }
             catch (SqlException ex)
             {
                 System.Diagnostics.Debug.Assert(false, ex.Message);
-                return null;
+                return 0;
             }
             finally
             {
@@ -83,7 +91,7 @@ namespace EntidadesNegocio
             SqlConnection cn = Conexion.CrearConexion();
             SqlTransaction trn = null;
             SqlCommand cmd = new SqlCommand();
-            string idrol = ObtenerRolId(this.Rol);
+            int idrol = ObtenerRolId(this.Rol);
             cmd.CommandText = @"INSERT INTO Usuario VALUES(@nombreUsuario,@clave,@idrol,@fechaReg)";
             cmd.Parameters.AddWithValue("@nombreUsuario", this.NombreUsuario);
             cmd.Parameters.AddWithValue("@clave", this.Clave);
@@ -97,14 +105,7 @@ namespace EntidadesNegocio
                 cmd.Transaction = trn;
                 int filas = cmd.ExecuteNonQuery();
 
-                cmd.CommandText = @"INSERT INTO Rol VALUES(@nombreUsuario,@rol)";
-                cmd.Parameters.Clear();
-                cmd.Parameters.Add(new SqlParameter("@nombreUsuario", this.NombreUsuario));
-                cmd.Parameters.Add(new SqlParameter("@rol", this.Rol));
-
-                filas += cmd.ExecuteNonQuery();
-
-                if (filas == 2)
+                if (filas == 1)
                 {
                     trn.Commit();
                 }
@@ -112,7 +113,7 @@ namespace EntidadesNegocio
                 {
                     trn.Rollback();
                 }
-                return filas == 2;
+                return filas == 1;
             }
             catch (SqlException ex)
             {

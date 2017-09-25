@@ -12,3 +12,11 @@ C:\ReposOrt\Programacion1Obligatorio\ProvEventos\bin\Debug\AccesoDatos.pdb
 C:\ReposOrt\Programacion1Obligatorio\ProvEventos\obj\Debug\EntidadesNegocio.csprojResolveAssemblyReference.cache
 C:\ReposOrt\Programacion1Obligatorio\ProvEventos\obj\Debug\ProvEventos.dll
 C:\ReposOrt\Programacion1Obligatorio\ProvEventos\obj\Debug\ProvEventos.pdb
+C:\ReposOrt\Programacion3Obligatorio\ProvEventos\bin\Debug\ProvEventos.dll
+C:\ReposOrt\Programacion3Obligatorio\ProvEventos\bin\Debug\ProvEventos.pdb
+C:\ReposOrt\Programacion3Obligatorio\ProvEventos\bin\Debug\AccesoDatos.dll
+C:\ReposOrt\Programacion3Obligatorio\ProvEventos\bin\Debug\AccesoDatos.pdb
+C:\ReposOrt\Programacion3Obligatorio\ProvEventos\obj\Debug\EntidadesNegocio.csprojResolveAssemblyReference.cache
+C:\ReposOrt\Programacion3Obligatorio\ProvEventos\obj\Debug\EntidadesNegocio.csproj.CoreCompileInputs.cache
+C:\ReposOrt\Programacion3Obligatorio\ProvEventos\obj\Debug\ProvEventos.dll
+C:\ReposOrt\Programacion3Obligatorio\ProvEventos\obj\Debug\ProvEventos.pdb
