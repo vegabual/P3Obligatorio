@@ -51,7 +51,6 @@ namespace EntidadesNegocio
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows && dr.Read())
                 {
-                    //return dr.IsDBNull(dr.GetOrdinal("idRol")) ? "" : dr.GetString(dr.GetOrdinal("idRol"));
                     int id = dr.IsDBNull(dr.GetOrdinal("idrol")) ? 0 : dr.GetInt32(dr.GetOrdinal("idrol"));
                     return id;
                 }

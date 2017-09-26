@@ -73,11 +73,14 @@ CREATE TABLE TelefonoProveedor
 )
 GO
 
-CREATE TABLE Valores
+CREATE TABLE Parametros
 (
-	arancel DECIMAL(9,2),
-	porcentaje DECIMAL(9,2)
+	nombre varchar(20),
+	valor DECIMAL(9,2)
 )
 
 --ROLLBACK TRANSACTION
 --COMMIT TRANSACTION
+
+INSERT INTO Parametros VALUES ('arancel', 3700)
+INSERT INTO Parametros VALUES ('porcentaje', 15)

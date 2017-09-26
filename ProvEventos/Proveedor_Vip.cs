@@ -35,10 +35,9 @@ namespace EntidadesNegocio
             if (!this.Validar()) return false;
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"INSERT INTO ProveedorVIP VALUES(@rut,(SELECT porcentaje FROM Valores))";
+            cmd.CommandText = @"INSERT INTO ProveedorVIP VALUES(@rut,(SELECT valor FROM Parametros WHERE nombre='porcentaje'))";
             cmd.Parameters.Clear();
             cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
-            //cmd.Parameters.Add(new SqlParameter("@porcentaje", porcentajeNuevoVip));
             try
             {
                 Conexion.AbrirConexion(cn);
@@ -78,12 +77,12 @@ namespace EntidadesNegocio
             }
         }
 
-        public static bool Modificar(double porcentaje)
+        public static new bool Modificar(double porcentaje)
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
             SqlTransaction trn = null;
-            cmd.CommandText = @"UPDATE Valores SET porcentaje = @porcentaje FROM Valores";
+            cmd.CommandText = @"UPDATE Parametros SET valor = @porcentaje FROM Parametros where nombre = 'porcentaje'";
             cmd.Parameters.AddWithValue("@porcentaje", porcentaje);
             cmd.Connection = cn;
 
