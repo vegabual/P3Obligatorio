@@ -28,7 +28,7 @@ namespace EntidadesNegocio
             this.Nombreservicio = nombreservicio;
         }
 
-        public void ConfigurarPorcentajeNuevoProd()
+        public void ConfigurarPorcentajeNuevoProv()
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
