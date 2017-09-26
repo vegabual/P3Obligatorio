@@ -27,7 +27,25 @@ namespace EntidadesNegocio
             this.Activo = true;
             this.Nombreservicio = nombreservicio;
         }
-        
+
+        public void ConfigurarPorcentajeNuevoProd()
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                Conexion.AbrirConexion(cn);
+                cmd.CommandText = @"SELECT valor FROM Parametros WHERE nombre='porcentaje'";
+                cmd.Connection = cn;
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows && dr.Read())
+                {
+                    porcentajeNuevoVip = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetDouble(dr.GetOrdinal("valor"));
+                }
+            }
+            catch { }
+        }
+
         public override bool Insertar()
         {
             SqlConnection cn = Conexion.CrearConexion();

@@ -59,7 +59,7 @@ namespace EntidadesNegocio
                 SqlDataReader dr= cmd.ExecuteReader();
                 if (dr.HasRows && dr.Read())
                 {
-                    arancel = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetInt32(dr.GetOrdinal("valor"));
+                    arancel = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetDouble(dr.GetOrdinal("valor"));
                 }
             }
             catch { }
