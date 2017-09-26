@@ -19,23 +19,23 @@ namespace EntidadesNegocio
         private string email;
         private string telefono;
         private bool activo;
-        private string nombreservicio;
+        private List<Servicio> nombreservicio;
 
         public string Rut { get; set; }
         public string NombreFantasia { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
         public bool Activo { get; set; }
-        public string Nombreservicio { get; set; }
+        public List<Servicio> Servicios { get; set; }
 
-        public Proveedor(string rut, string nombreFantasia, string email, string telefono, string nombreservicio)
+        public Proveedor(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios)
         {
             this.Rut = rut;
             this.Email = email;
             this.NombreFantasia = nombreFantasia;
             this.Telefono = telefono;
             this.Activo = true;
-            this.Nombreservicio = nombreservicio;
+            this.Servicios = servicios;
         }
 
         public Proveedor() { }
@@ -44,7 +44,7 @@ namespace EntidadesNegocio
         {
             Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             int i;
-            return (int.TryParse(this.Rut, out i) && regexEmail.IsMatch(this.Email) && int.TryParse(this.Telefono, out i));
+            return (regexEmail.IsMatch(this.Email) && int.TryParse(this.Telefono, out i));
         }
         
         public void ConfigurarArancel()
@@ -157,7 +157,7 @@ namespace EntidadesNegocio
             }
         }
 
-        public static bool Modificar(double arancel)
+        public static bool ModificarArancel(double arancel)
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();

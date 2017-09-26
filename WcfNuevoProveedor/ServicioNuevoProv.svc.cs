@@ -23,7 +23,8 @@ namespace WcfNuevoProveedor
             Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             if (int.TryParse(rut, out i) && regexEmail.IsMatch(email) && int.TryParse(telefono,out i) && regexPass.IsMatch(clave))
             {
-                Usuario usu = new Usuario(rut, clave, Rol.Proveedor);
+                string claveEncriptada = Usuario.EncryptPassword(clave);
+                Usuario usu = new Usuario(rut, claveEncriptada, Rol.Proveedor);
                 Proveedor prov = null;
                 if (vip)
                 {

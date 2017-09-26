@@ -17,7 +17,7 @@ namespace EntidadesNegocio
 
         public double Porcentaje { get; set; }
 
-        public Proveedor_Vip(string rut, string nombreFantasia, string email, string telefono, string nombreservicio)
+        public Proveedor_Vip(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios)
         {
             this.Rut = rut;
             this.Email = email;
@@ -25,7 +25,7 @@ namespace EntidadesNegocio
             this.Porcentaje = porcentajeNuevoVip;
             this.Telefono = telefono;
             this.Activo = true;
-            this.Nombreservicio = nombreservicio;
+            this.Servicios = servicios;
         }
 
         public Proveedor_Vip() { }
@@ -97,7 +97,7 @@ namespace EntidadesNegocio
             }
         }
 
-        public static new bool Modificar(double porcentaje)
+        public static bool ModificarPorcentaje(double porcentaje)
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();

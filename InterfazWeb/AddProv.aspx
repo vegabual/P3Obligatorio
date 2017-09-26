@@ -14,7 +14,7 @@
             <br />
             <asp:Label ID="Label1" runat="server" Text="Rut"></asp:Label>
 &nbsp;<asp:TextBox ID="txtRut" runat="server" Width="118px"></asp:TextBox>
-            <asp:CustomValidator ID="valRut" runat="server" ControlToValidate="txtRut" ErrorMessage="Ingrese un rut valido" OnServerValidate="ValRut_ServerValidate" SetFocusOnError="True" ValidateEmptyText="True"></asp:CustomValidator>
+            <asp:RequiredFieldValidator ID="valNombre0" runat="server" ErrorMessage="Ingrese un rut" ControlToValidate="txtRut"></asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="Label2" runat="server" Text="Clave"></asp:Label>
 &nbsp;<asp:TextBox ID="txtClave" runat="server" TextMode="Password"></asp:TextBox>

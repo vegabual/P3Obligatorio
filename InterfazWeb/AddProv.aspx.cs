@@ -49,7 +49,7 @@ namespace InterfazWeb
             if (Page.IsValid)
             {
                 string rut = txtRut.Text;
-                string clave = txtClave.Text;
+                string clave = Usuario.EncryptPassword(txtClave.Text);
                 string nombre = txtNombre.Text;
                 string email = txtEmail.Text;
                 string tel = txtTel.Text;

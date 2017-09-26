@@ -15,7 +15,7 @@ namespace WCFModificarArancelyPorcentaje
         {
             bool result = false;
 
-            result = Proveedor.Modificar(arancel);
+            result = Proveedor.ModificarArancel(arancel);
 
             return result;
         }
@@ -23,7 +23,7 @@ namespace WCFModificarArancelyPorcentaje
         public bool ModificarPorcentaje(double porcentaje)
         {
             bool result = false;
-            result = Proveedor_Vip.Modificar(porcentaje);
+            result = Proveedor_Vip.ModificarPorcentaje(porcentaje);
 
             return result;
         }
