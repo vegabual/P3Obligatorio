@@ -86,12 +86,11 @@ namespace EntidadesNegocio
             if (!this.Validar() || ProvExists(this.Rut)) return false;
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"INSERT INTO Proveedor VALUES(@rut,@nombreFantasia,@email,@activo, @arancel)";
+            cmd.CommandText = @"INSERT INTO Proveedor VALUES(@rut,@nombreFantasia,@email,@activo)";
             cmd.Parameters.AddWithValue("@rut", this.Rut);
             cmd.Parameters.AddWithValue("@nombreFantasia", this.NombreFantasia);
             cmd.Parameters.AddWithValue("@activo", this.Activo);
             cmd.Parameters.AddWithValue("@email", this.Email);
-            cmd.Parameters.AddWithValue("@arancel", arancel);
             cmd.Transaction = trn;
             cmd.Connection = cn;
             int filas = cmd.ExecuteNonQuery();
@@ -145,7 +144,7 @@ namespace EntidadesNegocio
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
             SqlTransaction trn = null;
-            cmd.CommandText = @"UPDATE Proveedor SET arancel = @arancel FROM Proveedor";
+            cmd.CommandText = @"UPDATE Valores SET arancel = @arancel FROM Valores";
             cmd.Parameters.AddWithValue("@arancel", arancel);
             cmd.Connection = cn;
 
@@ -206,7 +205,6 @@ namespace EntidadesNegocio
 
         public Proveedor FindById(string rut)
         {
-
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = @"";

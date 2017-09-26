@@ -12,7 +12,7 @@ namespace EntidadesNegocio
 {
     public class Proveedor_Vip : Proveedor, IActiveRecord
     {
-        public static double porcentajeNuevoVip = 15;
+        public static double porcentajeNuevoVip;
         private double porcentaje;
 
         public double Porcentaje { get; set; }
@@ -35,10 +35,10 @@ namespace EntidadesNegocio
             if (!this.Validar()) return false;
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"INSERT INTO ProveedorVIP VALUES(@rut,@porcentaje)";
+            cmd.CommandText = @"INSERT INTO ProveedorVIP VALUES(@rut,(SELECT porcentaje FROM Valores))";
             cmd.Parameters.Clear();
             cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
-            cmd.Parameters.Add(new SqlParameter("@porcentaje", porcentajeNuevoVip));
+            //cmd.Parameters.Add(new SqlParameter("@porcentaje", porcentajeNuevoVip));
             try
             {
                 Conexion.AbrirConexion(cn);
@@ -82,20 +82,25 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"UPDATE ProveedorVIP SET porcentaje = @porcentaje FROM ProveedorVIP";
+            SqlTransaction trn = null;
+            cmd.CommandText = @"UPDATE Valores SET porcentaje = @porcentaje FROM Valores";
             cmd.Parameters.AddWithValue("@porcentaje", porcentaje);
             cmd.Connection = cn;
 
             try
             {
                 Conexion.AbrirConexion(cn);
+                trn = cn.BeginTransaction();
+                cmd.Transaction = trn;
                 int filas = cmd.ExecuteNonQuery();
+                trn.Commit();
 
                 return filas >= 2;
             }
             catch (Exception ex)
             {
                 Debug.Assert(false, ex.Message);
+                trn.Rollback();
                 return false;
             }
             finally
