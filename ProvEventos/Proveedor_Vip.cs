@@ -28,6 +28,8 @@ namespace EntidadesNegocio
             this.Nombreservicio = nombreservicio;
         }
 
+        public Proveedor_Vip() { }
+
         public void ConfigurarPorcentajeNuevoProv()
         {
             SqlConnection cn = Conexion.CrearConexion();

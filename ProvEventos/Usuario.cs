@@ -31,6 +31,8 @@ namespace EntidadesNegocio
             this.FechaRegistro = DateTime.Today;
         }
 
+        public Usuario() { }
+
         public bool Validar()
         {
             Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$");

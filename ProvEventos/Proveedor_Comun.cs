@@ -21,5 +21,7 @@ namespace EntidadesNegocio
             this.Telefono = telefono;
             this.Nombreservicio = nombreservicio;
         }
+
+        public Proveedor_Comun() { }
     }
 }
