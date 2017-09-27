@@ -143,7 +143,7 @@ namespace EntidadesNegocio
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
             SqlTransaction trn = null;
-            cmd.CommandText = @"UPDATE Parametro SET valor = @arancel FROM Parametros where nombre = 'arancel'";
+            cmd.CommandText = @"UPDATE Parametro SET valor = @arancel FROM Parametro where nombre = 'arancel'";
             cmd.Parameters.AddWithValue("@arancel", arancel);
             cmd.Connection = cn;
 

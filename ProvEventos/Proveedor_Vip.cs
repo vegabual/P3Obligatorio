@@ -21,7 +21,7 @@ namespace EntidadesNegocio
             this.Rut = rut;
             this.Email = email;
             this.NombreFantasia = nombreFantasia;
-            this.Porcentaje = GetPorcentajeNuevoProv();
+            //this.Porcentaje = GetPorcentajeNuevoProv();
             this.Telefono = telefono;
             this.Activo = true;
             this.Servicios = servicios;
@@ -29,33 +29,33 @@ namespace EntidadesNegocio
 
         public Proveedor_Vip() { }
 
-        public double GetPorcentajeNuevoProv()
-        {
-            SqlConnection cn = Conexion.CrearConexion();
-            SqlCommand cmd = new SqlCommand();
-            double ret = -1;
-            try
-            {
-                Conexion.AbrirConexion(cn);
-                cmd.CommandText = @"SELECT valor FROM Parametros WHERE nombre='porcentaje'";
-                cmd.Connection = cn;
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows && dr.Read())
-                {
-                    ret = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetDouble(dr.GetOrdinal("valor"));
-                }
-                return ret;
-            }
-            catch (SqlException ex)
-            {
-                System.Diagnostics.Debug.Assert(false, ex.Message);
-                return -1;
-            }
-            finally
-            {
-                Conexion.CerrarConexion(cn);
-            }
-        }
+        //public double GetPorcentajeNuevoProv()
+        //{
+        //    SqlConnection cn = Conexion.CrearConexion();
+        //    SqlCommand cmd = new SqlCommand();
+        //    double ret = -1;
+        //    try
+        //    {
+        //        Conexion.AbrirConexion(cn);
+        //        cmd.CommandText = @"SELECT valor FROM Parametro WHERE nombre='porcentaje'";
+        //        cmd.Connection = cn;
+        //        SqlDataReader dr = cmd.ExecuteReader();
+        //        if (dr.HasRows && dr.Read())
+        //        {
+        //            ret = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetDouble(dr.GetOrdinal("valor"));
+        //        }
+        //        return ret;
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        System.Diagnostics.Debug.Assert(false, ex.Message);
+        //        return -1;
+        //    }
+        //    finally
+        //    {
+        //        Conexion.CerrarConexion(cn);
+        //    }
+        //}
 
         public override bool Insertar()
         {
@@ -64,7 +64,7 @@ namespace EntidadesNegocio
             if (!this.Validar()) return false;
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"INSERT INTO ProveedorVIP VALUES(@rut,(SELECT valor FROM Parametros WHERE nombre='porcentaje'))";
+            cmd.CommandText = @"INSERT INTO ProveedorVIP VALUES(@rut,(SELECT valor FROM Parametro WHERE nombre='porcentaje'))";
             cmd.Parameters.Clear();
             cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
             try
@@ -111,7 +111,7 @@ namespace EntidadesNegocio
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
             SqlTransaction trn = null;
-            cmd.CommandText = @"UPDATE Parametros SET valor = @porcentaje FROM Parametros where nombre = 'porcentaje'";
+            cmd.CommandText = @"UPDATE Parametro SET valor = @porcentaje FROM Parametro where nombre = 'porcentaje'";
             cmd.Parameters.AddWithValue("@porcentaje", porcentaje);
             cmd.Connection = cn;
 
