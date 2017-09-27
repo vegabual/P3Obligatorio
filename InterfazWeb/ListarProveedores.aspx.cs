@@ -49,7 +49,7 @@ namespace InterfazWeb
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Default.aspx");
         }
     }
 }

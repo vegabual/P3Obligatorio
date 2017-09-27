@@ -1,14 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddProv.aspx.cs" Inherits="InterfazWeb.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="AddProv.aspx.cs" Inherits="InterfazWeb.AddProv" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <asp:Label ID="Label6" runat="server" Text="Registro de proveedores"></asp:Label>
             <br />
             <br />
@@ -36,9 +31,7 @@
             <br />
             <br />
             <asp:Button ID="btnRegistro" runat="server" Text="Registrar" OnClick="btnRegistro_Click" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CausesValidation="false" />
             <br />
             <asp:Label ID="lblResultado" runat="server"></asp:Label>
-        </div>
-    </form>
-</body>
-</html>
+</asp:Content>

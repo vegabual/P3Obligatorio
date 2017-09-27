@@ -70,6 +70,7 @@
     <None Include="packages.config" />
     <Content Include="ListarProveedores.aspx" />
     <Content Include="ListarproveedoresSeleccionado.aspx" />
+    <Content Include="MenuProv.aspx" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="ListarproveedoresSeleccionado.aspx.designer.cs">
       <DependentUpon>ListarproveedoresSeleccionado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuProv.aspx.cs">
+      <DependentUpon>MenuProv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuProv.aspx.designer.cs">
+      <DependentUpon>MenuProv.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AddProv.aspx.cs">

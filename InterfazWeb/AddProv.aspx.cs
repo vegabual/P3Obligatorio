@@ -9,13 +9,13 @@ using System.Web.UI.WebControls;
 
 namespace InterfazWeb
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class AddProv : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                
+                vaciar();
             }
         }
 
@@ -33,7 +33,7 @@ namespace InterfazWeb
         protected void valEmail_ServerValidate(object source, ServerValidateEventArgs args)
         {
             Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            args.IsValid = args.Value != null && args.Value != ""  && regexEmail.IsMatch(args.Value);
+            args.IsValid = args.Value != null && args.Value != "" && regexEmail.IsMatch(args.Value);
         }
 
         protected void valTel_ServerValidate(object source, ServerValidateEventArgs args)
@@ -79,6 +79,20 @@ namespace InterfazWeb
             {
                 lblResultado.Text = "Ha occurrido un error, verifique sus datos por favor";
             }
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void vaciar()
+        {
+            txtRut.Text = "";
+            txtClave.Text = "";
+            txtNombre.Text = "";
+            txtEmail.Text = "";
+            txtTel.Text = "";
         }
     }
 }
