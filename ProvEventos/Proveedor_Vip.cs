@@ -12,7 +12,6 @@ namespace EntidadesNegocio
 {
     public class Proveedor_Vip : Proveedor, IActiveRecord
     {
-        public static double porcentajeNuevoVip;
         private double porcentaje;
 
         public double Porcentaje { get; set; }
@@ -22,7 +21,7 @@ namespace EntidadesNegocio
             this.Rut = rut;
             this.Email = email;
             this.NombreFantasia = nombreFantasia;
-            this.Porcentaje = porcentajeNuevoVip;
+            this.Porcentaje = GetPorcentajeNuevoProv();
             this.Telefono = telefono;
             this.Activo = true;
             this.Servicios = servicios;
@@ -30,10 +29,11 @@ namespace EntidadesNegocio
 
         public Proveedor_Vip() { }
 
-        public void ConfigurarPorcentajeNuevoProv()
+        public double GetPorcentajeNuevoProv()
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
+            double ret = -1;
             try
             {
                 Conexion.AbrirConexion(cn);
@@ -42,10 +42,19 @@ namespace EntidadesNegocio
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows && dr.Read())
                 {
-                    porcentajeNuevoVip = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetDouble(dr.GetOrdinal("valor"));
+                    ret = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetDouble(dr.GetOrdinal("valor"));
                 }
+                return ret;
             }
-            catch { }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return -1;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
         }
 
         public override bool Insertar()

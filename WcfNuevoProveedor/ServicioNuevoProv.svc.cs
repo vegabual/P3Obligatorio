@@ -19,12 +19,10 @@ namespace WcfNuevoProveedor
             bool result = false;
             int i;
             //La clave debe tener entre 8 y 15 caracteres, tener al menos un numero, una letra minuscula y una letra mayuscula
-            Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$");
             Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            if (int.TryParse(rut, out i) && regexEmail.IsMatch(email) && int.TryParse(telefono,out i) && regexPass.IsMatch(clave))
+            if (regexEmail.IsMatch(email) && int.TryParse(telefono,out i) && Usuario.ValidarClave(clave))
             {
-                string claveEncriptada = Usuario.EncryptPassword(clave);
-                Usuario usu = new Usuario(rut, claveEncriptada, Rol.Proveedor);
+                Usuario usu = new Usuario(rut, Usuario.EncryptPassword(clave), Rol.Proveedor);
                 Proveedor prov = null;
                 if (vip)
                 {

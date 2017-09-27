@@ -13,7 +13,6 @@ namespace EntidadesNegocio
 {
     public abstract class Proveedor
     {
-        public static double arancel;
         private string rut;
         private string nombreFantasia;
         private string email;
@@ -47,24 +46,6 @@ namespace EntidadesNegocio
             return (regexEmail.IsMatch(this.Email) && int.TryParse(this.Telefono, out i));
         }
         
-        public void ConfigurarArancel()
-        {
-            SqlConnection cn = Conexion.CrearConexion();
-            SqlCommand cmd = new SqlCommand();
-            try
-            {
-                Conexion.AbrirConexion(cn);
-                cmd.CommandText = @"SELECT valor FROM Parametros WHERE nombre='arancel'";
-                cmd.Connection = cn;
-                SqlDataReader dr= cmd.ExecuteReader();
-                if (dr.HasRows && dr.Read())
-                {
-                    arancel = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetDouble(dr.GetOrdinal("valor"));
-                }
-            }
-            catch { }
-        }
-
         public virtual bool Insertar()
         {
             SqlConnection cn = Conexion.CrearConexion();
@@ -162,7 +143,7 @@ namespace EntidadesNegocio
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
             SqlTransaction trn = null;
-            cmd.CommandText = @"UPDATE Parametros SET valor = @arancel FROM Parametros where nombre = 'arancel'";
+            cmd.CommandText = @"UPDATE Parametro SET valor = @arancel FROM Parametros where nombre = 'arancel'";
             cmd.Parameters.AddWithValue("@arancel", arancel);
             cmd.Connection = cn;
 

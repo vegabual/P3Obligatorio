@@ -27,8 +27,7 @@ namespace InterfazWeb
 
         protected void valClave_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$");
-            args.IsValid = args.Value != null && args.Value != "" && regexPass.IsMatch(args.Value);
+            args.IsValid = args.Value != null && args.Value != "" && Usuario.ValidarClave(args.Value);
         }
 
         protected void valEmail_ServerValidate(object source, ServerValidateEventArgs args)
@@ -49,11 +48,11 @@ namespace InterfazWeb
             if (Page.IsValid)
             {
                 string rut = txtRut.Text;
-                string clave = Usuario.EncryptPassword(txtClave.Text);
+                string clave = txtClave.Text;
                 string nombre = txtNombre.Text;
                 string email = txtEmail.Text;
                 string tel = txtTel.Text;
-                Usuario user = new Usuario(rut, clave, Rol.Proveedor);
+                Usuario user = new Usuario(rut, Usuario.EncryptPassword(clave), Rol.Proveedor);
                 Proveedor prov;
                 if (chkVip.Checked)
                 {
@@ -63,9 +62,9 @@ namespace InterfazWeb
                 {
                     prov = new Proveedor_Comun(rut, nombre, email, tel, null);
                 }
-                bool uservalido = user.Validar();
+                bool uservalido = Usuario.ValidarClave(clave);
                 bool provvalido = prov.Validar();
-                if (user.Validar() && prov.Validar())
+                if (Usuario.ValidarClave(clave) && prov.Validar())
                 {
                     user.Insertar();
                     prov.Insertar();

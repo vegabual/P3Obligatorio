@@ -30,7 +30,7 @@ GO
 CREATE TABLE Usuario
 (
 	nombreusuario VARCHAR(30) PRIMARY KEY,
-	clave VARCHAR(15) NOT NULL, 
+	clave VARCHAR(50) NOT NULL, 
 	idrol int FOREIGN KEY REFERENCES Rol(idrol),
 	fecharegistro DATE NOT NULL
 )
@@ -73,14 +73,15 @@ CREATE TABLE TelefonoProveedor
 )
 GO
 
-CREATE TABLE Parametros
+CREATE TABLE Parametro
 (
 	nombre varchar(20),
 	valor DECIMAL(9,2)
 )
+GO
+
+INSERT INTO Parametro VALUES ('arancel', 3700)
+INSERT INTO Parametro VALUES ('porcentaje', 15)
 
 --ROLLBACK TRANSACTION
 --COMMIT TRANSACTION
-
-INSERT INTO Parametros VALUES ('arancel', 3700)
-INSERT INTO Parametros VALUES ('porcentaje', 15)

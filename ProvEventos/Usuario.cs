@@ -33,10 +33,10 @@ namespace EntidadesNegocio
 
         public Usuario() { }
 
-        public bool Validar()
+        public static bool ValidarClave(string pass)
         {
             Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$");
-            return (regexPass.IsMatch(this.Clave));
+            return (regexPass.IsMatch(pass));
         }
         
         public int ObtenerRolId(Rol rol)
@@ -87,7 +87,7 @@ namespace EntidadesNegocio
 
         public bool Insertar()
         {
-            if (!this.Validar() || UsuExists(this.NombreUsuario)) return false;
+            if (UsuExists(this.NombreUsuario)) return false;
 
             SqlConnection cn = Conexion.CrearConexion();
             SqlTransaction trn = null;
