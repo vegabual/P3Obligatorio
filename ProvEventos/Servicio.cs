@@ -24,27 +24,6 @@ namespace EntidadesNegocio
         public List<Tipo_Evento> Eventos { get; set; }
         public bool Activo { get; set; }
         
-        public virtual bool Insertar(SqlConnection cn, SqlTransaction trn, string rutProv)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"INSERT INTO Proveedor VALUES(@rut,@nombreFantasia,@email,@activo)";
-            cmd.Parameters.AddWithValue("@rut", this.Nombre);
-            cmd.Parameters.AddWithValue("@nombreFantasia", this.Eventos);
-            cmd.Parameters.AddWithValue("@activo", this.Imagen);
-            cmd.Parameters.AddWithValue("@email", this.Descripcion);
-            cmd.Parameters.AddWithValue("@email", this.Activo);
-            cmd.Transaction = trn;
-            cmd.Connection = cn;
-            int filas = cmd.ExecuteNonQuery();
-            //Falta guardar el tipo evento
-            foreach (Tipo_Evento e in this.Eventos)
-            {
-                filas += e.Insertar(cn, trn, rutProv);
-            }
-            return filas == this.Eventos.Count() + 1;
-        }
-
-
         public static List<Servicio> FindAll()
         {
             SqlConnection cn = Conexion.CrearConexion();

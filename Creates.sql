@@ -12,14 +12,6 @@ GO
 
 BEGIN TRANSACTION 
 
-CREATE TABLE TipoEvento
-(
-	idtipoevento INT IDENTITY(1000,1) PRIMARY KEY,
-	nombreevento VARCHAR(100) NOT NULL,
-	descripcion NVARCHAR(250) NULL
-)
-GO
-
 CREATE TABLE Rol
 (
 	idrol int IDENTITY(1000,1) PRIMARY KEY(idrol),
@@ -36,15 +28,28 @@ CREATE TABLE Usuario
 )
 GO
 
+CREATE TABLE TipoEvento
+(
+	idtipoevento INT IDENTITY(1000,1) PRIMARY KEY,
+	nombreevento VARCHAR(100) NOT NULL,
+	descripcion NVARCHAR(250) NULL,
+)
+GO
+
 CREATE TABLE Servicio
 (
 	idservicio INT IDENTITY(10000,1) PRIMARY KEY,
-	rut VARCHAR(30) FOREIGN KEY REFERENCES Usuario(nombreusuario),
 	nombreservicio VARCHAR(50) NOT NULL,
 	descripcion NVARCHAR(250) NULL,
 	imagen NVARCHAR(200) NULL,
-	activo BIT DEFAULT 1,
-	idtipoevento VARCHAR(10) FOREIGN KEY REFERENCES TipoEvento(idtipoevento)
+	activo BIT DEFAULT 1
+)
+GO
+
+CREATE TABLE ServicioTipoEvento
+(
+	idtipoevento INT FOREIGN KEY REFERENCES TipoEvento(idtipoevento),
+	idservicio INT FOREIGN KEY REFERENCES Servicio(idservicio)
 )
 GO
 
@@ -63,6 +68,13 @@ CREATE TABLE ProveedorVIP
 	rut VARCHAR(30) FOREIGN KEY REFERENCES Proveedor(rut),
 	porcentaje DECIMAL(5,2) NULL,
 	PRIMARY KEY(rut)
+)
+GO
+
+CREATE TABLE ProveedorServicio
+(
+	rut VARCHAR(30) FOREIGN KEY REFERENCES Proveedor(rut),
+	idservicio INT FOREIGN KEY REFERENCES Servicio(idservicio)
 )
 GO
 
