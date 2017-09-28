@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -163,10 +164,15 @@ namespace EntidadesNegocio
 
         public static string EncryptPassword(string password)
         {
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(password);
-            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            String hash = System.Text.Encoding.ASCII.GetString(data);
-            return hash;
+            //byte[] data = System.Text.Encoding.ASCII.GetBytes(password);
+            //data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            //String hash = System.Text.Encoding.ASCII.GetString(data);
+            //return hash;
+            UnicodeEncoding uEncode = new UnicodeEncoding();
+            byte[] bytPassword = uEncode.GetBytes(password);
+            SHA512Managed sha = new SHA512Managed();
+            byte[] hash = sha.ComputeHash(bytPassword);
+            return Convert.ToBase64String(hash);
         }
     }
 }
