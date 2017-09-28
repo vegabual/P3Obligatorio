@@ -14,7 +14,44 @@ namespace WcfNuevoProveedor
     {
 
         [OperationContract]
-        bool NuevoProveedor(string rut, string clave, string nombre, string email, string telefono, bool vip);
+        bool NuevoProveedor(string rut, string clave, string nombre, string email, string telefono, bool vip, List<DTOServicio> dtoServicios);
         
+    }
+
+    [DataContract]
+    public class DTOServicio
+    {
+        string nombreservicio = string.Empty;
+        string descripcion = string.Empty;
+        string imagen = string.Empty;
+        string nombreevento = string.Empty;
+
+        [DataMember]
+        public string Nombreservicio
+        {
+            get { return nombreservicio; }
+            set { nombreservicio = value; }
+        }
+
+        [DataMember]
+        public string Descripcion
+        {
+            get { return descripcion; }
+            set { descripcion = value; }
+        }
+
+        [DataMember]
+        public string Imagen
+        {
+            get { return imagen; }
+            set { imagen = value; }
+        }
+
+        [DataMember]
+        public string Nombreevento
+        {
+            get { return nombreevento; }
+            set { nombreevento = value; }
+        }
     }
 }

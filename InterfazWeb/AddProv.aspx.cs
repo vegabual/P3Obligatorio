@@ -52,7 +52,7 @@ namespace InterfazWeb
                 string nombre = txtNombre.Text;
                 string email = txtEmail.Text;
                 string tel = txtTel.Text;
-                Usuario user = new Usuario(rut, Usuario.EncryptPassword(clave), Rol.Proveedor);
+                Usuario user = new Usuario(rut, Usuario.HashPassword(clave), Rol.Proveedor);
                 Proveedor prov;
                 if (chkVip.Checked)
                 {

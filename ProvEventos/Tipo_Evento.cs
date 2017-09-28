@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace EntidadesNegocio
         {
             this.Nombre = Nombre;
             this.Descripcion = descripcion;
+        }
+
+        internal int Insertar(SqlConnection cn, SqlTransaction trn, string idServicio)
+        {
+            throw new NotImplementedException();
         }
     }
 }

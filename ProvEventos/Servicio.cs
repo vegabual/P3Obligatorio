@@ -15,14 +15,35 @@ namespace EntidadesNegocio
         private string nombre;
         private string descripcion;
         private string imagen;
-        private string nombreevento;
+        private List<Tipo_Evento> eventos;
         private bool activo;
 
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
-        public string Nombreevento { get; set; }
+        public List<Tipo_Evento> Eventos { get; set; }
         public bool Activo { get; set; }
+        
+        public virtual bool Insertar(SqlConnection cn, SqlTransaction trn, string rutProv)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"INSERT INTO Proveedor VALUES(@rut,@nombreFantasia,@email,@activo)";
+            cmd.Parameters.AddWithValue("@rut", this.Nombre);
+            cmd.Parameters.AddWithValue("@nombreFantasia", this.Eventos);
+            cmd.Parameters.AddWithValue("@activo", this.Imagen);
+            cmd.Parameters.AddWithValue("@email", this.Descripcion);
+            cmd.Parameters.AddWithValue("@email", this.Activo);
+            cmd.Transaction = trn;
+            cmd.Connection = cn;
+            int filas = cmd.ExecuteNonQuery();
+            //Falta guardar el tipo evento
+            foreach (Tipo_Evento e in this.Eventos)
+            {
+                filas += e.Insertar(cn, trn, rutProv);
+            }
+            return filas == this.Eventos.Count() + 1;
+        }
+
 
         public static List<Servicio> FindAll()
         {
@@ -71,7 +92,7 @@ namespace EntidadesNegocio
                     Nombre = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio")),
                     Descripcion = fila.IsDBNull(fila.GetOrdinal("Descripcion")) ? "" : fila.GetString(fila.GetOrdinal("Descripcion")),
                     Imagen = fila.IsDBNull(fila.GetOrdinal("Imagen")) ? "No hay imagen disponible" : fila.GetString(fila.GetOrdinal("Imagen")),
-                    Nombreevento = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
+                    //Nombreevento = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
                     Activo = (bool)fila["Activo"]
                 };
             }

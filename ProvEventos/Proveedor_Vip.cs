@@ -28,35 +28,7 @@ namespace EntidadesNegocio
         }
 
         public Proveedor_Vip() { }
-
-        //public double GetPorcentajeNuevoProv()
-        //{
-        //    SqlConnection cn = Conexion.CrearConexion();
-        //    SqlCommand cmd = new SqlCommand();
-        //    double ret = -1;
-        //    try
-        //    {
-        //        Conexion.AbrirConexion(cn);
-        //        cmd.CommandText = @"SELECT valor FROM Parametro WHERE nombre='porcentaje'";
-        //        cmd.Connection = cn;
-        //        SqlDataReader dr = cmd.ExecuteReader();
-        //        if (dr.HasRows && dr.Read())
-        //        {
-        //            ret = dr.IsDBNull(dr.GetOrdinal("valor")) ? 0 : dr.GetDouble(dr.GetOrdinal("valor"));
-        //        }
-        //        return ret;
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        System.Diagnostics.Debug.Assert(false, ex.Message);
-        //        return -1;
-        //    }
-        //    finally
-        //    {
-        //        Conexion.CerrarConexion(cn);
-        //    }
-        //}
-
+        
         public override bool Insertar()
         {
             SqlConnection cn = Conexion.CrearConexion();

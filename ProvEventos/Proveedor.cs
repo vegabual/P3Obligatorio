@@ -82,7 +82,7 @@ namespace EntidadesNegocio
 
         public virtual bool Insertar(SqlConnection cn, SqlTransaction trn)
         {
-            if (!this.Validar() || ProvExists(this.Rut)) return false;
+            if (!this.Validar() || Exists(this.Rut)) return false;
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = @"INSERT INTO Proveedor VALUES(@rut,@nombreFantasia,@email,@activo)";
@@ -105,7 +105,7 @@ namespace EntidadesNegocio
             return filas == 2;
         }
         
-        public static bool ProvExists(string rut)
+        public static bool Exists(string rut)
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();

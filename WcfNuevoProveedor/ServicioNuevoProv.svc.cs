@@ -1,11 +1,6 @@
 ﻿using EntidadesNegocio;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace WcfNuevoProveedor
@@ -14,7 +9,7 @@ namespace WcfNuevoProveedor
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class ServicioNuevoProv : IServicioNuevoProv
     {
-        public bool NuevoProveedor(string rut, string clave, string nombre, string email, string telefono, bool vip)
+        public bool NuevoProveedor(string rut, string clave, string nombre, string email, string telefono, bool vip, List<DTOServicio> dtoServicios)
         {
             bool result = false;
             int i;
@@ -22,15 +17,21 @@ namespace WcfNuevoProveedor
             Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             if (regexEmail.IsMatch(email) && int.TryParse(telefono,out i) && Usuario.ValidarClave(clave))
             {
-                Usuario usu = new Usuario(rut, Usuario.EncryptPassword(clave), Rol.Proveedor);
+                Usuario usu = new Usuario(rut, Usuario.HashPassword(clave), Rol.Proveedor);
+                List<Servicio> servicios = new List<Servicio>();
+                foreach (DTOServicio s in dtoServicios)
+                {
+                    Servicio nuevoServicio = new Servicio { Nombre = s.Nombreservicio, Imagen = s.Imagen, Nombreevento = s.Nombreevento, Descripcion = s.Descripcion, Activo = true };
+                    servicios.Add(nuevoServicio);
+                }
                 Proveedor prov = null;
                 if (vip)
                 {
-                    prov = new Proveedor_Vip(rut, nombre, email, telefono, null);
+                    prov = new Proveedor_Vip(rut, nombre, email, telefono, servicios);
                 }
                 else
                 {
-                    prov = new Proveedor_Comun(rut, nombre, email, telefono, null);
+                    prov = new Proveedor_Comun(rut, nombre, email, telefono, servicios);
                 }
                 result = usu.Insertar() && prov.Insertar();
             }
