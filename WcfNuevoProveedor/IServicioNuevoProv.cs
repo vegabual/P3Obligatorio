@@ -21,37 +21,21 @@ namespace WcfNuevoProveedor
     [DataContract]
     public class DTOServicio
     {
-        string nombreservicio = string.Empty;
-        string descripcion = string.Empty;
-        string imagen = string.Empty;
-        string nombreevento = string.Empty;
+        int idServicio = -1;
+        string descripcionServicio = string.Empty;
 
         [DataMember]
-        public string Nombreservicio
+        public int IdServicio
         {
-            get { return nombreservicio; }
-            set { nombreservicio = value; }
+            get { return idServicio; }
+            set { idServicio = value; }
         }
 
         [DataMember]
-        public string Descripcion
+        public string DescripcionServicio
         {
-            get { return descripcion; }
-            set { descripcion = value; }
-        }
-
-        [DataMember]
-        public string Imagen
-        {
-            get { return imagen; }
-            set { imagen = value; }
-        }
-
-        [DataMember]
-        public string Nombreevento
-        {
-            get { return nombreevento; }
-            set { nombreevento = value; }
+            get { return descripcionServicio; }
+            set { descripcionServicio = value; }
         }
     }
 }

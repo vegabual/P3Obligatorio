@@ -142,14 +142,7 @@ namespace EntidadesNegocio
                 Conexion.AbrirConexion(cn);
 
                 SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return (dr.HasRows);
             }
             catch (SqlException ex)
             {

@@ -19,10 +19,13 @@ namespace WcfNuevoProveedor
             {
                 Usuario usu = new Usuario(rut, Usuario.HashPassword(clave), Rol.Proveedor);
                 List<Servicio> servicios = new List<Servicio>();
-                foreach (DTOServicio s in dtoServicios)
+                foreach (DTOServicio dtoS in dtoServicios)
                 {
-                    Servicio nuevoServicio = new Servicio { Nombre = s.Nombreservicio, Imagen = s.Imagen, Nombreevento = s.Nombreevento, Descripcion = s.Descripcion, Activo = true };
-                    servicios.Add(nuevoServicio);
+                    Servicio s = Servicio.EncuentraServicio(dtoS.IdServicio);
+                    if (s != null)
+                    {
+                        servicios.Add(s);
+                    }
                 }
                 Proveedor prov = null;
                 if (vip)

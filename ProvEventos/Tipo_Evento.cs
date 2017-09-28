@@ -20,10 +20,5 @@ namespace EntidadesNegocio
             this.Nombre = Nombre;
             this.Descripcion = descripcion;
         }
-
-        internal int Insertar(SqlConnection cn, SqlTransaction trn, string idServicio)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

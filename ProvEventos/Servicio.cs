@@ -71,11 +71,82 @@ namespace EntidadesNegocio
                     Nombre = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio")),
                     Descripcion = fila.IsDBNull(fila.GetOrdinal("Descripcion")) ? "" : fila.GetString(fila.GetOrdinal("Descripcion")),
                     Imagen = fila.IsDBNull(fila.GetOrdinal("Imagen")) ? "No hay imagen disponible" : fila.GetString(fila.GetOrdinal("Imagen")),
-                    //Nombreevento = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
+                    //Eventos = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
                     Activo = (bool)fila["Activo"]
                 };
             }
             return s;
+        }
+
+        public int ObtenerIdServicio()
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.nombreservicio = @nombre AND servicio.descripcion = @descripcion AND servicio.imagen = @imagen";
+            cmd.Parameters.AddWithValue("@nombre", this.Nombre);
+            cmd.Parameters.AddWithValue("@descripcion", this.Descripcion);
+            cmd.Parameters.AddWithValue("@imagen", this.Imagen);
+            cmd.Connection = cn;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows && dr.Read())
+                {
+                    return dr.IsDBNull(dr.GetOrdinal("idrol")) ? 0 : dr.GetInt32(dr.GetOrdinal("idrol"));
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return 0;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
+
+
+        public static Servicio EncuentraServicio(int idServicio)
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.idservicio = @id";
+            cmd.Parameters.AddWithValue("@id", idServicio);
+            cmd.Connection = cn;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows && dr.Read())
+                {
+                    return CargarDatosDesdeReader(dr);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return null;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
+
+        public override string ToString()
+        {
+            return this.Nombre + " - " + this.Descripcion;
         }
     }
 }

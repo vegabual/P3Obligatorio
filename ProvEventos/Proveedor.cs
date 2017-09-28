@@ -93,6 +93,7 @@ namespace EntidadesNegocio
             cmd.Transaction = trn;
             cmd.Connection = cn;
             int filas = cmd.ExecuteNonQuery();
+
             //Falta guardar en la tabla telefono
             //Usamos el mismo objeto para la conexión y para el comando.
             //Al comando le cambiamos la cadena de inserción y los parámetros
@@ -102,7 +103,17 @@ namespace EntidadesNegocio
             cmd.Parameters.Add(new SqlParameter("@telefono", this.Telefono));
 
             filas += cmd.ExecuteNonQuery();
-            return filas == 2;
+            //Falta guardar en la tabla relacional de servicio y proveedor
+            foreach (Servicio s in this.Servicios)
+            {
+                int idServicio = s.ObtenerIdServicio();
+                cmd.CommandText = @"INSERT INTO ProveedorServicio VALUES(@rut,@idservicio)";
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
+                cmd.Parameters.Add(new SqlParameter("@idservicio", idServicio));
+                filas += cmd.ExecuteNonQuery();
+            }
+            return filas == Servicios.Count() + 2;
         }
         
         public static bool Exists(string rut)
