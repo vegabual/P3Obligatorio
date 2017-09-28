@@ -19,12 +19,21 @@ namespace WcfNuevoProveedor
             {
                 Usuario usu = new Usuario(rut, Usuario.HashPassword(clave), Rol.Proveedor);
                 List<Servicio> servicios = new List<Servicio>();
-                foreach (DTOServicio dtoS in dtoServicios)
+                bool serviciosExisten = true;
+                i = 0;
+                int end = dtoServicios.Count - 1;
+                while (i < end && serviciosExisten)
                 {
+                    DTOServicio dtoS = dtoServicios[i];
                     Servicio s = Servicio.EncuentraServicio(dtoS.IdServicio);
                     if (s != null)
                     {
                         servicios.Add(s);
+                        i++;
+                    }
+                    else
+                    {
+                        serviciosExisten = false;
                     }
                 }
                 Proveedor prov = null;
@@ -36,7 +45,7 @@ namespace WcfNuevoProveedor
                 {
                     prov = new Proveedor_Comun(rut, nombre, email, telefono, servicios);
                 }
-                result = usu.Insertar() && prov.Insertar();
+                result = serviciosExisten && usu.Insertar() && prov.Insertar();
             }
             return result;
         }
