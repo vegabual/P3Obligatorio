@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFModificarArancelyPorcent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFDesactivarProveedor", "WCFDesactivarProveedor\WCFDesactivarProveedor.csproj", "{FB503B7D-D9A0-4550-9120-7855D8A8535B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiciosFile", "WCFServiciosFile\WCFServiciosFile.csproj", "{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFFileProveedores", "WCFFileProveedores\WCFFileProveedores.csproj", "{3D49B740-B53E-421F-AA82-9687C7EB506F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{FB503B7D-D9A0-4550-9120-7855D8A8535B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB503B7D-D9A0-4550-9120-7855D8A8535B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB503B7D-D9A0-4550-9120-7855D8A8535B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D49B740-B53E-421F-AA82-9687C7EB506F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D49B740-B53E-421F-AA82-9687C7EB506F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D49B740-B53E-421F-AA82-9687C7EB506F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D49B740-B53E-421F-AA82-9687C7EB506F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

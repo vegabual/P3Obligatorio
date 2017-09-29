@@ -5,27 +5,44 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using AccesoDatos;
+using EntidadesNegocio;
+using System.IO;
 
 namespace WCFServiciosFile
 {
     public class ServicioServiciosFile : IServicioServiciosFile
     {
-        public string GetData(int value)
+        public bool ServiciosFile()
         {
-            return string.Format("You entered: {0}", value);
-        }
+            string projectFolder = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string fileLoc = Path.Combine(projectFolder, System.AppDomain.CurrentDomain.BaseDirectory.ToString() + @"\..\FileServicios.txt");
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
+            FileStream fs = null;
+            if (!File.Exists(fileLoc))
             {
-                throw new ArgumentNullException("composite");
+                using (fs = File.Create(fileLoc))
+                {
+
+                }
             }
-            if (composite.BoolValue)
+            if (File.Exists(fileLoc))
             {
-                composite.StringValue += "Suffix";
+                using (StreamWriter sw = new StreamWriter(fileLoc))
+                {
+                    int count = 1;
+                    foreach (Servicio s in Servicio.FindServFile())
+                    {
+                        sw.WriteLine(s.Nombre);
+                        Console.WriteLine();
+                        count++;
+                    }
+                }
             }
-            return composite;
+            return true;
         }
     }
 }
