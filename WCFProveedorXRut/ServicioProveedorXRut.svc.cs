@@ -9,12 +9,12 @@ using EntidadesNegocio;
 
 namespace WCFProveedorXRut
 {
-    //public class ServicioProveedorXRut : IServicioProveedorXRut
-    //{
-    //    public List<Proveedor> FindAll()
-    //    {
-    //        //List<Proveedor> lista = Proveedor.FindById(rut);
-    //        //return lista;
-    //    }
-    //}
+    public class ServicioProveedorXRut : IServicioProveedorXRut
+    {
+        public Proveedor FindById(string rut)
+        {
+            Proveedor p = Proveedor.FindById(rut);
+            return p;
+        }
+    }
 }

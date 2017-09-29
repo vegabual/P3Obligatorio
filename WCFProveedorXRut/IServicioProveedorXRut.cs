@@ -13,29 +13,19 @@ namespace WCFProveedorXRut
     public interface IServicioProveedorXRut
     {
         [OperationContract]
-        List<Proveedor> FindById(string rut);
+        Proveedor FindById(string rut);
     }
 
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
     public class CompositeType
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        string rut = string.Empty;
 
         [DataMember]
-        public bool BoolValue
+        public string Rut
         {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get { return rut; }
+            set { rut = value; }
         }
     }
 }
