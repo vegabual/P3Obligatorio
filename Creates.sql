@@ -32,7 +32,7 @@ CREATE TABLE TipoEvento
 (
 	idtipoevento INT IDENTITY(1000,1) PRIMARY KEY,
 	nombreevento VARCHAR(100) NOT NULL,
-	descripcion NVARCHAR(250) NULL,
+	descripcion NVARCHAR(250) NULL
 )
 GO
 
@@ -41,15 +41,15 @@ CREATE TABLE Servicio
 	idservicio INT IDENTITY(10000,1) PRIMARY KEY,
 	nombreservicio VARCHAR(50) NOT NULL,
 	descripcion NVARCHAR(250) NULL,
-	imagen NVARCHAR(200) NULL,
-	activo BIT DEFAULT 1
+	imagen NVARCHAR(200) NULL
 )
 GO
 
 CREATE TABLE ServicioTipoEvento
 (
 	idtipoevento INT FOREIGN KEY REFERENCES TipoEvento(idtipoevento),
-	idservicio INT FOREIGN KEY REFERENCES Servicio(idservicio)
+	idservicio INT FOREIGN KEY REFERENCES Servicio(idservicio),
+	activo BIT DEFAULT 1
 )
 GO
 

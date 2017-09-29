@@ -4,25 +4,32 @@ GO
 BEGIN TRANSACTION
 
 
-INSERT INTO TipoEvento VALUES('100','Fiesta de 15','Fiesta para festejar los 15 años de las mujeres')
+DBCC CHECKIDENT ('TipoEvento', RESEED, 999);
 GO
-INSERT INTO TipoEvento VALUES('101','Casamiento','Evento de ceremonia religiosa')
+DBCC CHECKIDENT ('Rol', RESEED, 999);
 GO
-INSERT INTO TipoEvento VALUES('102','Desayuno de trabajo','Reunión informal laboral')
+DBCC CHECKIDENT ('Servicio', RESEED, 9999);
 GO
-INSERT INTO TipoEvento VALUES('103','Almuerzo de trabajo','Reunión informal laboral')
+
+INSERT INTO TipoEvento VALUES('Fiesta de 15','Fiesta para festejar los 15 años de las mujeres')
 GO
-INSERT INTO TipoEvento VALUES('104','Fiesta temática','Fiesta de cumpleaños con un tema')
+INSERT INTO TipoEvento VALUES('Casamiento','Evento de ceremonia religiosa')
 GO
-INSERT INTO TipoEvento VALUES('105','Despedida','Almuerzo o cena de despedida')
+INSERT INTO TipoEvento VALUES('Desayuno de trabajo','Reunión informal laboral')
 GO
-INSERT INTO TipoEvento VALUES('106','Aniversario','Evento de celebración de aniversario')
+INSERT INTO TipoEvento VALUES('Almuerzo de trabajo','Reunión informal laboral')
 GO
-INSERT INTO TipoEvento VALUES('107','Evento empresarial','Reunión empresarial')
+INSERT INTO TipoEvento VALUES('Fiesta temática','Fiesta de cumpleaños con un tema')
 GO
-INSERT INTO TipoEvento VALUES('108','Cócteles y brindis','Fiesta de celebración')
+INSERT INTO TipoEvento VALUES('Despedida','Almuerzo o cena de despedida')
 GO
-INSERT INTO TipoEvento VALUES('109','Baby shower','Fiesta para festejar el nacimiento de un bebé')
+INSERT INTO TipoEvento VALUES('Aniversario','Evento de celebración de aniversario')
+GO
+INSERT INTO TipoEvento VALUES('Evento empresarial','Reunión empresarial')
+GO
+INSERT INTO TipoEvento VALUES('Cócteles y brindis','Fiesta de celebración')
+GO
+INSERT INTO TipoEvento VALUES('Baby shower','Fiesta para festejar el nacimiento de un bebé')
 GO
 --SELECT * FROM TipoEvento
 
@@ -60,27 +67,75 @@ INSERT INTO Usuario VALUES('R5734798','b45y3vc4df', 1000,'20170409')
 GO
 --SELECT * FROM Usuario
 
-INSERT INTO Servicio VALUES('500','R5925094','Fotografía','Fotógrafo profesional para eventos',NULL,1,'100')
+INSERT INTO Servicio VALUES('Fotografía','Fotógrafo profesional para eventos',NULL)
 GO
-INSERT INTO Servicio VALUES('501','R5925094','Filmación','Equipo de filmación','imagen1.jpg',1,'101')
+INSERT INTO Servicio VALUES('Filmación','Equipo de filmación','imagen1.jpg')
 GO
-INSERT INTO Servicio VALUES('502','R4328956','Cotillón','Paquetes de cotillón varios','imagen2.png',1,'100')
+INSERT INTO Servicio VALUES('Cotillón','Paquetes de cotillón varios','imagen2.png')
 GO
-INSERT INTO Servicio VALUES('503','R9202499','Catering','Servicios de catering profesional',NULL,0,'108')
+INSERT INTO Servicio VALUES('Catering','Servicios de catering profesional',NULL)
 GO
-INSERT INTO Servicio VALUES('504','R3563463','Grupo musical','Grupo musical en vivo','imagen3.jpg',0,'105')
+INSERT INTO Servicio VALUES('Grupo musical','Grupo musical en vivo','imagen3.jpg')
 GO
-INSERT INTO Servicio VALUES('505','R2450054','Lunch','Lunch completos para 20 personas',NULL,1,'103')
+INSERT INTO Servicio VALUES('Lunch','Lunch completos para 20 personas',NULL)
 GO
-INSERT INTO Servicio VALUES('506','R2310342','Personal de salón','Mozos y personal de cocina','imagen4.png',1,'100')
+INSERT INTO Servicio VALUES('Personal de salón','Mozos y personal de cocina','imagen4.png')
 GO
-INSERT INTO Servicio VALUES('507','R4562968','Sommelier','Sommelier profesional para eventos',NULL,1,'108')
+INSERT INTO Servicio VALUES('Sommelier','Sommelier profesional para eventos',NULL)
 GO
-INSERT INTO Servicio VALUES('508','R1294030','Decoración','Grupo de decoradores profesionales','imagen5.jpg',0,'104')
+INSERT INTO Servicio VALUES('Decoración','Grupo de decoradores profesionales','imagen5.jpg')
 GO
-INSERT INTO Servicio VALUES('509','R2310342','Iluminación','Iluminación profesional',NULL,1,'106')
+INSERT INTO Servicio VALUES('Iluminación','Iluminación profesional',NULL)
 GO
 --SELECT * FROM Servicio
+
+INSERT INTO ServicioTipoEvento VALUES(1000,10000,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1001,10000,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1007,10000,0)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1000,10001,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1000,10002,0)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1000,10000,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1002,10003,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1003,10003,0)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1007,10003,0)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1001,10004,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1003,10005,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1007,10005,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1000,10006,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1001,10006,0)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1002,10006,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1003,10006,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1005,10006,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1008,10006,0)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1004,10008,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1009,10008,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1000,10009,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1004,10009,1)
+GO
+INSERT INTO ServicioTipoEvento VALUES(1008,10009,1)
+GO
+--SELECT * FROM ServicioTipoEvento
 
 INSERT INTO Proveedor VALUES('R2310342','ACCE LTDA','acceprov@outlook.com',1)
 GO
@@ -115,6 +170,28 @@ GO
 INSERT INTO ProveedorVIP VALUES('R1294030',15.0)
 GO
 --SELECT * FROM ProveedorVIP
+
+INSERT INTO ProveedorServicio VALUES('R2310342',10000)
+GO
+INSERT INTO ProveedorServicio VALUES('R9202499',10001)
+GO
+INSERT INTO ProveedorServicio VALUES('R5925094',10002)
+GO
+INSERT INTO ProveedorServicio VALUES('R2450054',10003)
+GO
+INSERT INTO ProveedorServicio VALUES('R1294030',10004)
+GO
+INSERT INTO ProveedorServicio VALUES('R4562968',10005)
+GO
+INSERT INTO ProveedorServicio VALUES('R4328956',10006)
+GO
+INSERT INTO ProveedorServicio VALUES('R3563463',10007)
+GO
+INSERT INTO ProveedorServicio VALUES('R0525223',10008)
+GO
+INSERT INTO ProveedorServicio VALUES('R5734798',10009)
+GO
+--SELECT * FROM ProveedorServicio
 
 INSERT INTO TelefonoProveedor VALUES('R2310342','099262189')
 GO
