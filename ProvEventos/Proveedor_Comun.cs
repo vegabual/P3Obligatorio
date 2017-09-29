@@ -23,5 +23,62 @@ namespace EntidadesNegocio
         }
 
         public Proveedor_Comun() { }
+
+
+        public static List<Proveedor_Comun> FindProvFile()
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT p.rut, p.nombrefantasia, p.email, telefono FROM Proveedor AS	p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut";
+
+            cmd.Connection = cn;
+            List<Proveedor_Comun> listaproveedores = null;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    listaproveedores = new List<Proveedor_Comun>();
+                    while (dr.Read())
+                    {
+                        Proveedor_Comun pv = CargarDatosDesdeReader(dr);
+                        listaproveedores.Add(pv);
+                    }
+                }
+                return listaproveedores;
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return null;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
+
+        protected static new Proveedor_Comun CargarDatosDesdeReader(IDataRecord fila)
+        {
+            Proveedor_Comun pv = null;
+
+            if (fila != null)
+            {
+                pv = new Proveedor_Comun
+                {
+                    Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
+                    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("NombreFantasia")) ? "" : fila.GetString(fila.GetOrdinal("NombreFantasia")),
+                    Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
+                    Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
+                    //Servicios = foreach(Servicio s in Servicio.FindAll())
+                    //            {
+                    //               fila.IsDBNull(fila.GetOrdinal("Servicios")) ? "" : fila.GetString(fila.GetOrdinal("Servicios"))
+                    //            };
+                };
+            }
+            return pv;
+        }
     }
 }

@@ -60,6 +60,43 @@ namespace EntidadesNegocio
             }
         }
 
+        public static List<Servicio> FindServFile()
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT s.nombreservicio, t.nombreevento FROM Servicio AS s 
+                                JOIN ServicioTipoEvento AS ste ON s.idservicio = ste.idservicio 
+                                JOIN TipoEvento AS t ON ste.idtipoevento = t.idtipoevento";
+
+            cmd.Connection = cn;
+            List<Servicio> listaservicios = null;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    listaservicios = new List<Servicio>();
+                    while (dr.Read())
+                    {
+                        Servicio s = CargarDatosDesdeReader2(dr);
+                        listaservicios.Add(s);
+                    }
+                }
+                return listaservicios;
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return null;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
+
         protected static Servicio CargarDatosDesdeReader(IDataRecord fila)
         {
             Servicio s = null;
@@ -72,7 +109,21 @@ namespace EntidadesNegocio
                     Descripcion = fila.IsDBNull(fila.GetOrdinal("Descripcion")) ? "" : fila.GetString(fila.GetOrdinal("Descripcion")),
                     Imagen = fila.IsDBNull(fila.GetOrdinal("Imagen")) ? "No hay imagen disponible" : fila.GetString(fila.GetOrdinal("Imagen")),
                     //Eventos = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
-                    Activo = (bool)fila["Activo"]
+                };
+            }
+            return s;
+        }
+
+        protected static Servicio CargarDatosDesdeReader2(IDataRecord fila)
+        {
+            Servicio s = null;
+
+            if (fila != null)
+            {
+                s = new Servicio
+                {
+                    Nombre = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio")),
+                    //Eventos = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
                 };
             }
             return s;

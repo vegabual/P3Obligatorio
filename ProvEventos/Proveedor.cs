@@ -186,7 +186,7 @@ namespace EntidadesNegocio
             SqlCommand cmd = new SqlCommand();
             SqlTransaction trn = null;
             cmd.CommandText = @"UPDATE Proveedor SET activo = @activo FROM Proveedor WHERE rut = @rut
-                                UPDATE Servicio  SET activo = @activo FROM Servicio  WHERE rut = @rut";
+                                UPDATE ProveedorServicio  SET activo = @activo FROM ProveedorServicio WHERE rut = @rut";
             cmd.Parameters.AddWithValue("@rut", rut);
             cmd.Parameters.AddWithValue("@activo", activo);
             cmd.Connection = cn;
@@ -213,12 +213,12 @@ namespace EntidadesNegocio
             }
         }
 
-        public Proveedor FindById(string rut)
+        public static Proveedor FindById(string rut)
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = @"";
-            cmd.Parameters.AddWithValue("@rut", Rut);
+            cmd.Parameters.AddWithValue("@rut", rut);
             cmd.Connection = cn;
             try
             {
