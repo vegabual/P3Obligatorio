@@ -48,8 +48,7 @@ GO
 CREATE TABLE ServicioTipoEvento
 (
 	idtipoevento INT FOREIGN KEY REFERENCES TipoEvento(idtipoevento),
-	idservicio INT FOREIGN KEY REFERENCES Servicio(idservicio),
-	activo BIT DEFAULT 1
+	idservicio INT FOREIGN KEY REFERENCES Servicio(idservicio)
 )
 GO
 
@@ -74,7 +73,8 @@ GO
 CREATE TABLE ProveedorServicio
 (
 	rut VARCHAR(30) FOREIGN KEY REFERENCES Proveedor(rut),
-	idservicio INT FOREIGN KEY REFERENCES Servicio(idservicio)
+	idservicio INT FOREIGN KEY REFERENCES Servicio(idservicio),
+	activo BIT DEFAULT 1
 )
 GO
 
