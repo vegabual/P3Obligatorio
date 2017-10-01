@@ -32,13 +32,18 @@ namespace WCFFileProveedores
             if (File.Exists(fileLoc))
             {
                 using (StreamWriter sw = new StreamWriter(fileLoc))
+
                 {
                     int count = 1;
-                    foreach(Proveedor_Comun pv in Proveedor_Comun.FindProvFile())
+
+                    foreach (Proveedor_Comun pv in Proveedor_Comun.FindProvFile())
                     {
-                        sw.WriteLine("RUT" + count + " " + pv.Rut + " " + "#" + pv.NombreFantasia + " " + "#" + pv.Email + " " + "#" + pv.Telefono + " | ");
-                        Console.WriteLine();
-                        count++;
+                        foreach (Servicio s in Servicio.FindServFile())
+                        {
+                            sw.WriteLine("RUT" + count + " " + pv.Rut + " " + "#" + pv.NombreFantasia + " " + "#" + pv.Email + " " + "#" + pv.Telefono + " | "
+                            + s.Nombre + count + ":" + s.Descripcion + count + ":" + s.Imagen);
+                            count++;
+                        }
                     }
                 }
             }
