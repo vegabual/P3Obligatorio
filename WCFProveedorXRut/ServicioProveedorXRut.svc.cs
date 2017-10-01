@@ -1,36 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-<<<<<<< HEAD
-using System.Text;
+﻿using System.Text;
 using EntidadesNegocio;
 
 namespace WCFProveedorXRut
 {
     public class ServicioProveedorXRut : IServicioProveedorXRut
     {
-=======
-using System.Text;
-using EntidadesNegocio;
-
-namespace WCFProveedorXRut
-{
-    public class ServicioProveedorXRut : IServicioProveedorXRut
-    {
->>>>>>> 5cd4113433b66b0ca4c5cf4d3303ce21c5198061
-        public Proveedor_Vip FindById(string rut)
+        public DTOProveedor FindById(string rut)
         {
-            Proveedor_Vip pv = Proveedor_Vip.FindById(rut);
-            return pv;
-<<<<<<< HEAD
+            Proveedor p = Proveedor.FindById(rut);
+            DTOProveedor elem = null;
+            if (p.GetType() == typeof(Proveedor_Comun))
+            {
+                elem = new DTOProveedor
+                {
+                    Rut = p.Rut,
+                    NombreFantasia = p.NombreFantasia,
+                    Telefono = p.Telefono,
+                    Email = p.Email,
+                    Activo = p.Activo,
+                    Porcentaje = 0,
+                    Servicios = p.Servicios
+                };
+            }
+            else
+            {
+                Proveedor_Vip pv = p as Proveedor_Vip;
+                elem = new DTOProveedor
+                {
+                    Rut = p.Rut,
+                    NombreFantasia = p.NombreFantasia,
+                    Telefono = p.Telefono,
+                    Email = p.Email,
+                    Activo = p.Activo,
+                    Porcentaje = pv.Porcentaje,
+                    Servicios = p.Servicios
+                };
+            }
+            return elem;
         }
     }
 }
-=======
-        }
-    }
-}
->>>>>>> 5cd4113433b66b0ca4c5cf4d3303ce21c5198061

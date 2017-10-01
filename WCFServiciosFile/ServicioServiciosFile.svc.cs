@@ -36,10 +36,14 @@ namespace WCFServiciosFile
                     List<Servicio> servicios = Servicio.FindAll();
                     foreach (Servicio s in servicios)
                     {
-                        string print = s.Nombre + "#" + s.Eventos[0].Nombre;
-                        for (int i = 1; i < s.Eventos.Count; i++)
+                        string print = s.Nombre + "#";
+                        if (s.Eventos != null && s.Eventos.Count() > 0)
                         {
-                            print += ":" + s.Eventos[i].Nombre;
+                            print += s.Eventos[0].Nombre;
+                            for (int i = 1; i < s.Eventos.Count; i++)
+                            {
+                                print += ":" + s.Eventos[i].Nombre;
+                            }
                         }
                         sw.WriteLine(print);
                     }
