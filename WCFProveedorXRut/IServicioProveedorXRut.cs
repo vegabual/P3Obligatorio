@@ -13,19 +13,43 @@ namespace WCFProveedorXRut
     public interface IServicioProveedorXRut
     {
         [OperationContract]
-        Proveedor FindById(string rut);
+        Proveedor_Vip FindById(string rut);
     }
 
     [DataContract]
     public class CompositeType
     {
         string rut = string.Empty;
+        string nombrefantasia = string.Empty;
+        string email = string.Empty;
+        string telefono = string.Empty;
 
         [DataMember]
         public string Rut
         {
             get { return rut; }
             set { rut = value; }
+        }
+
+        [DataMember]
+        public string NombreFantasia
+        {
+            get { return nombrefantasia; }
+            set { nombrefantasia = value; }
+        }
+
+        [DataMember]
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+
+        [DataMember]
+        public string Telefono
+        {
+            get { return telefono; }
+            set { telefono = value; }
         }
     }
 }

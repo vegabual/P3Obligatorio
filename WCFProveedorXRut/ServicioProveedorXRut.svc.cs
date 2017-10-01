@@ -11,10 +11,10 @@ namespace WCFProveedorXRut
 {
     public class ServicioProveedorXRut : IServicioProveedorXRut
     {
-        public Proveedor FindById(string rut)
+        public Proveedor_Vip FindById(string rut)
         {
-            Proveedor p = Proveedor.FindById(rut);
-            return p;
+            Proveedor_Vip pv = Proveedor_Vip.FindById(rut);
+            return pv;
         }
     }
 }
