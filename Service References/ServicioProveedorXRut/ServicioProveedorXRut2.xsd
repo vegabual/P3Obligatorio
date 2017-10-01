@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFProveedorXRut" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFProveedorXRut" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:61021/ServicioProveedorXRut.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EntidadesNegocio" />
+  <xs:complexType name="DTOProveedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreFantasia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Porcentaje" type="xs:double" />
+      <xs:element minOccurs="0" name="Rut" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EntidadesNegocio" minOccurs="0" name="Servicios" nillable="true" type="q1:ArrayOfServicio" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOProveedor" nillable="true" type="tns:DTOProveedor" />
+</xs:schema>

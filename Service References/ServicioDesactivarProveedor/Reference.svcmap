@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="aced78a6-307a-4919-b355-a1ead79abc26" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:52129/ServicioDesactivarProveedor.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioDesactivarProveedor.wsdl" MetadataType="Wsdl" ID="3a598cf2-1008-49f0-9f70-745bc3998b9f" SourceId="1" SourceUrl="http://localhost:52129/ServicioDesactivarProveedor.svc?wsdl" />
+    <MetadataFile FileName="ServicioDesactivarProveedor.xsd" MetadataType="Schema" ID="52837c62-2485-4216-88fe-be3e1a75dc4a" SourceId="1" SourceUrl="http://localhost:52129/ServicioDesactivarProveedor.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioDesactivarProveedor.disco" MetadataType="Disco" ID="46cad1e2-43b0-4a98-b0e0-493003eff72f" SourceId="1" SourceUrl="http://localhost:52129/ServicioDesactivarProveedor.svc?disco" />
+    <MetadataFile FileName="ServicioDesactivarProveedor1.xsd" MetadataType="Schema" ID="d35380e6-a9f9-41b5-95c5-63375c6c5877" SourceId="1" SourceUrl="http://localhost:52129/ServicioDesactivarProveedor.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4a5b20ed-e6da-4bff-9e3e-ec145351274a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63059/ServicioModArancelyPorcentaje.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioModArancelyPorcentaje.disco" MetadataType="Disco" ID="64c4bb24-2db5-4477-ae3a-165c69416a02" SourceId="1" SourceUrl="http://localhost:63059/ServicioModArancelyPorcentaje.svc?disco" />
+    <MetadataFile FileName="ServicioModArancelyPorcentaje.xsd" MetadataType="Schema" ID="e9888639-4f65-4121-9665-de0f3e07e8cb" SourceId="1" SourceUrl="http://localhost:63059/ServicioModArancelyPorcentaje.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioModArancelyPorcentaje.wsdl" MetadataType="Wsdl" ID="e6cce59e-5267-4bc4-a442-4d7f6b9dd9e8" SourceId="1" SourceUrl="http://localhost:63059/ServicioModArancelyPorcentaje.svc?wsdl" />
+    <MetadataFile FileName="ServicioModArancelyPorcentaje1.xsd" MetadataType="Schema" ID="3aadfb64-d1ee-4334-8473-ed9f10c0af65" SourceId="1" SourceUrl="http://localhost:63059/ServicioModArancelyPorcentaje.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

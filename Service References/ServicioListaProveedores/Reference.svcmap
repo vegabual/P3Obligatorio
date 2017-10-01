@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a5a7e9e7-f814-4ac1-b495-89e0df4ad28a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60578/ServicioListaProveedores.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioListaProveedores.xsd" MetadataType="Schema" ID="f4fff43d-697e-4524-a2b1-ad3a827f800e" SourceId="1" SourceUrl="http://localhost:60578/ServicioListaProveedores.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioListaProveedores1.xsd" MetadataType="Schema" ID="03c491f2-862e-4298-ad76-0d1fcb856a3e" SourceId="1" SourceUrl="http://localhost:60578/ServicioListaProveedores.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicioListaProveedores.disco" MetadataType="Disco" ID="a9a8a9b2-749e-4e98-a14b-4f21c489e9e0" SourceId="1" SourceUrl="http://localhost:60578/ServicioListaProveedores.svc?disco" />
+    <MetadataFile FileName="ServicioListaProveedores2.xsd" MetadataType="Schema" ID="8a349429-f0d3-4716-b327-4537f9a699f0" SourceId="1" SourceUrl="http://localhost:60578/ServicioListaProveedores.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioListaProveedores3.xsd" MetadataType="Schema" ID="a03cab19-faaa-4392-b42b-e994797a684a" SourceId="1" SourceUrl="http://localhost:60578/ServicioListaProveedores.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioListaProveedores.wsdl" MetadataType="Wsdl" ID="aebd24f3-8a40-40e7-b25f-807e74215fef" SourceId="1" SourceUrl="http://localhost:60578/ServicioListaProveedores.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
