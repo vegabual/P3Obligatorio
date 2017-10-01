@@ -97,12 +97,13 @@ namespace EntidadesNegocio
             }
         }
 
-        protected static new Proveedor_Comun CargarDatosDesdeReader(IDataRecord fila)
+        protected static Proveedor_Comun CargarDatosDesdeReader(IDataRecord fila)
         {
             Proveedor_Comun pv = null;
 
             if (fila != null)
             {
+                string pvRut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut"));
                 pv = new Proveedor_Comun
                 {
                     Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
@@ -110,51 +111,17 @@ namespace EntidadesNegocio
                     Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
                     Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
                     Activo = (bool)fila["Activo"],
-                    Servicios = CargarServicios(pv)
+                    Servicios = CargarServicios(pvRut)
                 };
             }
             return pv;
         }
 
-        protected static List<Servicio> CargarServicios(Proveedor_Comun pv)
-        {
-            SqlConnection cn = Conexion.CrearConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT s.nombreservicio FROM ProveedorServicio AS ps JOIN Servicio AS s ON ps.idservicio = s.idservicio";
-            cmd.Connection = cn;
-            List<Servicio> listaservicios = null;
-            try
-            {
-                Conexion.AbrirConexion(cn);
 
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    Servicio s = new Servicio();
-                    listaservicios = new List<Servicio>();
-                    while (dr.Read())
-                    {
-                        s = ReadSingleRow((IDataRecord)dr,s);
-                        listaservicios.Add(s);
-                    }
-                }
-                return listaservicios;
-            }
-            catch (SqlException ex)
-            {
-                System.Diagnostics.Debug.Assert(false, ex.Message);
-                return null;
-            }
-            finally
-            {
-                Conexion.CerrarConexion(cn);
-            }
-        }
-
-        private static Servicio ReadSingleRow(IDataRecord dr, Servicio s)
-        {
-            s.Nombre = String.Format("{0}",dr[0]);
-            return s;
-        }
+        //private static Servicio ReadSingleRow(IDataRecord dr, Servicio s)
+        //{
+        //    s.Nombre = String.Format("{0}",dr[0]);
+        //    return s;
+        //}
     }
 }

@@ -27,8 +27,7 @@ namespace EntidadesNegocio
         public bool Activo { get; set; }
         public List<Servicio> Servicios { get; set; }
 
-        public Proveedor(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios
-            )
+        public Proveedor(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios)
         {
             this.Rut = rut;
             this.Email = email;
@@ -251,15 +250,51 @@ namespace EntidadesNegocio
             {
                 p = new Proveedor_Vip
                 {
-                    Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
-                    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("NombreFantasia")) ? "" : fila.GetString(fila.GetOrdinal("NombreFantasia")),
-                    Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
-                    Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
+                    //Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
+                    //NombreFantasia = fila.IsDBNull(fila.GetOrdinal("NombreFantasia")) ? "" : fila.GetString(fila.GetOrdinal("NombreFantasia")),
+                    //Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
+                    //Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
                     //Activo = (bool)fila["Activo"],
                     //Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
                 };
             }
             return p;
+        }
+
+
+        protected static List<Servicio> CargarServicios(string idPv)
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT s.* FROM ProveedorServicio AS ps JOIN Servicio AS s ON ps.idservicio = s.idservicio where ps.rut = @rut";
+            cmd.Parameters.AddWithValue("@rut", idPv);
+            cmd.Connection = cn;
+            List<Servicio> listaservicios = null;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    listaservicios = new List<Servicio>();
+                    while (dr.Read())
+                    {
+                        Servicio s = Servicio.CargarDatosDesdeReader(dr);
+                        listaservicios.Add(s);
+                    }
+                }
+                return listaservicios;
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return null;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
         }
     }
 }

@@ -15,14 +15,14 @@ namespace EntidadesNegocio
         private string nombre;
         private string descripcion;
         private string imagen;
-        //private List<Tipo_Evento> eventos;
-        private bool activo;
+        private List<Tipo_Evento> eventos;
+        //private bool activo;
 
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
-        //public List<Tipo_Evento> Eventos { get; set; }
-        public bool Activo { get; set; }
+        public List<Tipo_Evento> Eventos { get; set; }
+        //public bool Activo { get; set; }
         
         public static List<Servicio> FindAll()
         {
@@ -80,8 +80,8 @@ namespace EntidadesNegocio
                     listaservicios = new List<Servicio>();
                     while (dr.Read())
                     {
-                        Servicio s = CargarDatosDesdeReader2(dr);
-                        listaservicios.Add(s);
+                        //Servicio s = CargarDatosDesdeReader2(dr);
+                        //listaservicios.Add(s);
                     }
                 }
                 return listaservicios;
@@ -97,37 +97,58 @@ namespace EntidadesNegocio
             }
         }
 
-        protected static Servicio CargarDatosDesdeReader(IDataRecord fila)
+        public static Servicio CargarDatosDesdeReader(IDataRecord fila)
         {
             Servicio s = null;
 
             if (fila != null)   
             {
+                int id = fila.IsDBNull(fila.GetOrdinal("idservicio")) ? -1 : fila.GetInt32(fila.GetOrdinal("idservicio"));
                 s = new Servicio
                 {
-                    Nombre = fila.IsDBNull(fila.GetOrdinal("Nombre")) ? "" : fila.GetString(fila.GetOrdinal("Nombre")),
+                    Nombre = fila.IsDBNull(fila.GetOrdinal("NombreServicio")) ? "" : fila.GetString(fila.GetOrdinal("NombreServicio")),
                     Descripcion = fila.IsDBNull(fila.GetOrdinal("Descripcion")) ? "" : fila.GetString(fila.GetOrdinal("Descripcion")),
                     Imagen = fila.IsDBNull(fila.GetOrdinal("Imagen")) ? "No hay imagen disponible" : fila.GetString(fila.GetOrdinal("Imagen")),
-                    Activo = (bool)fila["Activo"]
-                    //Eventos = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
+                    //Activo = (bool)fila["Activo"],
+                    Eventos = CargarEventos(id)
                 };
             }
             return s;
         }
 
-        protected static Servicio CargarDatosDesdeReader2(IDataRecord fila)
+        protected static List<Tipo_Evento> CargarEventos(int idSv)
         {
-            Servicio s = null;
-
-            if (fila != null)
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT DISTINCT e.* FROM ServicioTipoEvento AS st JOIN TipoEvento AS e ON st.idtipoevento = e.idtipoevento where st.idservicio = @idServicio";
+            cmd.Parameters.AddWithValue("@idServicio", idSv);
+            cmd.Connection = cn;
+            List<Tipo_Evento> listaTipoEvento = null;
+            try
             {
-                s = new Servicio
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
                 {
-                    Nombre = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio")),
-                    //Eventos = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
-                };
+                    listaTipoEvento = new List<Tipo_Evento>();
+                    while (dr.Read())
+                    {
+                        Tipo_Evento e = Tipo_Evento.CargarDatosDesdeReader(dr);
+                        listaTipoEvento.Add(e);
+                    }
+                }
+                return listaTipoEvento;
             }
-            return s;
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return null;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
         }
 
         public int ObtenerIdServicio()
