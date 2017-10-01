@@ -25,6 +25,7 @@ namespace WCFListaProveedores
         string telefono = string.Empty;
         bool activo = false;
         List<Servicio> servicios = null;
+        double porcentaje = 0;
 
         [DataMember]
         public string Rut
@@ -67,12 +68,6 @@ namespace WCFListaProveedores
             get { return servicios; }
             set { servicios = value; }
         }
-    }
-
-    [DataContract]
-    public class DTOProveedorVip : DTOProveedor
-    {
-        double porcentaje = 0;
 
         [DataMember]
         public Double Porcentaje
