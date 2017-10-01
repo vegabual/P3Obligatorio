@@ -28,8 +28,9 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT s.nombreservicio as nombre, s.descripcion, s.imagen,ps.activo
-                                FROM Servicio AS s JOIN ProveedorServicio AS ps ON s.idservicio = ps.idservicio";
+            cmd.CommandText = @"SELECT DISTINCT s.idservicio ,s.nombreservicio, s.descripcion, s.imagen, te.nombreevento
+                                FROM Servicio AS s JOIN ServicioTipoEvento AS ste ON s.idservicio = ste.idservicio 
+                                JOIN TipoEvento AS te ON ste.idtipoevento = te.idtipoevento";
 
             cmd.Connection = cn;
             List<Servicio> listaServicios = null;
