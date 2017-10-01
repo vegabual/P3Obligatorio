@@ -11,10 +11,43 @@ namespace WCFListaProveedores
 {
     public class ServicioListaProveedores : IServicioListaProveedores
     {
-        public List<Proveedor> ListarProveedores()
+        public List<DTOProveedor> ListarProveedores()
         {
             List<Proveedor> lista = Proveedor.FindAll();
-            return lista;
+            List<DTOProveedor> ret = new List<DTOProveedor>();
+            foreach (Proveedor p in lista)
+            {
+                DTOProveedor elem = null;
+                if (p.GetType() == typeof(Proveedor_Comun))
+                {
+                    elem = new DTOProveedor
+                    {
+                        Rut = p.Rut,
+                        NombreFantasia = p.NombreFantasia,
+                        Telefono = p.Telefono,
+                        Email = p.Email,
+                        Activo = p.Activo,
+                        Porcentaje = 0,
+                        Servicios = p.Servicios
+                    };
+                }
+                else
+                {
+                    Proveedor_Vip pv = p as Proveedor_Vip;
+                    elem = new DTOProveedor
+                    {
+                        Rut = p.Rut,
+                        NombreFantasia = p.NombreFantasia,
+                        Telefono = p.Telefono,
+                        Email = p.Email,
+                        Activo = p.Activo,
+                        Porcentaje = pv.Porcentaje,
+                        Servicios = p.Servicios
+                    };
+                }
+                ret.Add(elem);
+            }
+            return ret;
         }
     }
 }

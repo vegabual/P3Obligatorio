@@ -13,7 +13,7 @@ namespace WCFListaProveedores
     public interface IServicioListaProveedores
     {
         [OperationContract]
-        List<Proveedor> ListarProveedores();
+        List<DTOProveedor> ListarProveedores();
     }
 
     [DataContract]

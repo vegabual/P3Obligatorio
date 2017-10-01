@@ -60,42 +60,42 @@ namespace EntidadesNegocio
             }
         }
 
-        //public static List<Proveedor_Comun> FindAll()
-        //{
-        //    SqlConnection cn = Conexion.CrearConexion();
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.CommandText = @"SELECT p.rut, p.nombrefantasia, p.email, tp.telefono, p.activo ,s.nombreservicio
-        //                        FROM Proveedor AS p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut 
-        //                        JOIN ProveedorServicio AS ps ON p.rut = ps.rut JOIN Servicio AS s ON ps.idservicio = s.idservicio";
-        //    cmd.Connection = cn;
+        public static new List<Proveedor_Comun> FindAll()
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"SELECT p.rut, p.nombrefantasia, p.email, tp.telefono, p.activo ,s.nombreservicio
+                                FROM Proveedor AS p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut 
+                                JOIN ProveedorServicio AS ps ON p.rut = ps.rut JOIN Servicio AS s ON ps.idservicio = s.idservicio";
+            cmd.Connection = cn;
 
-        //    List<Proveedor_Comun> listaproveedores = null;
-        //    try
-        //    {
-        //        Conexion.AbrirConexion(cn);
+            List<Proveedor_Comun> listaproveedores = null;
+            try
+            {
+                Conexion.AbrirConexion(cn);
 
-        //        SqlDataReader dr = cmd.ExecuteReader();
-        //        if (dr.HasRows)
-        //        {
-        //            listaproveedores = new List<Proveedor_Comun>();
-        //            while (dr.Read())
-        //            {
-        //                Proveedor_Comun p = CargarDatosDesdeReader(dr);
-        //                listaproveedores.Add(p);
-        //            }
-        //        }
-        //        return listaproveedores;
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        System.Diagnostics.Debug.Assert(false, ex.Message);
-        //        return null;
-        //    }
-        //    finally
-        //    {
-        //        Conexion.CerrarConexion(cn);
-        //    }
-        //}
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    listaproveedores = new List<Proveedor_Comun>();
+                    while (dr.Read())
+                    {
+                        Proveedor_Comun p = CargarDatosDesdeReader(dr);
+                        listaproveedores.Add(p);
+                    }
+                }
+                return listaproveedores;
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return null;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
 
         public static new Proveedor_Comun CargarDatosDesdeReader(IDataRecord fila)
         {
