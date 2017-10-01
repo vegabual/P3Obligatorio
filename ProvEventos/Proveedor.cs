@@ -109,11 +109,15 @@ namespace EntidadesNegocio
                 foreach (Servicio s in this.Servicios)
                 {
                     int idServicio = s.ObtenerIdServicio();
-                    cmd.CommandText = @"INSERT INTO ProveedorServicio VALUES(@rut,@idservicio)";
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
-                    cmd.Parameters.Add(new SqlParameter("@idservicio", idServicio));
-                    filas += cmd.ExecuteNonQuery();
+                    if (idServicio != -1)
+                    {
+                        cmd.CommandText = @"INSERT INTO ProveedorServicio VALUES(@rut,@idservicio,@activo)";
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
+                        cmd.Parameters.Add(new SqlParameter("@idservicio", idServicio));
+                        cmd.Parameters.Add(new SqlParameter("@activo", true));
+                        filas += cmd.ExecuteNonQuery();
+                    }
                 }
             }
             int cantServicios = this.Servicios == null ? 0 : this.Servicios.Count();

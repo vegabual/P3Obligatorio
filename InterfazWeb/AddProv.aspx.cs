@@ -1,6 +1,9 @@
 ﻿using EntidadesNegocio;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -16,6 +19,29 @@ namespace InterfazWeb
             if (!IsPostBack)
             {
                 vaciar();
+                BindGridView();
+            }
+        }
+
+        private void BindGridView()
+        {
+            string cadena = ConfigurationManager.ConnectionStrings["conexionProvEventos"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(cadena))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT idServicio, nombreservicio, descripcion FROM Servicio"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            grvServicios.DataSource = dt;
+                            grvServicios.DataBind();
+                        }
+                    }
+                }
             }
         }
 
@@ -54,21 +80,38 @@ namespace InterfazWeb
                 string tel = txtTel.Text;
                 Usuario user = new Usuario(rut, Usuario.HashPassword(clave), Rol.Proveedor);
                 Proveedor prov;
+                List<Servicio> serviciosProv = new List<Servicio>();
+                foreach (GridViewRow row in grvServicios.Rows)
+                {
+                    if (((CheckBox)row.FindControl("ChkSelect")).Checked)
+                    {
+                        int id;
+                        if (int.TryParse(row.Cells[1].Text, out id))
+                        {
+                            Servicio s = Servicio.EncuentraServicio(id);
+                            if (s != null)
+                                serviciosProv.Add(s);
+                        }
+                    }
+                }
                 if (chkVip.Checked)
                 {
-                    prov = new Proveedor_Vip(rut, nombre, email, tel, null);
+                    prov = new Proveedor_Vip(rut, nombre, email, tel, serviciosProv);
                 }
                 else
                 {
-                    prov = new Proveedor_Comun(rut, nombre, email, tel, null);
+                    prov = new Proveedor_Comun(rut, nombre, email, tel, serviciosProv);
                 }
-                bool uservalido = Usuario.ValidarClave(clave);
-                bool provvalido = prov.Validar();
                 if (Usuario.ValidarClave(clave) && prov.Validar())
                 {
-                    user.Insertar();
-                    prov.Insertar();
-                    lblResultado.Text = "El proveedor ha sido registrado exitosamente";
+                    if (user.Insertar() && prov.Insertar())
+                    {
+                        lblResultado.Text = "El proveedor ha sido registrado exitosamente";
+                    }
+                    else
+                    {
+                        lblResultado.Text = "Ha occurrido un error, verifique sus datos por favor";
+                    }
                 }
                 else
                 {

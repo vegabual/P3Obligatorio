@@ -29,6 +29,18 @@
             <br />
             <asp:CheckBox ID="chkVip" runat="server" Text="Vip" />
             <br />
+            <asp:GridView ID="grvServicios" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:CheckBox ID="ChkSelect" runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="idservicio" HeaderText="ID Servicio" />
+                    <asp:BoundField DataField="NombreServicio" HeaderText="Nombre Servicio" />
+                    <asp:BoundField DataField="descripcion" HeaderText="Descripcion" />
+                </Columns>
+            </asp:GridView>
             <br />
             <asp:Button ID="btnRegistro" runat="server" Text="Registrar" OnClick="btnRegistro_Click" />
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CausesValidation="false" />

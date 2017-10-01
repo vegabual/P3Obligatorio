@@ -154,10 +154,17 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.nombreservicio = @nombre AND servicio.descripcion = @descripcion AND servicio.imagen = @imagen";
+            if (this.Imagen == "No hay imagen disponible")
+            {
+                cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.nombreservicio = @nombre AND servicio.descripcion = @descripcion AND servicio.imagen is null";
+            }
+            else
+            {
+                cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.nombreservicio = @nombre AND servicio.descripcion = @descripcion AND servicio.imagen = @imagen";
+                cmd.Parameters.AddWithValue("@imagen", this.Imagen);
+            }
             cmd.Parameters.AddWithValue("@nombre", this.Nombre);
             cmd.Parameters.AddWithValue("@descripcion", this.Descripcion);
-            cmd.Parameters.AddWithValue("@imagen", this.Imagen);
             cmd.Connection = cn;
             try
             {
@@ -166,7 +173,7 @@ namespace EntidadesNegocio
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows && dr.Read())
                 {
-                    return dr.IsDBNull(dr.GetOrdinal("idrol")) ? 0 : dr.GetInt32(dr.GetOrdinal("idrol"));
+                    return dr.IsDBNull(dr.GetOrdinal("idservicio")) ? 0 : dr.GetInt32(dr.GetOrdinal("idservicio"));
                 }
                 else
                 {
@@ -189,7 +196,7 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.idservicio = @id";
+            cmd.CommandText = @"SELECT servicio.* FROM servicio WHERE servicio.idservicio = @id";
             cmd.Parameters.AddWithValue("@id", idServicio);
             cmd.Connection = cn;
             try
