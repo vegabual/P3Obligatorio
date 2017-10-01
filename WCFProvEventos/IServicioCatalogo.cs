@@ -19,16 +19,16 @@ namespace WCFProvEventos
     [DataContract]
     public class CatalogoServicios
     {
-        string nombreservicio = string.Empty;
+        string nombre = string.Empty;
         string descripcion = string.Empty;
         string imagen = string.Empty;
-        string nombreevento = string.Empty;
+        bool activo = true;
 
         [DataMember]
-        public string Nombreservicio
+        public string Nombre
         {
-            get { return nombreservicio; }
-            set { nombreservicio = value; }
+            get { return nombre; }
+            set { nombre = value; }
         }
 
         [DataMember]
@@ -46,10 +46,10 @@ namespace WCFProvEventos
         }
 
         [DataMember]
-        public string Nombreevento
+        public bool Activo
         {
-            get { return nombreevento; }
-            set { nombreevento = value; }
+            get { return activo; }
+            set { activo = value; }
         }
     }
 }
