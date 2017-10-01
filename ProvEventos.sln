@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntidadesNegocio", "ProvEventos\EntidadesNegocio.csproj", "{B7119F76-D2D7-4605-AA4B-698210C3A7C7}"
 EndProject
@@ -14,6 +14,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfNuevoProveedor", "WcfNuevoProveedor\WcfNuevoProveedor.csproj", "{CE6E5AD1-E2C1-4125-9438-F340F5A787A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazWeb", "InterfazWeb\InterfazWeb.csproj", "{67AD716B-FCC3-4890-AB0C-28CF384DA72D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFProveedorXRut", "WCFProveedorXRut\WCFProveedorXRut.csproj", "{71F92788-8CDD-4E37-8459-E0FBBE17964E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFModificarArancelyPorcentaje", "WCFModificarArancelyPorcentaje\WCFModificarArancelyPorcentaje.csproj", "{9A107C79-8649-4726-9D9D-43DFDEF9DC6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFDesactivarProveedor", "WCFDesactivarProveedor\WCFDesactivarProveedor.csproj", "{FB503B7D-D9A0-4550-9120-7855D8A8535B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiciosFile", "WCFServiciosFile\WCFServiciosFile.csproj", "{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFFileProveedores", "WCFFileProveedores\WCFFileProveedores.csproj", "{3D49B740-B53E-421F-AA82-9687C7EB506F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +55,26 @@ Global
 		{67AD716B-FCC3-4890-AB0C-28CF384DA72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67AD716B-FCC3-4890-AB0C-28CF384DA72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67AD716B-FCC3-4890-AB0C-28CF384DA72D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71F92788-8CDD-4E37-8459-E0FBBE17964E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F92788-8CDD-4E37-8459-E0FBBE17964E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71F92788-8CDD-4E37-8459-E0FBBE17964E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71F92788-8CDD-4E37-8459-E0FBBE17964E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A107C79-8649-4726-9D9D-43DFDEF9DC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A107C79-8649-4726-9D9D-43DFDEF9DC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A107C79-8649-4726-9D9D-43DFDEF9DC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A107C79-8649-4726-9D9D-43DFDEF9DC6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB503B7D-D9A0-4550-9120-7855D8A8535B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB503B7D-D9A0-4550-9120-7855D8A8535B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB503B7D-D9A0-4550-9120-7855D8A8535B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB503B7D-D9A0-4550-9120-7855D8A8535B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A424D156-D3B9-40F5-9AE0-0CA1BC984AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D49B740-B53E-421F-AA82-9687C7EB506F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D49B740-B53E-421F-AA82-9687C7EB506F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D49B740-B53E-421F-AA82-9687C7EB506F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D49B740-B53E-421F-AA82-9687C7EB506F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

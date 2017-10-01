@@ -18,6 +18,6 @@ C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obliga
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProvEventos\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProvEventos\bin\Microsoft.ApplicationInsights.xml
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProvEventos\bin\AccesoDatos.pdb
-C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProvEventos\obj\Debug\WCFServicioCatalogo.csprojResolveAssemblyReference.cache
+C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProvEventos\obj\Debug\WCFProvEventos.csprojResolveAssemblyReference.cache
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProvEventos\obj\Debug\WCFProvEventos.dll
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProvEventos\obj\Debug\WCFProvEventos.pdb

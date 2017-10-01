@@ -22,7 +22,7 @@ namespace WCFProvEventos
         string nombre = string.Empty;
         string descripcion = string.Empty;
         string imagen = string.Empty;
-        string nombreevento = string.Empty;
+        bool activo = true;
 
         [DataMember]
         public string Nombre
@@ -46,10 +46,10 @@ namespace WCFProvEventos
         }
 
         [DataMember]
-        public string Nombreevento
+        public bool Activo
         {
-            get { return nombreevento; }
-            set { nombreevento = value; }
+            get { return activo; }
+            set { activo = value; }
         }
     }
 }
