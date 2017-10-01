@@ -18,7 +18,7 @@ namespace EntidadesNegocio
         private string email;
         private string telefono;
         private bool activo;
-        private List<Servicio> nombreservicio;
+        private List<Servicio> servicios;
 
         public string Rut { get; set; }
         public string NombreFantasia { get; set; }
@@ -27,7 +27,8 @@ namespace EntidadesNegocio
         public bool Activo { get; set; }
         public List<Servicio> Servicios { get; set; }
 
-        public Proveedor(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios)
+        public Proveedor(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios
+            )
         {
             this.Rut = rut;
             this.Email = email;
@@ -242,58 +243,21 @@ namespace EntidadesNegocio
             }
         }
 
-        public static List<Proveedor> FindAll()
-        {
-            SqlConnection cn = Conexion.CrearConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT p.rut, p.nombrefantasia, p.email, tp.telefono, 
-                                CASE CAST(p.activo AS VARCHAR(10)) WHEN '1' THEN 'Si' WHEN '0' THEN 'No' END AS activo, s.nombreservicio 
-                                FROM Proveedor AS p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut JOIN Servicio AS s ON p.rut = s.rut";
-
-            cmd.Connection = cn;
-            List<Proveedor> listaproveedores = null;
-            try
-            {
-                Conexion.AbrirConexion(cn);
-
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    listaproveedores = new List<Proveedor>();
-                    while (dr.Read())
-                    {
-                        Proveedor p = CargarDatosDesdeReader(dr);
-                        listaproveedores.Add(p);
-                    }
-                }
-                return listaproveedores;
-            }
-            catch (SqlException ex)
-            {
-                System.Diagnostics.Debug.Assert(false, ex.Message);
-                return null;
-            }
-            finally
-            {
-                Conexion.CerrarConexion(cn);
-            }
-        }
-
         protected static Proveedor CargarDatosDesdeReader(IDataRecord fila)
         {
             Proveedor p = null;
 
             if (fila != null)
             {
-                //p = new Proveedor_Vip
-                //{
-                //    Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
-                //    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("NombreFantasia")) ? "" : fila.GetString(fila.GetOrdinal("NombreFantasia")),
-                //    Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
-                //    Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
-                //    //Activo = (bool)fila["Activo"],
-                //    Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
-                //};
+                p = new Proveedor_Vip
+                {
+                    Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
+                    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("NombreFantasia")) ? "" : fila.GetString(fila.GetOrdinal("NombreFantasia")),
+                    Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
+                    Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
+                    //Activo = (bool)fila["Activo"],
+                    //Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
+                };
             }
             return p;
         }

@@ -15,21 +15,21 @@ namespace EntidadesNegocio
         private string nombre;
         private string descripcion;
         private string imagen;
-        private List<Tipo_Evento> eventos;
+        //private List<Tipo_Evento> eventos;
         private bool activo;
 
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
-        public List<Tipo_Evento> Eventos { get; set; }
+        //public List<Tipo_Evento> Eventos { get; set; }
         public bool Activo { get; set; }
         
         public static List<Servicio> FindAll()
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT s.nombreservicio, s.descripcion, s.imagen, t.nombreevento, s.activo FROM Servicio as s 
-                                INNER JOIN TipoEvento as t ON t.idtipoevento = s.idtipoevento";
+            cmd.CommandText = @"SELECT s.nombreservicio as nombre, s.descripcion, s.imagen,ps.activo
+                                FROM Servicio AS s JOIN ProveedorServicio AS ps ON s.idservicio = ps.idservicio";
 
             cmd.Connection = cn;
             List<Servicio> listaServicios = null;
@@ -105,9 +105,10 @@ namespace EntidadesNegocio
             {
                 s = new Servicio
                 {
-                    Nombre = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio")),
+                    Nombre = fila.IsDBNull(fila.GetOrdinal("Nombre")) ? "" : fila.GetString(fila.GetOrdinal("Nombre")),
                     Descripcion = fila.IsDBNull(fila.GetOrdinal("Descripcion")) ? "" : fila.GetString(fila.GetOrdinal("Descripcion")),
                     Imagen = fila.IsDBNull(fila.GetOrdinal("Imagen")) ? "No hay imagen disponible" : fila.GetString(fila.GetOrdinal("Imagen")),
+                    Activo = (bool)fila["Activo"]
                     //Eventos = fila.IsDBNull(fila.GetOrdinal("Nombreevento")) ? "" : fila.GetString(fila.GetOrdinal("Nombreevento")),
                 };
             }
