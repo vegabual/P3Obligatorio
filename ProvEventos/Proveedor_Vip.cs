@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace EntidadesNegocio
 {
-    public class Proveedor_Vip : Proveedor, IActiveRecord
+    public class Proveedor_Vip : Proveedor
     {
         private double porcentaje;
 
