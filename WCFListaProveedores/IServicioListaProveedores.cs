@@ -13,11 +13,11 @@ namespace WCFListaProveedores
     public interface IServicioListaProveedores
     {
         [OperationContract]
-        List<Proveedor_Comun> ListarProveedores();
+        List<Proveedor> ListarProveedores();
     }
 
     [DataContract]
-    public class CompositeType
+    public class DTOProveedor
     {
         string rut = string.Empty;
         string nombrefantasia = string.Empty;
@@ -67,5 +67,19 @@ namespace WCFListaProveedores
             get { return servicios; }
             set { servicios = value; }
         }
+    }
+
+    [DataContract]
+    public class DTOProveedorVip : DTOProveedor
+    {
+        double porcentaje = 0;
+
+        [DataMember]
+        public Double Porcentaje
+        {
+            get { return porcentaje; }
+            set { porcentaje = value; }
+        }
+        
     }
 }

@@ -11,9 +11,9 @@ namespace WCFListaProveedores
 {
     public class ServicioListaProveedores : IServicioListaProveedores
     {
-        public List<Proveedor_Comun> ListarProveedores()
+        public List<Proveedor> ListarProveedores()
         {
-            List<Proveedor_Comun> lista = Proveedor_Comun.FindAll();
+            List<Proveedor> lista = Proveedor.FindAll();
             return lista;
         }
     }

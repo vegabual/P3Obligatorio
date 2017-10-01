@@ -80,8 +80,8 @@ namespace EntidadesNegocio
                     listaservicios = new List<Servicio>();
                     while (dr.Read())
                     {
-                        //Servicio s = CargarDatosDesdeReader2(dr);
-                        //listaservicios.Add(s);
+                        Servicio s = CargarDatosDesdeReader(dr);
+                        listaservicios.Add(s);
                     }
                 }
                 return listaservicios;
@@ -109,7 +109,6 @@ namespace EntidadesNegocio
                     Nombre = fila.IsDBNull(fila.GetOrdinal("NombreServicio")) ? "" : fila.GetString(fila.GetOrdinal("NombreServicio")),
                     Descripcion = fila.IsDBNull(fila.GetOrdinal("Descripcion")) ? "" : fila.GetString(fila.GetOrdinal("Descripcion")),
                     Imagen = fila.IsDBNull(fila.GetOrdinal("Imagen")) ? "No hay imagen disponible" : fila.GetString(fila.GetOrdinal("Imagen")),
-                    //Activo = (bool)fila["Activo"],
                     Eventos = CargarEventos(id)
                 };
             }

@@ -21,7 +21,6 @@ namespace EntidadesNegocio
             this.Rut = rut;
             this.Email = email;
             this.NombreFantasia = nombreFantasia;
-            //this.Porcentaje = GetPorcentajeNuevoProv();
             this.Telefono = telefono;
             this.Activo = true;
             this.Servicios = servicios;
@@ -107,6 +106,27 @@ namespace EntidadesNegocio
             {
                 Conexion.CerrarConexion(cn);
             }
+        }
+
+        public static new Proveedor_Vip CargarDatosDesdeReader(IDataRecord fila)
+        {
+            Proveedor_Vip pv = null;
+
+            if (fila != null)
+            {
+                string pvRut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut"));
+                pv = new Proveedor_Vip
+                {
+                    Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
+                    NombreFantasia = fila.IsDBNull(fila.GetOrdinal("NombreFantasia")) ? "" : fila.GetString(fila.GetOrdinal("NombreFantasia")),
+                    Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
+                    Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
+                    Activo = (bool)fila["Activo"],
+                    Servicios = CargarServicios(pvRut),
+                    Porcentaje = fila.IsDBNull(fila.GetOrdinal("Porcentaje")) ? 0 : (double)fila.GetDecimal(fila.GetOrdinal("Porcentaje"))
+                };
+            }
+            return pv;
         }
     }
 }

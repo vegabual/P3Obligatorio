@@ -242,21 +242,56 @@ namespace EntidadesNegocio
             }
         }
 
+        public static List<Proveedor> FindAll()
+        {
+            SqlConnection cn = Conexion.CrearConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = @"  SELECT p.*, tp.telefono, pv.porcentaje FROM Proveedor AS p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut 
+                                FULL JOIN ProveedorVip AS pv ON p.rut = pv.rut";
+            cmd.Connection = cn;
+
+            List<Proveedor> listaproveedores = null;
+            try
+            {
+                Conexion.AbrirConexion(cn);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    listaproveedores = new List<Proveedor>();
+                    while (dr.Read())
+                    {
+                        Proveedor p = CargarDatosDesdeReader(dr);
+                        listaproveedores.Add(p);
+                    }
+                }
+                return listaproveedores;
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.Assert(false, ex.Message);
+                return null;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(cn);
+            }
+        }
+
         protected static Proveedor CargarDatosDesdeReader(IDataRecord fila)
         {
             Proveedor p = null;
 
             if (fila != null)
             {
-                p = new Proveedor_Vip
+                if (fila.IsDBNull(fila.GetOrdinal("porcentaje")))
                 {
-                    //Rut = fila.IsDBNull(fila.GetOrdinal("Rut")) ? "" : fila.GetString(fila.GetOrdinal("Rut")),
-                    //NombreFantasia = fila.IsDBNull(fila.GetOrdinal("NombreFantasia")) ? "" : fila.GetString(fila.GetOrdinal("NombreFantasia")),
-                    //Email = fila.IsDBNull(fila.GetOrdinal("Email")) ? "" : fila.GetString(fila.GetOrdinal("Email")),
-                    //Telefono = fila.IsDBNull(fila.GetOrdinal("Telefono")) ? "" : fila.GetString(fila.GetOrdinal("Telefono")),
-                    //Activo = (bool)fila["Activo"],
-                    //Nombreservicio = fila.IsDBNull(fila.GetOrdinal("Nombreservicio")) ? "" : fila.GetString(fila.GetOrdinal("Nombreservicio"))
-                };
+                    p = Proveedor_Comun.CargarDatosDesdeReader(fila);
+                }
+                else
+                {
+                    p = Proveedor_Vip.CargarDatosDesdeReader(fila);
+                }
             }
             return p;
         }
