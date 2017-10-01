@@ -26,19 +26,7 @@ namespace EntidadesNegocio
         public string Telefono { get; set; }
         public bool Activo { get; set; }
         public List<Servicio> Servicios { get; set; }
-
-        public Proveedor(string rut, string nombreFantasia, string email, string telefono, List<Servicio> servicios)
-        {
-            this.Rut = rut;
-            this.Email = email;
-            this.NombreFantasia = nombreFantasia;
-            this.Telefono = telefono;
-            this.Activo = true;
-            this.Servicios = servicios;
-        }
-
-        public Proveedor() { }
-
+        
         public bool Validar()
         {
             Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
@@ -304,8 +292,7 @@ namespace EntidadesNegocio
             }
             return p;
         }
-
-
+        
         protected static List<Servicio> CargarServicios(string idPv)
         {
             SqlConnection cn = Conexion.CrearConexion();
@@ -339,6 +326,16 @@ namespace EntidadesNegocio
             {
                 Conexion.CerrarConexion(cn);
             }
+        }
+
+        public override string ToString()
+        {
+            string strServicio = "";
+            foreach (Servicio s in this.Servicios)
+            {
+                strServicio += "#" + s.ToString();
+            } 
+            return this.Rut + "#" + this.NombreFantasia + "#" + this.Email + "#" + this.Telefono + strServicio;
         }
     }
 }

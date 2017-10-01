@@ -33,12 +33,15 @@ namespace WCFServiciosFile
             {
                 using (StreamWriter sw = new StreamWriter(fileLoc))
                 {
-                    int count = 1;
-                    foreach (Servicio s in Servicio.FindServFile())
+                    List<Servicio> servicios = Servicio.FindAll();
+                    foreach (Servicio s in servicios)
                     {
-                        sw.WriteLine(s.Nombre);
-                        Console.WriteLine();
-                        count++;
+                        string print = s.Nombre + "#" + s.Eventos[0].Nombre;
+                        for (int i = 1; i < s.Eventos.Count; i++)
+                        {
+                            print += ":" + s.Eventos[i].Nombre;
+                        }
+                        sw.WriteLine(print);
                     }
                 }
             }

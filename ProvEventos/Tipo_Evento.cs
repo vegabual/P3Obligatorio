@@ -38,6 +38,5 @@ namespace EntidadesNegocio
             }
             return e;
         }
-
     }
 }

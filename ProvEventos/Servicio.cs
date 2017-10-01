@@ -59,44 +59,7 @@ namespace EntidadesNegocio
                 Conexion.CerrarConexion(cn);
             }
         }
-
-        public static List<Servicio> FindServFile()
-        {
-            SqlConnection cn = Conexion.CrearConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT s.nombreservicio, t.nombreevento FROM Servicio AS s 
-                                JOIN ServicioTipoEvento AS ste ON s.idservicio = ste.idservicio 
-                                JOIN TipoEvento AS t ON ste.idtipoevento = t.idtipoevento";
-
-            cmd.Connection = cn;
-            List<Servicio> listaservicios = null;
-            try
-            {
-                Conexion.AbrirConexion(cn);
-
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    listaservicios = new List<Servicio>();
-                    while (dr.Read())
-                    {
-                        Servicio s = CargarDatosDesdeReader(dr);
-                        listaservicios.Add(s);
-                    }
-                }
-                return listaservicios;
-            }
-            catch (SqlException ex)
-            {
-                System.Diagnostics.Debug.Assert(false, ex.Message);
-                return null;
-            }
-            finally
-            {
-                Conexion.CerrarConexion(cn);
-            }
-        }
-
+        
         public static Servicio CargarDatosDesdeReader(IDataRecord fila)
         {
             Servicio s = null;
@@ -225,7 +188,7 @@ namespace EntidadesNegocio
 
         public override string ToString()
         {
-            return this.Nombre + " - " + this.Descripcion;
+            return this.Nombre + ":" + this.Descripcion + ":" + this.Imagen;
         }
     }
 }
