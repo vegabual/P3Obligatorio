@@ -23,13 +23,14 @@ namespace EntidadesNegocio
         public string Imagen { get; set; }
         public List<Tipo_Evento> Eventos { get; set; }
         //public bool Activo { get; set; }
-        
+
         public static List<Servicio> FindAll()
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT s.nombreservicio as nombre, s.descripcion, s.imagen,ps.activo
-                                FROM Servicio AS s JOIN ProveedorServicio AS ps ON s.idservicio = ps.idservicio";
+            cmd.CommandText = @"SELECT DISTINCT s.idservicio ,s.nombreservicio, s.descripcion, s.imagen, te.nombreevento
+                                FROM Servicio AS s JOIN ServicioTipoEvento AS ste ON s.idservicio = ste.idservicio 
+                                JOIN TipoEvento AS te ON ste.idtipoevento = te.idtipoevento";
 
             cmd.Connection = cn;
             List<Servicio> listaServicios = null;
@@ -64,9 +65,7 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT s.nombreservicio, t.nombreevento FROM Servicio AS s 
-                                JOIN ServicioTipoEvento AS ste ON s.idservicio = ste.idservicio 
-                                JOIN TipoEvento AS t ON ste.idtipoevento = t.idtipoevento";
+            cmd.CommandText = @"SELECT DISTINCT s.idservicio, s.nombreservicio, s.descripcion, s.imagen FROM Servicio AS s ";
 
             cmd.Connection = cn;
             List<Servicio> listaservicios = null;
@@ -101,7 +100,7 @@ namespace EntidadesNegocio
         {
             Servicio s = null;
 
-            if (fila != null)   
+            if (fila != null)
             {
                 int id = fila.IsDBNull(fila.GetOrdinal("idservicio")) ? -1 : fila.GetInt32(fila.GetOrdinal("idservicio"));
                 s = new Servicio
@@ -119,7 +118,7 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT DISTINCT e.* FROM ServicioTipoEvento AS st JOIN TipoEvento AS e ON st.idtipoevento = e.idtipoevento where st.idservicio = @idServicio";
+            cmd.CommandText = @"SELECT e.nombreevento, e.descripcion FROM ServicioTipoEvento AS st JOIN TipoEvento AS e ON st.idtipoevento = e.idtipoevento where st.idservicio = @idServicio";
             cmd.Parameters.AddWithValue("@idServicio", idSv);
             cmd.Connection = cn;
             List<Tipo_Evento> listaTipoEvento = null;
@@ -154,17 +153,10 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            if (this.Imagen == "No hay imagen disponible")
-            {
-                cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.nombreservicio = @nombre AND servicio.descripcion = @descripcion AND servicio.imagen is null";
-            }
-            else
-            {
-                cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.nombreservicio = @nombre AND servicio.descripcion = @descripcion AND servicio.imagen = @imagen";
-                cmd.Parameters.AddWithValue("@imagen", this.Imagen);
-            }
+            cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.nombreservicio = @nombre AND servicio.descripcion = @descripcion AND servicio.imagen = @imagen";
             cmd.Parameters.AddWithValue("@nombre", this.Nombre);
             cmd.Parameters.AddWithValue("@descripcion", this.Descripcion);
+            cmd.Parameters.AddWithValue("@imagen", this.Imagen);
             cmd.Connection = cn;
             try
             {
@@ -173,7 +165,7 @@ namespace EntidadesNegocio
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows && dr.Read())
                 {
-                    return dr.IsDBNull(dr.GetOrdinal("idservicio")) ? 0 : dr.GetInt32(dr.GetOrdinal("idservicio"));
+                    return dr.IsDBNull(dr.GetOrdinal("idrol")) ? 0 : dr.GetInt32(dr.GetOrdinal("idrol"));
                 }
                 else
                 {
@@ -196,7 +188,7 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"SELECT servicio.* FROM servicio WHERE servicio.idservicio = @id";
+            cmd.CommandText = @"SELECT idservicio FROM servicio WHERE servicio.idservicio = @id";
             cmd.Parameters.AddWithValue("@id", idServicio);
             cmd.Connection = cn;
             try
