@@ -21,3 +21,27 @@ C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obliga
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProveedorXRut\obj\Debug\WCFProveedorXRut.csprojResolveAssemblyReference.cache
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProveedorXRut\obj\Debug\WCFProveedorXRut.dll
 C:\Users\inglo_000\Desktop\Programacion\ORT\Programacion 3\Obligatorio1\P3Obligatorio-master\WCFProveedorXRut\obj\Debug\WCFProveedorXRut.pdb
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\ApplicationInsights.config
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\WCFProveedorXRut.dll.config
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\WCFProveedorXRut.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\WCFProveedorXRut.pdb
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.Agent.Intercept.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.DependencyCollector.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.Web.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.WindowsServer.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.ApplicationInsights.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\ProvEventos.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\AccesoDatos.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\ProvEventos.pdb
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.DependencyCollector.xml
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.Web.xml
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.AI.WindowsServer.xml
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\Microsoft.ApplicationInsights.xml
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\bin\AccesoDatos.pdb
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\obj\Debug\WCFProveedorXRut.csprojResolveAssemblyReference.cache
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\obj\Debug\WCFProveedorXRut.csproj.CoreCompileInputs.cache
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\obj\Debug\WCFProveedorXRut.dll
+C:\ReposOrt\Programacion3Obligatorio\WCFProveedorXRut\obj\Debug\WCFProveedorXRut.pdb

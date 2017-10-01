@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using AccesoDatos;
 using System.Diagnostics;
+using EntidadesNegocio;
 
 namespace InterfazWeb
 {
@@ -25,7 +26,7 @@ namespace InterfazWeb
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = @"SELECT nombreusuario, clave FROM Usuario WHERE nombreusuario = @usuario AND clave = @password";
             cmd.Parameters.AddWithValue("@usuario", login.UserName);
-            cmd.Parameters.AddWithValue("@password", login.Password);
+            cmd.Parameters.AddWithValue("@password", Usuario.HashPassword(login.Password));
             cmd.Connection = cn;
       
             Conexion.AbrirConexion(cn);

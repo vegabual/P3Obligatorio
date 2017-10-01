@@ -22,7 +22,7 @@ GO
 CREATE TABLE Usuario
 (
 	nombreusuario VARCHAR(30) PRIMARY KEY,
-	clave VARCHAR(50) NOT NULL, 
+	clave VARCHAR(100) NOT NULL, 
 	idrol int FOREIGN KEY REFERENCES Rol(idrol),
 	fecharegistro DATE NOT NULL
 )

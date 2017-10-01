@@ -104,16 +104,20 @@ namespace EntidadesNegocio
 
             filas += cmd.ExecuteNonQuery();
             //Falta guardar en la tabla relacional de servicio y proveedor
-            foreach (Servicio s in this.Servicios)
+            if (this.Servicios != null)
             {
-                int idServicio = s.ObtenerIdServicio();
-                cmd.CommandText = @"INSERT INTO ProveedorServicio VALUES(@rut,@idservicio)";
-                cmd.Parameters.Clear();
-                cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
-                cmd.Parameters.Add(new SqlParameter("@idservicio", idServicio));
-                filas += cmd.ExecuteNonQuery();
+                foreach (Servicio s in this.Servicios)
+                {
+                    int idServicio = s.ObtenerIdServicio();
+                    cmd.CommandText = @"INSERT INTO ProveedorServicio VALUES(@rut,@idservicio)";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
+                    cmd.Parameters.Add(new SqlParameter("@idservicio", idServicio));
+                    filas += cmd.ExecuteNonQuery();
+                }
             }
-            return filas == Servicios.Count() + 2;
+            int cantServicios = this.Servicios == null ? 0 : this.Servicios.Count();
+            return filas == cantServicios + 2;
         }
         
         public static bool Exists(string rut)
@@ -217,7 +221,8 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"";
+            cmd.CommandText = @"SELECT p.*, tp.telefono, pv.porcentaje FROM Proveedor AS p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut 
+                                FULL JOIN ProveedorVip AS pv ON p.rut = pv.rut WHERE p.rut = @rut";
             cmd.Parameters.AddWithValue("@rut", rut);
             cmd.Connection = cn;
             try
@@ -246,7 +251,7 @@ namespace EntidadesNegocio
         {
             SqlConnection cn = Conexion.CrearConexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = @"  SELECT p.*, tp.telefono, pv.porcentaje FROM Proveedor AS p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut 
+            cmd.CommandText = @"SELECT p.*, tp.telefono, pv.porcentaje FROM Proveedor AS p JOIN TelefonoProveedor AS tp ON p.rut = tp.rut 
                                 FULL JOIN ProveedorVip AS pv ON p.rut = pv.rut";
             cmd.Connection = cn;
 
