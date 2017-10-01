@@ -13,19 +13,16 @@ namespace WCFProveedorXRut
     public interface IServicioProveedorXRut
     {
         [OperationContract]
-        DTOProveedor FindById(string rut);
+        Proveedor_Vip FindById(string rut);
     }
 
     [DataContract]
-    public class DTOProveedor
+    public class CompositeType
     {
         string rut = string.Empty;
         string nombrefantasia = string.Empty;
         string email = string.Empty;
         string telefono = string.Empty;
-        bool activo = false;
-        List<Servicio> servicios = null;
-        double porcentaje = 0;
 
         [DataMember]
         public string Rut
@@ -54,27 +51,5 @@ namespace WCFProveedorXRut
             get { return telefono; }
             set { telefono = value; }
         }
-
-        [DataMember]
-        public bool Activo
-        {
-            get { return activo; }
-            set { activo = value; }
-        }
-
-        [DataMember]
-        public List<Servicio> Servicios
-        {
-            get { return servicios; }
-            set { servicios = value; }
-        }
-
-        [DataMember]
-        public Double Porcentaje
-        {
-            get { return porcentaje; }
-            set { porcentaje = value; }
-        }
-
     }
 }
