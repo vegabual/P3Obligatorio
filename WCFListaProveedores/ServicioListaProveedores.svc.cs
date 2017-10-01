@@ -11,10 +11,10 @@ namespace WCFListaProveedores
 {
     public class ServicioListaProveedores : IServicioListaProveedores
     {
-        public int ListarProveedores()
+        public List<Proveedor_Comun> ListarProveedores()
         {
-            IEnumerable<Servicio> lista = Servicio.FindAll();
-            return lista == null ? 0 : lista.Count();
+            List<Proveedor_Comun> lista = Proveedor_Comun.FindAll();
+            return lista;
         }
     }
 }
