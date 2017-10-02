@@ -43,7 +43,7 @@ namespace InterfazWeb
 
                 if (dr2.HasRows)
                 {
-                    Response.Redirect("ListarProveedores.aspx");
+                    Response.Redirect("MenuAdmin.aspx");
                 }
                 else
                 {

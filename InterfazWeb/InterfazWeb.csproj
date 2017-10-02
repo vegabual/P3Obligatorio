@@ -49,6 +49,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ProvEventos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -68,10 +71,156 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="ClientDesactivarProveedor.aspx" />
+    <Content Include="ClientFileProveedores.aspx" />
+    <Content Include="ClientListaProveedores.aspx" />
+    <Content Include="ClientNuevoProveedor.aspx" />
+    <Content Include="ClientProveedorXRut.aspx" />
+    <Content Include="ClientServicioCatalogo.aspx" />
     <Content Include="ListarProveedores.aspx" />
     <Content Include="ListarproveedoresSeleccionado.aspx" />
+    <Content Include="MenuAdmin.aspx" />
     <Content Include="MenuProv.aspx" />
+    <Content Include="ClientModArancelYPorcentaje.aspx" />
+    <Content Include="Properties\DataSources\EntidadesNegocio.Servicio.datasource" />
+    <None Include="Service References\ServicioCatalogo\ServicioCatalogo.disco" />
+    <None Include="Service References\ServicioCatalogo\configuration91.svcinfo" />
+    <None Include="Service References\ServicioCatalogo\configuration.svcinfo" />
+    <None Include="Service References\ServicioCatalogo\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServicioDesactivarProveedor\ServicioDesactivarProveedor.disco" />
+    <None Include="Service References\ServicioDesactivarProveedor\configuration91.svcinfo" />
+    <None Include="Service References\ServicioDesactivarProveedor\configuration.svcinfo" />
+    <None Include="Service References\ServicioDesactivarProveedor\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServicioFileProveedores\ServicioFileProveedores.disco" />
+    <None Include="Service References\ServicioFileProveedores\configuration91.svcinfo" />
+    <None Include="Service References\ServicioFileProveedores\configuration.svcinfo" />
+    <None Include="Service References\ServicioFileProveedores\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\ServicioListaProveedores\InterfazWeb.ServicioListaProveedores.DTOProveedor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServicioFileProveedores\ServicioFileProveedores.wsdl" />
+    <None Include="Service References\ServicioFileProveedores\ServicioFileProveedores.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioFileProveedores\ServicioFileProveedores1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioListaProveedores\ServicioListaProveedores.disco" />
+    <None Include="Service References\ServicioListaProveedores\configuration91.svcinfo" />
+    <None Include="Service References\ServicioListaProveedores\configuration.svcinfo" />
+    <None Include="Service References\ServicioListaProveedores\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServicioModArancelyPorcentaje\ServicioModArancelyPorcentaje.disco" />
+    <None Include="Service References\ServicioModArancelyPorcentaje\configuration91.svcinfo" />
+    <None Include="Service References\ServicioModArancelyPorcentaje\configuration.svcinfo" />
+    <None Include="Service References\ServicioModArancelyPorcentaje\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo.disco" />
+    <None Include="Service References\ServicioNuevoProv\configuration91.svcinfo" />
+    <None Include="Service References\ServicioNuevoProv\configuration.svcinfo" />
+    <None Include="Service References\ServicioNuevoProv\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\ServicioProveedorXRut\InterfazWeb.ServicioProveedorXRut.DTOProveedor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServicioModArancelyPorcentaje\ServicioModArancelyPorcentaje.wsdl" />
+    <None Include="Service References\ServicioModArancelyPorcentaje\ServicioModArancelyPorcentaje.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioModArancelyPorcentaje\ServicioModArancelyPorcentaje1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo.wsdl" />
+    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioProveedorXRut\ServicioProveedorXRut.disco" />
+    <None Include="Service References\ServicioProveedorXRut\configuration91.svcinfo" />
+    <None Include="Service References\ServicioProveedorXRut\configuration.svcinfo" />
+    <None Include="Service References\ServicioProveedorXRut\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServicioServiciosFile\ServicioServiciosFile.disco" />
+    <None Include="Service References\ServicioServiciosFile\configuration91.svcinfo" />
+    <None Include="Service References\ServicioServiciosFile\configuration.svcinfo" />
+    <None Include="Service References\ServicioServiciosFile\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ClientServiciosFile.aspx" />
     <Content Include="Site.Master" />
+    <None Include="Service References\ServicioCatalogo\ServicioCatalogo.wsdl" />
+    <None Include="Service References\ServicioCatalogo\ServicioCatalogo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioCatalogo\ServicioCatalogo1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioCatalogo\ServicioCatalogo2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioDesactivarProveedor\ServicioDesactivarProveedor.wsdl" />
+    <None Include="Service References\ServicioDesactivarProveedor\ServicioDesactivarProveedor.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioDesactivarProveedor\ServicioDesactivarProveedor1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioListaProveedores\ServicioListaProveedores.wsdl" />
+    <None Include="Service References\ServicioListaProveedores\ServicioListaProveedores.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioListaProveedores\ServicioListaProveedores1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioListaProveedores\ServicioListaProveedores2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioListaProveedores\ServicioListaProveedores3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioProveedorXRut\ServicioProveedorXRut.wsdl" />
+    <None Include="Service References\ServicioProveedorXRut\ServicioProveedorXRut.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioProveedorXRut\ServicioProveedorXRut1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioProveedorXRut\ServicioProveedorXRut2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioProveedorXRut\ServicioProveedorXRut3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioServiciosFile\ServicioServiciosFile.wsdl" />
+    <None Include="Service References\ServicioServiciosFile\ServicioServiciosFile.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioServiciosFile\ServicioServiciosFile1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -88,6 +237,34 @@
     <Content Include="AddProv.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientDesactivarProveedor.aspx.cs">
+      <DependentUpon>ClientDesactivarProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientDesactivarProveedor.aspx.designer.cs">
+      <DependentUpon>ClientDesactivarProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientNuevoProveedor.aspx.cs">
+      <DependentUpon>ClientNuevoProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientNuevoProveedor.aspx.designer.cs">
+      <DependentUpon>ClientNuevoProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientProveedorXRut.aspx.cs">
+      <DependentUpon>ClientProveedorXRut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientProveedorXRut.aspx.designer.cs">
+      <DependentUpon>ClientProveedorXRut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientServicioCatalogo.aspx.cs">
+      <DependentUpon>ClientServicioCatalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientServicioCatalogo.aspx.designer.cs">
+      <DependentUpon>ClientServicioCatalogo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -95,8 +272,22 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ClientFileProveedores.aspx.cs">
+      <DependentUpon>ClientFileProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientFileProveedores.aspx.designer.cs">
+      <DependentUpon>ClientFileProveedores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ClientListaProveedores.aspx.cs">
+      <DependentUpon>ClientListaProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientListaProveedores.aspx.designer.cs">
+      <DependentUpon>ClientListaProveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListarProveedores.aspx.cs">
       <DependentUpon>ListarProveedores.aspx</DependentUpon>
@@ -112,12 +303,26 @@
     <Compile Include="ListarproveedoresSeleccionado.aspx.designer.cs">
       <DependentUpon>ListarproveedoresSeleccionado.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MenuAdmin.aspx.cs">
+      <DependentUpon>MenuAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuAdmin.aspx.designer.cs">
+      <DependentUpon>MenuAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MenuProv.aspx.cs">
       <DependentUpon>MenuProv.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MenuProv.aspx.designer.cs">
       <DependentUpon>MenuProv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientModArancelYPorcentaje.aspx.cs">
+      <DependentUpon>ClientModArancelYPorcentaje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientModArancelYPorcentaje.aspx.designer.cs">
+      <DependentUpon>ClientModArancelYPorcentaje.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AddProv.aspx.cs">
@@ -126,6 +331,53 @@
     </Compile>
     <Compile Include="AddProv.aspx.designer.cs">
       <DependentUpon>AddProv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioCatalogo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioDesactivarProveedor\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioFileProveedores\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioListaProveedores\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioModArancelyPorcentaje\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioNuevoProv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioProveedorXRut\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioServiciosFile\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ClientServiciosFile.aspx.cs">
+      <DependentUpon>ClientServiciosFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientServiciosFile.aspx.designer.cs">
+      <DependentUpon>ClientServiciosFile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -144,6 +396,19 @@
       <Project>{B7119F76-D2D7-4605-AA4B-698210C3A7C7}</Project>
       <Name>EntidadesNegocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServicioCatalogo\" />
+    <WCFMetadataStorage Include="Service References\ServicioDesactivarProveedor\" />
+    <WCFMetadataStorage Include="Service References\ServicioFileProveedores\" />
+    <WCFMetadataStorage Include="Service References\ServicioListaProveedores\" />
+    <WCFMetadataStorage Include="Service References\ServicioModArancelyPorcentaje\" />
+    <WCFMetadataStorage Include="Service References\ServicioNuevoProv\" />
+    <WCFMetadataStorage Include="Service References\ServicioProveedorXRut\" />
+    <WCFMetadataStorage Include="Service References\ServicioServiciosFile\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
