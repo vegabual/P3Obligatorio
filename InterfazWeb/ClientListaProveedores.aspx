@@ -5,6 +5,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p></p>
+    <asp:GridView ID="GridView1" runat="server">
+    </asp:GridView>
     <div>
         <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CausesValidation="false" />
         <br /><br />

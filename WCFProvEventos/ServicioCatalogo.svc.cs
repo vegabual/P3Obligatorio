@@ -11,10 +11,21 @@ namespace WCFProvEventos
 {
     public class ServicioCatalogo : IServicioCatalogo
     {
-        public List<Servicio> FindAll()
+        public List<CatalogoServicios> FindAll()
         {
-            List<Servicio> lista = Servicio.FindAll();
-            return lista;
+            List<Servicio> listaServicios = Servicio.FindAll();
+            List<CatalogoServicios> listaRet = new List<CatalogoServicios>();
+            foreach (Servicio s in listaServicios)
+            {
+                CatalogoServicios elem = new CatalogoServicios()
+                {
+                    Nombre = s.Nombre,
+                    Descripcion = s.Descripcion,
+                    Imagen = s.Imagen
+                };
+                listaRet.Add(elem);
+            }
+            return listaRet;
         }
     }
 }
