@@ -27,10 +27,6 @@ namespace InterfazWeb
             DDLProveedor.DataValueField = "Rut";
             DDLProveedor.DataTextField = "Rut";
             DDLProveedor.DataBind();
-            DDLActivo.DataSource = Proveedor.FindAll();
-            DDLActivo.DataValueField = "Rut";
-            DDLActivo.DataTextField = "Activo";
-            DDLActivo.DataBind();
             clienteWCF.Close();
         }
 
@@ -44,15 +40,17 @@ namespace InterfazWeb
             ServicioDesactivarProveedorClient clienteWCF = new ServicioDesactivarProveedorClient();
             clienteWCF.Open();
 
-            if (clienteWCF.DesactivarProveedor(DDLProveedor.SelectedValue, Convert.ToBoolean(DDLActivo.SelectedValue)))
+            string activo = DDLActivo.SelectedValue;
+
+            if (clienteWCF.DesactivarProveedor(DDLProveedor.SelectedValue, Convert.ToBoolean(activo)))
             {
-                if(Convert.ToBoolean(DDLActivo.SelectedValue) == false)
+                if (Convert.ToBoolean(activo) == false)
                 {
-                    LblMensajes.Text = "El proveedor " + DDLProveedor.SelectedValue + "ha sido desactivado";
+                    LblMensajes.Text = "El proveedor " + DDLProveedor.SelectedValue + " ha sido desactivado";
                 }
                 else
                 {
-                    LblMensajes.Text = "El proveedor " + DDLProveedor.SelectedValue + "ha sido activado";
+                    LblMensajes.Text = "El proveedor " + DDLProveedor.SelectedValue + " ha sido activado";
                 }
             }
             else

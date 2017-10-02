@@ -13,7 +13,7 @@ namespace WCFProvEventos
     public interface IServicioCatalogo
     {
         [OperationContract]
-        List<Servicio> FindAll();
+        List<CatalogoServicios> FindAll();
     }
 
     [DataContract]
@@ -22,7 +22,6 @@ namespace WCFProvEventos
         string nombre = string.Empty;
         string descripcion = string.Empty;
         string imagen = string.Empty;
-        bool activo = true;
 
         [DataMember]
         public string Nombre
@@ -44,12 +43,6 @@ namespace WCFProvEventos
             get { return imagen; }
             set { imagen = value; }
         }
-
-        [DataMember]
-        public bool Activo
-        {
-            get { return activo; }
-            set { activo = value; }
-        }
+        
     }
 }
