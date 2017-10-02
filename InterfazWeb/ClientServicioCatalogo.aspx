@@ -6,6 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>LISTAR CATÁLOGO DE SERVICIOS</p>
     <div>
+            <asp:GridView ID="GridView1" runat="server">
+            </asp:GridView>
             <asp:Button ID="btnListar" runat="server" Text="Listar" OnClick="btnListar_Click"></asp:Button>
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CausesValidation="false" />
         <br /><br />
