@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using InterfazWeb.ServicioCatalogo;
+using EntidadesNegocio;
+using WCFProvEventos;
 
 namespace InterfazWeb
 {
@@ -23,7 +25,8 @@ namespace InterfazWeb
         {
             ServicioCatalogoClient ClienteWFC = new ServicioCatalogoClient();
             ClienteWFC.Open();
-            grvServicios.DataSource = ClienteWFC.FindAll();
+            List<CatalogoServicios> servicios = ClienteWFC.FindAll().ToList();
+            grvServicios.DataSource = ClienteWFC.FindAll().ToList();
             grvServicios.DataBind();
             ClienteWFC.Close();
         }

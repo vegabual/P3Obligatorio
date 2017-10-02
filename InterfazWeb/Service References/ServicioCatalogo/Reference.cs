@@ -16,10 +16,10 @@ namespace InterfazWeb.ServicioCatalogo {
     public interface IServicioCatalogo {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCatalogo/FindAll", ReplyAction="http://tempuri.org/IServicioCatalogo/FindAllResponse")]
-        EntidadesNegocio.Servicio[] FindAll();
+        WCFProvEventos.CatalogoServicios[] FindAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCatalogo/FindAll", ReplyAction="http://tempuri.org/IServicioCatalogo/FindAllResponse")]
-        System.Threading.Tasks.Task<EntidadesNegocio.Servicio[]> FindAllAsync();
+        System.Threading.Tasks.Task<WCFProvEventos.CatalogoServicios[]> FindAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,11 +49,11 @@ namespace InterfazWeb.ServicioCatalogo {
                 base(binding, remoteAddress) {
         }
         
-        public EntidadesNegocio.Servicio[] FindAll() {
+        public WCFProvEventos.CatalogoServicios[] FindAll() {
             return base.Channel.FindAll();
         }
         
-        public System.Threading.Tasks.Task<EntidadesNegocio.Servicio[]> FindAllAsync() {
+        public System.Threading.Tasks.Task<WCFProvEventos.CatalogoServicios[]> FindAllAsync() {
             return base.Channel.FindAllAsync();
         }
     }

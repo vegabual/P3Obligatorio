@@ -10,8 +10,6 @@
                 <Columns>
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                     <asp:BoundField DataField="descripcion" HeaderText="Descripcion" />
-                    <asp:ImageField DataImageUrlField="imagen" HeaderText="Imagen">
-                    </asp:ImageField>
                 </Columns>
             </asp:GridView>
             <asp:Button ID="btnListar" runat="server" Text="Listar" OnClick="btnListar_Click"></asp:Button>

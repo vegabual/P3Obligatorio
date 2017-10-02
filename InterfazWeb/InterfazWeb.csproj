@@ -69,6 +69,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WCFProvEventos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -84,22 +85,7 @@
     <Content Include="MenuProv.aspx" />
     <Content Include="ClientModArancelYPorcentaje.aspx" />
     <Content Include="Properties\DataSources\EntidadesNegocio.Servicio.datasource" />
-    <Content Include="Service References\ServiceReference1\InterfazWeb.ServiceReference1.DTOProveedor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\ServiceReference1\ServicioListaProveedores.wsdl" />
-    <None Include="Service References\ServiceReference1\ServicioListaProveedores.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\ServicioListaProveedores1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\ServicioListaProveedores2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\ServicioListaProveedores3.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <Content Include="Properties\DataSources\WCFProvEventos.CatalogoServicios.datasource" />
     <None Include="Service References\ServicioCatalogo\ServicioCatalogo.disco" />
     <None Include="Service References\ServicioCatalogo\configuration91.svcinfo" />
     <None Include="Service References\ServicioCatalogo\configuration.svcinfo" />
@@ -118,13 +104,6 @@
     <None Include="Service References\ServicioFileProveedores\configuration91.svcinfo" />
     <None Include="Service References\ServicioFileProveedores\configuration.svcinfo" />
     <None Include="Service References\ServicioFileProveedores\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\ServiceReference1\ServicioListaProveedores.disco" />
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -356,11 +335,6 @@
     <Compile Include="AddProv.aspx.designer.cs">
       <DependentUpon>AddProv.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\ServicioCatalogo\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -425,12 +399,15 @@
       <Project>{b7119f76-d2d7-4605-aa4b-698210c3a7c7}</Project>
       <Name>EntidadesNegocio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WCFProvEventos\WCFServicioCatalogo.csproj">
+      <Project>{B094CCFD-A144-43C5-890A-0344A7BE006A}</Project>
+      <Name>WCFServicioCatalogo</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
     <WCFMetadataStorage Include="Service References\ServicioCatalogo\" />
     <WCFMetadataStorage Include="Service References\ServicioDesactivarProveedor\" />
     <WCFMetadataStorage Include="Service References\ServicioFileProveedores\" />
