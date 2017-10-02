@@ -100,7 +100,7 @@ namespace EntidadesNegocio
             {
                 Debug.Assert(false, ex.Message);
                 trn.Rollback();
-                return false;
+                return true;
             }
             finally
             {
