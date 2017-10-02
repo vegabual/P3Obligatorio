@@ -22,6 +22,15 @@ namespace InterfazWeb {
         protected global::System.Web.UI.WebControls.TextBox txtArancel;
         
         /// <summary>
+        /// valArancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valArancel;
+        
+        /// <summary>
         /// txtPorcentaje control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace InterfazWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPorcentaje;
+        
+        /// <summary>
+        /// valPorcentaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valPorcentaje;
         
         /// <summary>
         /// btnModificar control.

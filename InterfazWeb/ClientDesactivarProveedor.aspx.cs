@@ -57,8 +57,14 @@ namespace InterfazWeb
             {
                 LblMensajes.Text = "La modificación no pudo realizarse";
             }
-
+            Limpiar();
             clienteWCF.Close();
+        }
+
+        private void Limpiar()
+        {
+            DDLProveedor.SelectedIndex = -1;
+            DDLActivo.SelectedIndex = -1;
         }
     }
 }

@@ -17,10 +17,13 @@ namespace WCFModificarArancelyPorcentaje
 
         [OperationContract]
         bool ModificarPorcentaje(double porcentaje);
+
+        [OperationContract]
+        IEnumerable<DTOProveedor> GetPorcYArancel();
     }
 
     [DataContract]
-    public class CompositeType
+    public class DTOProveedor
     {
         double porcentaje = 0;
         double arancel = 0;

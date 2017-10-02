@@ -27,5 +27,19 @@ namespace WCFModificarArancelyPorcentaje
 
             return result;
         }
+
+        public IEnumerable<DTOProveedor> GetPorcYArancel()
+        {
+            IEnumerable<Proveedor> lista = Proveedor.FindAll();
+            List<DTOProveedor> listaprov = new List<DTOProveedor>();
+            if (lista != null)
+            {
+                foreach (Proveedor_Vip pv in lista)
+                {
+                    //listaprov.Add(new WCFModificarArancelyPorcentaje.DTOProveedor { Arancel = , Porcentaje = pv.Porcentaje });
+                }
+            }
+            return listaprov;
+        }
     }
 }

@@ -9,9 +9,11 @@
     <div>
         <label for="txtArancel">Ingrese arancel</label>
             <asp:TextBox ID="txtArancel" runat="server" width="70"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="valArancel" runat="server" ErrorMessage="No ha ingresado el arancel" ControlToValidate="txtArancel"></asp:RequiredFieldValidator>
         <br /><br />
-        <label for="txtPorcentaje">Ingrese porcentaje</label>
+        <label for="txtPorcentaje">Ingrese porcentaje VIP</label>
             <asp:TextBox ID="txtPorcentaje" runat="server" width="70"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="valPorcentaje" runat="server" ErrorMessage="No ha ingresado el porcentaje" ControlToValidate="txtPorcentaje"></asp:RequiredFieldValidator>
         <br /><br />
             <asp:Button ID="btnModificar" runat="server" Text="Confirmar" OnClick="btnModificar_Click"></asp:Button>
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CausesValidation="false" />
