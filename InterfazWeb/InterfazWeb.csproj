@@ -421,7 +421,7 @@
       <Name>AccesoDatos</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProvEventos\EntidadesNegocio.csproj">
-      <Project>{B7119F76-D2D7-4605-AA4B-698210C3A7C7}</Project>
+      <Project>{b7119f76-d2d7-4605-aa4b-698210c3a7c7}</Project>
       <Name>EntidadesNegocio</Name>
     </ProjectReference>
   </ItemGroup>
