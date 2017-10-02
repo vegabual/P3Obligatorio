@@ -94,13 +94,13 @@ namespace EntidadesNegocio
                 int filas = cmd.ExecuteNonQuery();
                 trn.Commit();
 
-                return filas >= 2;
+                return filas >= 1;
             }
             catch (Exception ex)
             {
                 Debug.Assert(false, ex.Message);
                 trn.Rollback();
-                return true;
+                return false;
             }
             finally
             {
