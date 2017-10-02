@@ -10,7 +10,7 @@
             <asp:DropDownList ID="DDLProveedor" runat="server" CssClass="form-control"></asp:DropDownList>
         <br /><br />
         <label for="DDLActivo">Estado: </label>
-            <asp:DropDownList ID="DDLProductos" runat="server" CssClass="form-control"></asp:DropDownList>
+            <asp:DropDownList ID="DDLActivo" runat="server" CssClass="form-control"></asp:DropDownList>
         <br /><br />
             <asp:Button ID="btnDesactivarProv" runat="server" Text="Confirmar" OnClick="btnDesactivarProv_Click"></asp:Button>
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CausesValidation="false" />

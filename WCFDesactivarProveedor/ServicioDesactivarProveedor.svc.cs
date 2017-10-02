@@ -19,5 +19,19 @@ namespace WCFDesactivarProveedor
 
             return result;
         }
+
+        public IEnumerable<DTOProveedor> GetProveedor()
+        {
+            IEnumerable<Proveedor> lista = Proveedor.FindAll();
+            List<DTOProveedor> listaprov = new List<DTOProveedor>();
+            if (lista != null)
+            {
+                foreach (Proveedor p in lista)
+                {
+                    listaprov.Add(new WCFDesactivarProveedor.DTOProveedor{ Rut = p.Rut, Activo = p.Activo});
+                }
+            }
+            return listaprov;   
+        }
     }
 }

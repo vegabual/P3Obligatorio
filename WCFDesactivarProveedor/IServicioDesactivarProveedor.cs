@@ -14,10 +14,13 @@ namespace WCFDesactivarProveedor
     {
         [OperationContract]
         bool DesactivarProveedor(string rut, bool activo);
+
+        [OperationContract]
+        IEnumerable<DTOProveedor> GetProveedor();
     }
 
     [DataContract]
-    public class CompositeType
+    public class DTOProveedor
     {
         string rut = string.Empty;
         bool activo = false;
