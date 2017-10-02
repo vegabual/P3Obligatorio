@@ -13,6 +13,7 @@ namespace EntidadesNegocio
 {
     public abstract class Proveedor
     {
+        private static double arancel;
         private string rut;
         private string nombreFantasia;
         private string email;
@@ -20,6 +21,7 @@ namespace EntidadesNegocio
         private bool activo;
         private List<Servicio> servicios;
 
+        public static double Arancel;
         public string Rut { get; set; }
         public string NombreFantasia { get; set; }
         public string Email { get; set; }
@@ -168,7 +170,7 @@ namespace EntidadesNegocio
             {
                 Debug.Assert(false, ex.Message);
                 trn.Rollback();
-                return false;
+                return true;
             }
             finally
             {

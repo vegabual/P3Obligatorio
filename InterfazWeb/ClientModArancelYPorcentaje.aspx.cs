@@ -40,9 +40,9 @@ namespace InterfazWeb
             double arancel = Convert.ToDouble(txtArancel.Text);
             double porcentaje = Convert.ToDouble(txtPorcentaje.Text);
 
-            if (clienteWCF.ModificarArancel(arancel) && clienteWCF.ModificarPorcentaje(porcentaje))
+            if (!clienteWCF.ModificarArancel(arancel) && !clienteWCF.ModificarPorcentaje(porcentaje))
             {
-                LblMensajes.Text = "El nuevo arancel de los proveedores es " + txtArancel.Text + " y el porcentaje para los VIP es " + txtPorcentaje.Text;
+                LblMensajes.Text = "El nuevo arancel de los proveedores es " + txtArancel.Text + " y el porcentaje para los VIP es " + txtPorcentaje.Text + "%";
             }
             else
             {

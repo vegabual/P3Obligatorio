@@ -36,7 +36,7 @@ namespace WCFModificarArancelyPorcentaje
             {
                 foreach (Proveedor_Vip pv in lista)
                 {
-                    //listaprov.Add(new WCFModificarArancelyPorcentaje.DTOProveedor { Arancel = , Porcentaje = pv.Porcentaje });
+                    listaprov.Add(new WCFModificarArancelyPorcentaje.DTOProveedor { Arancel = Proveedor.Arancel, Porcentaje = pv.Porcentaje });
                 }
             }
             return listaprov;
