@@ -46,11 +46,11 @@ namespace InterfazWeb
             {
                 if (Convert.ToBoolean(activo) == false)
                 {
-                    LblMensajes.Text = "El proveedor " + DDLProveedor.SelectedValue + "ha sido desactivado";
+                    LblMensajes.Text = "El proveedor " + DDLProveedor.SelectedValue + " ha sido desactivado";
                 }
                 else
                 {
-                    LblMensajes.Text = "El proveedor " + DDLProveedor.SelectedValue + "ha sido activado";
+                    LblMensajes.Text = "El proveedor " + DDLProveedor.SelectedValue + " ha sido activado";
                 }
             }
             else
