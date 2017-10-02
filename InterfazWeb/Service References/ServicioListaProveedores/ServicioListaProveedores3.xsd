@@ -11,7 +11,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="NombreFantasia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Porcentaje" type="xs:double" />
       <xs:element minOccurs="0" name="Rut" nillable="true" type="xs:string" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EntidadesNegocio" minOccurs="0" name="Servicios" nillable="true" type="q1:ArrayOfServicio" />

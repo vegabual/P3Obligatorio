@@ -23,7 +23,7 @@ namespace WCFListaProveedores
                     elem = new DTOProveedor
                     {
                         Rut = p.Rut,
-                        NombreFantasia = p.NombreFantasia,
+                        Nombre = p.NombreFantasia,
                         Telefono = p.Telefono,
                         Email = p.Email,
                         Activo = p.Activo,
@@ -37,7 +37,7 @@ namespace WCFListaProveedores
                     elem = new DTOProveedor
                     {
                         Rut = p.Rut,
-                        NombreFantasia = p.NombreFantasia,
+                        Nombre = p.NombreFantasia,
                         Telefono = p.Telefono,
                         Email = p.Email,
                         Activo = p.Activo,

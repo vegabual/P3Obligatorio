@@ -35,7 +35,7 @@ namespace WCFListaProveedores
         }
 
         [DataMember]
-        public string NombreFantasia
+        public string Nombre
         {
             get { return nombrefantasia; }
             set { nombrefantasia = value; }

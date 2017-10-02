@@ -29,7 +29,7 @@ namespace InterfazWeb.ServicioListaProveedores {
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NombreFantasiaField;
+        private string NombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double PorcentajeField;
@@ -80,14 +80,14 @@ namespace InterfazWeb.ServicioListaProveedores {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NombreFantasia {
+        public string Nombre {
             get {
-                return this.NombreFantasiaField;
+                return this.NombreField;
             }
             set {
-                if ((object.ReferenceEquals(this.NombreFantasiaField, value) != true)) {
-                    this.NombreFantasiaField = value;
-                    this.RaisePropertyChanged("NombreFantasia");
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
                 }
             }
         }

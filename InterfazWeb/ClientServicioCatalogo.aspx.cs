@@ -25,7 +25,6 @@ namespace InterfazWeb
         {
             ServicioCatalogoClient ClienteWFC = new ServicioCatalogoClient();
             ClienteWFC.Open();
-            List<CatalogoServicios> servicios = ClienteWFC.FindAll().ToList();
             grvServicios.DataSource = ClienteWFC.FindAll().ToList();
             grvServicios.DataBind();
             ClienteWFC.Close();
@@ -35,10 +34,6 @@ namespace InterfazWeb
         {
             Response.Redirect("MenuAdmin.aspx");
         }
-
-        protected void btnListar_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
