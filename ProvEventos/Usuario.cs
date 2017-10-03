@@ -157,27 +157,11 @@ namespace EntidadesNegocio
 
         public static string HashPassword(string password)
         {
-            //byte[] data = System.Text.Encoding.ASCII.GetBytes(password);
-            //data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            //String hash = System.Text.Encoding.ASCII.GetString(data);
-            //return hash;
             UnicodeEncoding uEncode = new UnicodeEncoding();
             byte[] bytPassword = uEncode.GetBytes(password);
             SHA512Managed sha = new SHA512Managed();
             byte[] hash = sha.ComputeHash(bytPassword);
             return Convert.ToBase64String(hash);
-
-            /**************SOLUCION ALTERNATIVA***************/
-            ////Declarations
-            //byte[] originalbytes;
-            //byte[] encodedbytes;
-            //md5 md5;
-            ////instantiate md5cryptoserviceprovider, get bytes for original password and compute hash (encoded password)
-            //md5 = new md5cryptoserviceprovider();
-            //originalbytes = asciiencoding.default.getbytes(pass);
-            //encodedbytes = md5.computehash(originalbytes);
-            ////convert encoded bytes back to a 'readable' string
-            //return bitconverter.tostring(encodedbytes);
         }
     }
 }
