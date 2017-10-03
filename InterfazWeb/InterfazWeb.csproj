@@ -131,7 +131,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo.disco" />
+    <None Include="Service References\ServicioNuevoProv\ServicioNuevoProv.disco" />
     <None Include="Service References\ServicioNuevoProv\configuration91.svcinfo" />
     <None Include="Service References\ServicioNuevoProv\configuration.svcinfo" />
     <None Include="Service References\ServicioNuevoProv\Reference.svcmap">
@@ -148,14 +148,14 @@
     <None Include="Service References\ServicioModArancelyPorcentaje\ServicioModArancelyPorcentaje1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo.wsdl" />
-    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo.xsd">
+    <None Include="Service References\ServicioNuevoProv\ServicioNuevoProv.wsdl" />
+    <None Include="Service References\ServicioNuevoProv\ServicioNuevoProv.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo1.xsd">
+    <None Include="Service References\ServicioNuevoProv\ServicioNuevoProv1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicioNuevoProv\ServicioCatalogo2.xsd">
+    <None Include="Service References\ServicioNuevoProv\ServicioNuevoProv2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServicioProveedorXRut\ServicioProveedorXRut.disco" />

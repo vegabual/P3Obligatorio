@@ -12,49 +12,49 @@ namespace InterfazWeb.ServicioNuevoProv {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioNuevoProv.IServicioCatalogo")]
-    public interface IServicioCatalogo {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioNuevoProv.IServicioNuevoProv")]
+    public interface IServicioNuevoProv {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCatalogo/FindAll", ReplyAction="http://tempuri.org/IServicioCatalogo/FindAllResponse")]
-        EntidadesNegocio.Servicio[] FindAll();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioNuevoProv/NuevoProveedor", ReplyAction="http://tempuri.org/IServicioNuevoProv/NuevoProveedorResponse")]
+        bool NuevoProveedor(string rut, string clave, string nombre, string email, string telefono, bool vip, int[] servicios);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCatalogo/FindAll", ReplyAction="http://tempuri.org/IServicioCatalogo/FindAllResponse")]
-        System.Threading.Tasks.Task<EntidadesNegocio.Servicio[]> FindAllAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioNuevoProv/NuevoProveedor", ReplyAction="http://tempuri.org/IServicioNuevoProv/NuevoProveedorResponse")]
+        System.Threading.Tasks.Task<bool> NuevoProveedorAsync(string rut, string clave, string nombre, string email, string telefono, bool vip, int[] servicios);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServicioCatalogoChannel : InterfazWeb.ServicioNuevoProv.IServicioCatalogo, System.ServiceModel.IClientChannel {
+    public interface IServicioNuevoProvChannel : InterfazWeb.ServicioNuevoProv.IServicioNuevoProv, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServicioCatalogoClient : System.ServiceModel.ClientBase<InterfazWeb.ServicioNuevoProv.IServicioCatalogo>, InterfazWeb.ServicioNuevoProv.IServicioCatalogo {
+    public partial class ServicioNuevoProvClient : System.ServiceModel.ClientBase<InterfazWeb.ServicioNuevoProv.IServicioNuevoProv>, InterfazWeb.ServicioNuevoProv.IServicioNuevoProv {
         
-        public ServicioCatalogoClient() {
+        public ServicioNuevoProvClient() {
         }
         
-        public ServicioCatalogoClient(string endpointConfigurationName) : 
+        public ServicioNuevoProvClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public ServicioCatalogoClient(string endpointConfigurationName, string remoteAddress) : 
+        public ServicioNuevoProvClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ServicioCatalogoClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ServicioNuevoProvClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ServicioCatalogoClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ServicioNuevoProvClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public EntidadesNegocio.Servicio[] FindAll() {
-            return base.Channel.FindAll();
+        public bool NuevoProveedor(string rut, string clave, string nombre, string email, string telefono, bool vip, int[] servicios) {
+            return base.Channel.NuevoProveedor(rut, clave, nombre, email, telefono, vip, servicios);
         }
         
-        public System.Threading.Tasks.Task<EntidadesNegocio.Servicio[]> FindAllAsync() {
-            return base.Channel.FindAllAsync();
+        public System.Threading.Tasks.Task<bool> NuevoProveedorAsync(string rut, string clave, string nombre, string email, string telefono, bool vip, int[] servicios) {
+            return base.Channel.NuevoProveedorAsync(rut, clave, nombre, email, telefono, vip, servicios);
         }
     }
 }
