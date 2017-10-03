@@ -13,12 +13,6 @@
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click"></asp:Button>
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CausesValidation="false" />
         <br /><br />
-<%--        <asp:Label id="lblRut" runat="server"></asp:Label>
-        <asp:Label id="lblNombreFantasia" runat="server"></asp:Label>
-        <asp:Label id="lblEmail" runat="server"></asp:Label>
-        <asp:Label id="lblTelefono" runat="server"></asp:Label>
-        <asp:Label id="lblActivo" runat="server"></asp:Label>
-        <asp:Label id="lblPorcentaje" runat="server"></asp:Label>--%>
             <asp:GridView ID="grvProveedores" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="Rut" HeaderText="Rut" />
