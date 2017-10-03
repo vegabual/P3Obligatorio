@@ -294,7 +294,7 @@ namespace EntidadesNegocio
             }
             return p;
         }
-        
+
         protected static List<Servicio> CargarServicios(string idPv)
         {
             SqlConnection cn = Conexion.CrearConexion();

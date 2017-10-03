@@ -13,13 +13,13 @@ namespace InterfazWeb {
     public partial class ClientProveedorXRut {
         
         /// <summary>
-        /// txtRut control.
+        /// DDLProveedor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRut;
+        protected global::System.Web.UI.WebControls.DropDownList DDLProveedor;
         
         /// <summary>
         /// btnBuscar control.
@@ -38,6 +38,24 @@ namespace InterfazWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnVolver;
+        
+        /// <summary>
+        /// grvProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvProveedores;
+        
+        /// <summary>
+        /// grvServicios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvServicios;
         
         /// <summary>
         /// LblMensajes control.
