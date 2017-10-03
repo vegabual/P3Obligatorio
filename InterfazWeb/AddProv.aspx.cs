@@ -136,6 +136,10 @@ namespace InterfazWeb
             txtNombre.Text = "";
             txtEmail.Text = "";
             txtTel.Text = "";
+            foreach (GridViewRow row in grvServicios.Rows)
+            {
+                ((CheckBox)row.FindControl("ChkSelect")).Checked = false;
+            }
         }
     }
 }
