@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using InterfazWeb.ServicioServiciosFile;
 
 namespace InterfazWeb
 {
@@ -21,7 +22,16 @@ namespace InterfazWeb
 
         protected void btnCrearFile_Click(object sender, EventArgs e)
         {
-          
+            ServicioServiciosFileClient ClienteWCF = new ServicioServiciosFileClient();
+            ClienteWCF.Open();
+            if (ClienteWCF.ServiciosFile())
+            {
+                LblMensajes.Text = "El archivo fue creado correctamente.";
+            }
+            else
+            {
+                LblMensajes.Text = "Ocurrio un error en la creacion del archivo, intente nuevamente.";
+            }
         }
     }
 }
